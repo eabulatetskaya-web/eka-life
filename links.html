@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подборка — EA Life</title>
+<meta name="description" content="Кураторская подборка ссылок: только то, что реально стоит прочитать.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Подборка — EA Life">
+<meta property="og:description" content="Кураторская подборка ссылок.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="links.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-head { padding: 40px 0 20px; }
+.page-head h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.page-head h1 em { font-style: italic; color: var(--accent); }
+.page-head p { font-size: 1.05rem; color: var(--muted); max-width: 620px; }
+.filters { display: flex; gap: 8px; margin: 28px 0 24px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.filter {
+  padding: 10px 4px; margin-right: 16px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem; font-weight: 500;
+  color: var(--muted); position: relative; transition: color 0.2s;
+}
+.filter:hover { color: var(--text); }
+.filter.active { color: var(--accent); font-weight: 600; }
+.filter.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+.links-list { display: flex; flex-direction: column; gap: 12px; }
+.link-item {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 22px 24px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.link-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,144,226,0.08); border-color: transparent; }
+.link-item h3 { font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+.link-item p { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+.link-source { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; }
+.link-comment {
+  font-size: 0.88rem; color: var(--text); font-style: italic;
+  padding: 10px 14px; border-left: 2px solid var(--accent-2-soft);
+  background: var(--bg); border-radius: 0 8px 8px 0;
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="page-head">
+    <h1>Кураторская <em>подборка</em></h1>
+    <p>Только то, что реально стоит прочитать: с моими пометками, зачем сохранила и что тут важного.</p>
+  </section>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все</button>
+    <button class="filter" data-filter="career">🚗 Карьера</button>
+    <button class="filter" data-filter="life">🏙️ Лайфстайл</button>
+    <button class="filter" data-filter="hobby">🧩 Хоббис</button>
+    <button class="filter" data-filter="thoughts">💭 Закулисье</button>
+  </div>
+
+  <section class="links-list">
+
+    <!-- НОВАЯ — Pisca -->
+    <a class="link-item" href="https://pisca.ru/" target="_blank" data-topic="life">
+      <h3>Сумки в виш-лист!</h3>
+      <div class="link-source">pisca.ru · магазин сумок</div>
+      <p>Я. просто. хочу. их.</p>
+      <div class="link-comment">Смотреть на них каждый день и всё-таки купить когда-нибудь :)</div>
+    </a>
+
+    <!-- НОВАЯ — Bookerly Heart -->
+    <a class="link-item" href="https://bookerlyheart.com/" target="_blank" data-topic="hobby">
+      <h3>Для тех, кто читает</h3>
+      <div class="link-source">bookerlyheart.com · книги</div>
+      <p>Моему Kindle это нужно.</p>
+      <div class="link-comment">Я что, зря купила себе Kindle? Он просит — я покупаю.</div>
+    </a>
+
+    <!-- Заглушки ниже -->
+
+    <a class="link-item" href="#" target="_blank" data-topic="career">
+      <h3>Анатомия вирусного поста в Telegram</h3>
+      <div class="link-source">vc.ru · маркетинг</div>
+      <p>Разбор структуры постов, которые набирают охваты. Примеры и формулы.</p>
+      <div class="link-comment">Главное — первые 3 строки. Остальное — вода, но полезная.</div>
+    </a>
+
+    <a class="link-item" href="#" target="_blank" data-topic="career">
+      <h3>Как автобренды работают с инфлюенсерами в 2026</h3>
+      <div class="link-source">Sostav.ru · маркетинг</div>
+      <p>Обзор трендов и кейсов от крупнейших игроков рынка. Актуально для стратегии.</p>
+      <div class="link-comment">Сохранила для вдохновения. Особенно раздел про короткие форматы.</div>
+    </a>
+
+    <a class="link-item" href="#" target="_blank" data-topic="career">
+      <h3>F1 как маркетинговая машина: разбор</h3>
+      <div class="link-source">Forbes · авто</div>
+      <p>Почему бренды платят миллионы за логотип на болиде и что это даёт.</p>
+      <div class="link-comment">Прямо в мою тему! Материал для будущего поста.</div>
+    </a>
+
+    <a class="link-item" href="#" target="_blank" data-topic="career">
+      <h3>Инструменты аналитики соцсетей 2026</h3>
+      <div class="link-source">Cossa.ru · инструменты</div>
+      <p>Сравнение сервисов: что показывает, сколько стоит, кому подходит.</p>
+      <div class="link-comment">Пригодится, чтобы обновить свой стек.</div>
+    </a>
+
+    <a class="link-item" href="#" target="_blank" data-topic="life">
+      <h3>Лучшие чайные Москвы 2026</h3>
+      <div class="link-source">The Village · Москва</div>
+      <p>Подборка атмосферных чайных в центре.</p>
+      <div class="link-comment">Сохранила 3 адреса, чтобы сходить. Остальные — на потом.</div>
+    </a>
+
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="files.html">Файлы</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+<script>
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.link-item').forEach(item => {
+      item.style.display = (f === 'all' || item.dataset.topic === f) ? 'block' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

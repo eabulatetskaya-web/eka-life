@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обновления сайта — EA Life</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.cl-hero { padding: 40px 0 20px; max-width: 720px; }
+.cl-hero h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.cl-hero h1 em { font-style: italic; color: var(--accent); }
+.cl-hero p { font-size: 1.05rem; color: var(--muted); }
+
+.cl-timeline {
+  margin-top: 40px;
+  border-left: 2px solid var(--line);
+  padding-left: 32px;
+}
+.cl-entry { position: relative; padding-bottom: 40px; }
+.cl-entry::before {
+  content: ''; position: absolute; left: -41px; top: 6px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); border: 4px solid var(--card);
+}
+.cl-date {
+  font-size: 0.82rem; color: var(--accent);
+  font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.cl-entry h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.1rem;
+  font-weight: 700; margin-bottom: 12px;
+}
+.cl-entry ul {
+  list-style: none; padding: 0;
+}
+.cl-entry li {
+  padding: 6px 0 6px 24px; position: relative;
+  font-size: 0.94rem; color: var(--text); line-height: 1.6;
+}
+.cl-entry li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--accent); font-weight: 700;
+}
+.cl-entry .tag {
+  display: inline-block; padding: 2px 8px; border-radius: 6px;
+  background: var(--accent-soft); color: var(--accent);
+  font-size: 0.72rem; font-weight: 600; margin-left: 8px;
+  vertical-align: middle;
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+
+  <div class="nav-title">Разделы</div>
+  <nav>
+    <a href="index.html">🧭 Темы</a>
+    <a href="theme-career.html">📝 База знаний</a>
+    <a href="theme-career.html">🔖 Подборка</a>
+    <a href="themes.html">🗂 Все темы</a>
+    <a href="about.html">👤 Обо мне</a>
+  </nav>
+
+  <div class="socials">
+    <a href="https://t.me/ekallife" target="_blank" title="Telegram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      Telegram
+    </a>
+    <a href="https://instagram.com/_ea_life_" target="_blank" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      Instagram
+    </a>
+    <a href="https://ru.pinterest.com/ea_life/" target="_blank" title="Pinterest">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 15c.5-2 1.5-5 1.5-5"/><path d="M10 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3c-.8 0-1.5-.3-2-.8"/></svg>
+      Pinterest
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <section class="cl-hero">
+    <h1>Что нового на <em>сайте</em></h1>
+    <p>Небольшой журнал обновлений. Здесь видно, чем сайт живёт и как растёт.</p>
+  </section>
+
+  <section class="cl-timeline">
+
+    <div class="cl-entry">
+      <div class="cl-date">7 октября 2026</div>
+      <h3>Большое обновление 🚀</h3>
+      <ul>
+        <li>Страница отдельной заметки — с оглавлением, обложкой и кнопками «поделиться»</li>
+        <li>Страница подписки — Telegram и email</li>
+        <li>Тёмная тема, работает на всех страницах</li>
+        <li>Страница «Обо мне»</li>
+        <li>Страница «Все темы»</li>
+        <li>Красивые иконки соцсетей</li>
+        <li>Анимации появления при скролле</li>
+        <li>404-страница и changelog</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-date">1 октября 2026</div>
+      <h3>Запуск сайта 🌱</h3>
+      <ul>
+        <li>Главная страница с баннером и четырьмя темами</li>
+        <li>Первая версия карты связей</li>
+        <li>Лента из Telegram (на заглушках)</li>
+        <li>Поиск по сайту (Ctrl+K)</li>
+        <li>Кураторская подборка и база знаний</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2026 EA Life · личный кладезь знаний и вдохновения</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="subscribe.html">Подписка</a>
+    </div>
+  </footer>
+
+</main>
+
+<div class="overlay" id="searchOverlay">
+  <div class="search-modal" onclick="event.stopPropagation()">
+    <input type="text" id="searchInput" placeholder="Что ищем?..." autocomplete="off">
+    <div class="search-results" id="searchResults"><div class="search-empty">Начните вводить запрос...</div></div>
+    <div class="search-hint">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> навигация</span>
+      <span><kbd>Enter</kbd> открыть</span>
+      <span><kbd>Esc</kbd> закрыть</span>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="tgOverlay">
+  <div class="tg-modal" onclick="event.stopPropagation()">
+    <div class="tg-modal-head">
+      <div class="avatar">EA</div>
+      <div class="info"><div class="name">EA life</div><div class="handle">@ekallife</div></div>
+      <button class="close" id="closeTg">×</button>
+    </div>
+    <div class="tg-modal-body" id="tgModalBody"></div>
+    <div class="tg-modal-foot">
+      <a href="https://t.me/ekallife" target="_blank" class="btn btn-primary">Открыть в Telegram</a>
+      <button class="btn btn-ghost" id="closeTg2">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<script src="common.js"></script>
+</body>
+</html>

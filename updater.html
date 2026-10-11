@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обновление TG-постов — EA Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  background: #f6f9fd; color: #0f172a;
+  line-height: 1.6; padding: 40px 20px;
+  min-height: 100vh;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 8px; }
+h1 em { font-style: italic; color: #4a90e2; }
+.lead { color: #64748b; margin-bottom: 32px; font-size: 0.95rem; }
+.card {
+  background: #fff; border: 1px solid #e6edf5;
+  border-radius: 16px; padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(74,144,226,0.06);
+}
+.card h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem; font-weight: 600; margin-bottom: 16px;
+}
+label { display: block; font-size: 0.85rem; color: #64748b; font-weight: 500; margin-bottom: 6px; }
+input[type="text"], input[type="password"], textarea {
+  width: 100%; padding: 12px 16px;
+  border-radius: 10px; border: 1px solid #e6edf5;
+  background: #f6f9fd; color: #0f172a;
+  font-family: 'Manrope', sans-serif; font-size: 0.94rem;
+  outline: none; transition: border-color 0.15s;
+  margin-bottom: 16px;
+}
+textarea { font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; min-height: 120px; }
+input:focus, textarea:focus { border-color: #4a90e2; }
+.field-hint { font-size: 0.78rem; color: #94a3b8; margin-top: -12px; margin-bottom: 16px; }
+button {
+  padding: 12px 24px; border-radius: 10px;
+  background: #4a90e2; color: #fff;
+  border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.94rem; font-weight: 600;
+  transition: all 0.2s;
+  margin-right: 8px; margin-bottom: 8px;
+}
+button:hover { background: #3a7dd0; transform: translateY(-1px); }
+button:disabled { opacity: 0.5; cursor: wait; transform: none; }
+button.secondary { background: #fff; color: #0f172a; border: 1px solid #e6edf5; }
+button.secondary:hover { border-color: #4a90e2; color: #4a90e2; background: #fff; }
+.status {
+  padding: 12px 16px; border-radius: 10px;
+  font-size: 0.9rem; margin-top: 16px; display: none;
+}
+.status.success { display: block; background: #d9f2ea; color: #2d7a65; }
+.status.error { display: block; background: #fbe4ee; color: #b04a76; }
+.status.info { display: block; background: #e3f0ff; color: #3a7dd0; }
+.preview { border: 1px solid #e6edf5; border-radius: 12px; padding: 16px; margin: 16px 0; background: #fafbfd; max-height: 420px; overflow-y: auto; }
+.preview-item { padding: 12px 0; border-bottom: 1px solid #e6edf5; }
+.preview-item:last-child { border-bottom: none; }
+.preview-item .pdate { font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; }
+.preview-item .ptext { font-size: 0.9rem; color: #0f172a; }
+.preview-item.new .pdate::before { content: '✨ НОВЫЙ · '; color: #4fb89a; font-weight: 700; }
+.warn {
+  background: #fff4e3; border-left: 3px solid #d18a3d;
+  padding: 12px 16px; border-radius: 0 8px 8px 0;
+  font-size: 0.86rem; color: #8a5a1f; margin-bottom: 20px;
+}
+code {
+  background: #e3f0ff; color: #3a7dd0;
+  padding: 2px 6px; border-radius: 4px;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.88em; word-break: break-all;
+}
+ol { margin-left: 20px; font-size: 0.9rem; line-height: 1.9; }
+.manual-link {
+  display: block; padding: 12px 16px;
+  background: #f6f9fd; border: 1px dashed #b8d4f5;
+  border-radius: 10px; font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.78rem; color: #3a7dd0;
+  word-break: break-all; text-decoration: none;
+  margin-bottom: 12px; line-height: 1.5;
+}
+.manual-link:hover { background: #e3f0ff; }
+.tab-buttons {
+  display: flex; gap: 8px; margin-bottom: 20px;
+  border-bottom: 1px solid #e6edf5;
+}
+.tab-btn {
+  padding: 10px 4px; background: none; border: none;
+  color: #64748b; font-family: 'Manrope', sans-serif;
+  font-size: 0.92rem; font-weight: 500; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin: 0 16px 0 0; border-radius: 0;
+}
+.tab-btn:hover { color: #0f172a; transform: none; background: none; }
+.tab-btn.active { color: #4a90e2; border-bottom-color: #4a90e2; font-weight: 600; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.code-area { font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; min-height: 200px; line-height: 1.5; }
+.file-drop {
+  border: 2px dashed #b8d4f5;
+  border-radius: 12px; padding: 20px; text-align: center;
+  background: #f6f9fd; cursor: pointer;
+  transition: all 0.15s; margin-bottom: 12px;
+}
+.file-drop:hover { border-color: #4a90e2; background: #e3f0ff; }
+.file-drop input[type="file"] { display: none; }
+.file-drop .fd-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.file-drop .fd-text { font-size: 0.9rem; color: #64748b; }
+.file-drop .fd-text strong { color: #4a90e2; }
+.existing-info {
+  font-size: 0.86rem; color: #2d7a65;
+  background: #d9f2ea; padding: 10px 14px;
+  border-radius: 10px; margin-bottom: 12px; display: none;
+}
+.existing-info.show { display: block; }
+.existing-info.info { background: #e3f0ff; color: #3a7dd0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <h1>Обновление <em>Telegram-постов</em></h1>
+  <p class="lead">Собирает посты из канала в файл <code>tg-posts.js</code>. Новые добавляются к уже сохранённым — ничего не теряется.</p>
+
+  <div class="warn">
+    ⚠️ <strong>Не выкладывайте эту страницу в интернет.</strong>
+  </div>
+
+  <div class="card">
+    <h2>1. Данные бота</h2>
+    <label>Токен бота</label>
+    <input type="password" id="token" placeholder="8805689274:AAE26Tul...">
+    <div class="field-hint">@BotFather → /mybots → ваш бот → API Token</div>
+
+    <label>Chat ID канала</label>
+    <input type="text" id="chatid" value="-1001717688349">
+    <div class="field-hint">Ваш ID уже подставлен</div>
+  </div>
+
+  <div class="card">
+    <h2>2. Накопление — что уже есть в файле</h2>
+    <p style="font-size:0.9rem; color:#64748b; margin-bottom:16px;">
+      Выберите ваш текущий <code>tg-posts.js</code>, чтобы updater добавил новые посты к существующим. Если не выберете — он возьмёт предыдущий результат из памяти браузера.
+    </p>
+
+    <label class="file-drop">
+      <input type="file" id="existingFile" accept=".js">
+      <div class="fd-icon">📁</div>
+      <div class="fd-text">Нажмите, чтобы выбрать <strong>tg-posts.js</strong><br>или перетащите файл сюда</div>
+    </label>
+
+    <div class="existing-info" id="existingInfo"></div>
+    <button class="secondary" id="clearHistoryBtn">🗑 Сбросить накопления</button>
+  </div>
+
+  <div class="card">
+    <h2>3. Способ загрузки</h2>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="manual">✋ Вручную</button>
+      <button class="tab-btn" data-tab="auto">🤖 Автоматически</button>
+    </div>
+
+    <div class="tab-content active" id="tab-manual">
+      <ol style="margin-bottom:16px;">
+        <li>Нажмите кнопку ниже — откроется ссылка</li>
+        <li>Скопируйте <strong>весь</strong> текст из новой вкладки (<code>Ctrl+A</code> → <code>Ctrl+C</code>)</li>
+        <li>Вставьте в поле ниже и нажмите «Обработать»</li>
+      </ol>
+
+      <a href="#" id="manualLink" target="_blank" class="manual-link">https://api.telegram.org/bot.../getUpdates</a>
+      <button class="secondary" id="buildLinkBtn">🔗 Построить ссылку</button>
+
+      <label style="margin-top:16px;">Вставьте сюда JSON из ссылки:</label>
+      <textarea id="manualJson" placeholder='{"ok":true,"result":[...]}'></textarea>
+      <button id="processManualBtn">Обработать</button>
+      <div class="status" id="statusManual"></div>
+    </div>
+
+    <div class="tab-content" id="tab-auto">
+      <button id="loadBtn">Загрузить посты</button>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <div class="card" id="previewCard" style="display:none;">
+    <h2>4. Превью постов</h2>
+    <p style="font-size:0.86rem; color:#64748b; margin-bottom:12px;" id="previewSummary"></p>
+    <div class="preview" id="preview"></div>
+
+    <p style="font-size:0.9rem; color:#64748b; margin:16px 0 8px;">Нажмите одну из кнопок:</p>
+    <button class="secondary" id="showTextBtn">📋 Показать текст файла</button>
+    <button class="secondary" id="downloadBtn">💾 Скачать tg-posts.js</button>
+
+    <div id="textOutputBlock" style="display:none; margin-top:20px;">
+      <label>Содержимое файла tg-posts.js — выделите всё и скопируйте:</label>
+      <textarea class="code-area" id="textOutput" readonly onclick="this.select()"></textarea>
+      <button class="secondary" id="copyTextBtn">📋 Скопировать всё в буфер</button>
+      <div class="field-hint" style="margin-top:12px;">
+        Скопировали? Откройте <code>tg-posts.js</code> в Блокноте (<strong>правый клик → Открыть с помощью → Блокнот</strong>), удалите всё старое (<code>Ctrl+A</code> → <code>Delete</code>), вставьте новое (<code>Ctrl+V</code>) и сохраните (<code>Ctrl+S</code>).
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>5. Что делать после</h2>
+    <ol>
+      <li>Сохранить <code>tg-posts.js</code> в папку <code>ea-life-site</code></li>
+      <li>Открыть <code>index.html</code> в браузере</li>
+      <li>Нажать <code>Ctrl+Shift+R</code></li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+const TOKEN_KEY = 'tg_bot_token';
+const CHAT_KEY = 'tg_chat_id';
+const HISTORY_KEY = 'tg_posts_history';
+
+const tokenInput = document.getElementById('token');
+const chatInput = document.getElementById('chatid');
+const loadBtn = document.getElementById('loadBtn');
+const downloadBtn = document.getElementById('downloadBtn');
+const showTextBtn = document.getElementById('showTextBtn');
+const copyTextBtn = document.getElementById('copyTextBtn');
+const textOutput = document.getElementById('textOutput');
+const textOutputBlock = document.getElementById('textOutputBlock');
+const status = document.getElementById('status');
+const statusManual = document.getElementById('statusManual');
+const preview = document.getElementById('preview');
+const previewCard = document.getElementById('previewCard');
+const previewSummary = document.getElementById('previewSummary');
+const manualLink = document.getElementById('manualLink');
+const buildLinkBtn = document.getElementById('buildLinkBtn');
+const manualJson = document.getElementById('manualJson');
+const processManualBtn = document.getElementById('processManualBtn');
+const existingFile = document.getElementById('existingFile');
+const existingInfo = document.getElementById('existingInfo');
+const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+let existingPosts = [];
+
+function updateExistingInfo(message, isInfo) {
+  existingInfo.textContent = message;
+  existingInfo.className = 'existing-info show' + (isInfo ? ' info' : '');
+}
+
+function saveHistory(posts) {
+  existingPosts = posts;
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(posts));
+  } catch (e) {}
+}
+
+function loadHistoryFromStorage() {
+  try {
+    const saved = localStorage.getItem(HISTORY_KEY);
+    if (saved) {
+      existingPosts = JSON.parse(saved);
+      if (existingPosts.length) {
+        updateExistingInfo(`ℹ️ Из памяти браузера загружено ${existingPosts.length} постов. Для надёжности выберите файл tg-posts.js.`, true);
+      }
+    }
+  } catch (e) {}
+}
+
+function parseTgPostsFile(text) {
+  const match = text.match(/window\.TG_POSTS_FEED\s*=\s*(\[[\s\S]*?\]);/);
+  if (!match) {
+    const matchOld = text.match(/const\s+TG_POSTS_FEED\s*=\s*(\[[\s\S]*?\]);/);
+    if (!matchOld) return null;
+    try { return JSON.parse(matchOld[1]); } catch (e) { return null; }
+  }
+  try {
+    return JSON.parse(match[1]);
+  } catch (e) {
+    console.error('Не удалось распарсить файл:', e);
+    return null;
+  }
+}
+
+existingFile.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const posts = parseTgPostsFile(text);
+    if (!posts) {
+      updateExistingInfo('⚠️ Не нашёл массив TG_POSTS_FEED в файле. Выберите именно tg-posts.js.', true);
+      return;
+    }
+    saveHistory(posts);
+    updateExistingInfo(`✓ Загружено ${posts.length} постов из файла. Новые добавятся к ним.`, false);
+  } catch (err) {
+    updateExistingInfo('⚠️ Ошибка чтения файла: ' + err.message, true);
+  }
+});
+
+clearHistoryBtn.addEventListener('click', () => {
+  if (!confirm('Точно очистить накопленные посты? Следующее сохранение начнётся с нуля.')) return;
+  existingPosts = [];
+  try { localStorage.removeItem(HISTORY_KEY); } catch (e) {}
+  existingInfo.className = 'existing-info';
+  existingFile.value = '';
+});
+
+loadHistoryFromStorage();
+
+try {
+  const savedToken = localStorage.getItem(TOKEN_KEY);
+  const savedChat = localStorage.getItem(CHAT_KEY);
+  if (savedToken) tokenInput.value = savedToken;
+  if (savedChat) chatInput.value = savedChat;
+} catch (e) {}
+
+function showStatus(el, type, text) {
+  el.className = 'status ' + type;
+  el.textContent = text;
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+function parseTelegramJson(raw) {
+  let s = raw.trim();
+  s = s.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
+
+  try { return JSON.parse(s); } catch (e) {}
+
+  let result = '';
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    if (escaped) { result += ch; escaped = false; continue; }
+    if (ch === '\\') { result += ch; escaped = true; continue; }
+    if (ch === '"') { inString = !inString; result += ch; continue; }
+    if (inString) {
+      if (ch === '\n') { result += '\\n'; continue; }
+      if (ch === '\r') { continue; }
+      if (ch === '\t') { result += '\\t'; continue; }
+      const code = ch.charCodeAt(0);
+      if (code < 32) { result += '\\u' + code.toString(16).padStart(4, '0'); continue; }
+    }
+    result += ch;
+  }
+
+  try {
+    return JSON.parse(result);
+  } catch (e) {
+    throw new Error('Не получилось разобрать JSON: ' + e.message);
+  }
+}
+
+buildLinkBtn.addEventListener('click', () => {
+  const token = tokenInput.value.trim();
+  if (!token) {
+    showStatus(statusManual, 'error', 'Сначала введите токен в блоке 1');
+    return;
+  }
+  manualLink.href = `https://api.telegram.org/bot${token}/getUpdates`;
+  manualLink.textContent = `https://api.telegram.org/bot${token.slice(0, 10)}.../getUpdates`;
+  showStatus(statusManual, 'success', '✓ Ссылка готова. Нажмите на неё.');
+});
+
+processManualBtn.addEventListener('click', () => {
+  const json = manualJson.value.trim();
+  const chatId = chatInput.value.trim();
+  if (!json) {
+    showStatus(statusManual, 'error', 'Вставьте JSON');
+    return;
+  }
+  try {
+    const data = parseTelegramJson(json);
+    if (!data.ok) {
+      showStatus(statusManual, 'error', 'Telegram вернул ошибку: ' + (data.description || ''));
+      return;
+    }
+    const posts = data.result
+      .filter(u => u.channel_post && String(u.channel_post.chat.id) === chatId)
+      .map(u => u.channel_post);
+    if (!posts.length) {
+      showStatus(statusManual, 'error', 'Новых постов нет. Если хотите обновить ленту — опубликуйте новый пост и повторите.');
+      return;
+    }
+    const merged = processPosts(posts);
+    showPreview(merged);
+    const newCount = merged.filter(p => p.isNew).length;
+    const totalCount = merged.length;
+    showStatus(statusManual, 'success', `✓ Новых: ${newCount}, всего в файле: ${totalCount}. Нажмите «Показать текст файла».`);
+  } catch (e) {
+    showStatus(statusManual, 'error', e.message);
+  }
+});
+
+const PROXIES = [
+  { name: 'corsproxy.io',  build: u => 'https://corsproxy.io/?' + encodeURIComponent(u) },
+  { name: 'allorigins',    build: u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u) },
+  { name: 'cors.eu.org',   build: u => 'https://cors.eu.org/' + u },
+];
+
+async function tryProxies(token) {
+  const apiUrl = `https://api.telegram.org/bot${token}/getUpdates`;
+  let lastError = null;
+  for (const proxy of PROXIES) {
+    try {
+      showStatus(status, 'info', `Пробую через ${proxy.name}...`);
+      const res = await fetch(proxy.build(apiUrl));
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const text = await res.text();
+      const data = parseTelegramJson(text);
+      if (data && data.ok) return data;
+      throw new Error('Неверный ответ');
+    } catch (err) {
+      lastError = err;
+      console.warn(`Прокси ${proxy.name}:`, err.message);
+    }
+  }
+  throw lastError || new Error('Все прокси недоступны');
+}
+
+loadBtn.addEventListener('click', async () => {
+  const token = tokenInput.value.trim();
+  const chatId = chatInput.value.trim();
+  if (!token || !chatId) {
+    showStatus(status, 'error', 'Заполните токен и chat ID');
+    return;
+  }
+  try {
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(CHAT_KEY, chatId);
+  } catch (e) {}
+  loadBtn.disabled = true;
+  showStatus(status, 'info', 'Запрашиваю посты...');
+  try {
+    const data = await tryProxies(token);
+    const posts = data.result
+      .filter(u => u.channel_post && String(u.channel_post.chat.id) === chatId)
+      .map(u => u.channel_post);
+    if (!posts.length) {
+      showStatus(status, 'error', 'Новых постов нет. Опубликуйте пост и повторите.');
+      loadBtn.disabled = false;
+      return;
+    }
+    const merged = processPosts(posts);
+    showPreview(merged);
+    const newCount = merged.filter(p => p.isNew).length;
+    showStatus(status, 'success', `✓ Новых: ${newCount}, всего в файле: ${merged.length}. Нажмите «Показать текст файла».`);
+  } catch (err) {
+    showStatus(status, 'error', 'Не удалось. Используйте вкладку «Вручную».');
+  } finally {
+    loadBtn.disabled = false;
+  }
+});
+
+function formatDate(ts) {
+  const d = new Date(ts * 1000);
+  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }) +
+         ' · ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+}
+
+function formatPost(p) {
+  let text = p.text || p.caption || '';
+  const images = [];
+
+  if (p.audio) {
+    const a = p.audio;
+    text = `🎵 ${a.performer ? a.performer + ' — ' : ''}${a.title || 'Аудио'}` + (text ? '\n\n' + text : '');
+    images.push('Аудио');
+  }
+  if (p.photo) images.push('Фото');
+  if (p.video) images.push('Видео');
+  if (p.voice) images.push('Голосовое');
+  if (p.document) images.push(p.document.file_name || 'Документ');
+  if (p.poll) { text = '📊 ' + p.poll.question + '\n\n' + text; images.push('Опрос'); }
+
+  return {
+    id: String(p.message_id),
+    ts: p.date,
+    text: text,
+    date: formatDate(p.date),
+    images: images,
+    reactions: [],
+  };
+}
+
+function processPosts(newPosts) {
+  const formatted = newPosts.map(formatPost);
+
+  const existingIds = new Set(existingPosts.map(p => p.id));
+  const fresh = formatted.filter(p => !existingIds.has(p.id));
+  fresh.forEach(p => { p.isNew = true; });
+
+  const merged = [...existingPosts, ...fresh]
+    .filter(p => p.id)
+    .sort((a, b) => (b.ts || 0) - (a.ts || 0))
+    .slice(0, 100);
+
+  return merged;
+}
+
+let fullFileContent = '';
+
+function showPreview(posts) {
+  const cleanPosts = posts.map(p => {
+    const copy = { ...p };
+    delete copy.isNew;
+    return copy;
+  });
+  saveHistory(cleanPosts);
+
+  const newCount = posts.filter(p => p.isNew).length;
+  previewSummary.textContent = `Всего: ${posts.length} · новых: ${newCount} · сохранено в память браузера`;
+
+  const json = JSON.stringify(cleanPosts, null, 2);
+  fullFileContent =
+    '// Автоматически сгенерировано через updater.html\n' +
+    '// Дата: ' + new Date().toLocaleString('ru-RU') + '\n' +
+    '// Всего постов: ' + cleanPosts.length + '\n\n' +
+    'window.TG_POSTS_FEED = ' + json + ';\n';
+
+  window.TG_JSON = json;
+  textOutput.value = fullFileContent;
+
+  preview.innerHTML = posts.map(p => `
+    <div class="preview-item${p.isNew ? ' new' : ''}">
+      <div class="pdate">${p.date}${p.images.length ? ' · ' + p.images.join(', ') : ''}</div>
+      <div class="ptext">${(p.text || '').replace(/</g, '&lt;').slice(0, 200) || '<em>без текста</em>'}</div>
+    </div>
+  `).join('');
+
+  previewCard.style.display = 'block';
+}
+
+showTextBtn.addEventListener('click', () => {
+  if (!fullFileContent) return;
+  textOutputBlock.style.display = 'block';
+  textOutput.focus();
+  textOutput.select();
+});
+
+copyTextBtn.addEventListener('click', () => {
+  if (!fullFileContent) return;
+  navigator.clipboard.writeText(fullFileContent).then(() => {
+    copyTextBtn.textContent = '✓ Скопировано!';
+    setTimeout(() => { copyTextBtn.textContent = '📋 Скопировать всё в буфер'; }, 2000);
+  }).catch(() => {
+    textOutput.select();
+    document.execCommand('copy');
+    copyTextBtn.textContent = '✓ Скопировано!';
+    setTimeout(() => { copyTextBtn.textContent = '📋 Скопировать всё в буфер'; }, 2000);
+  });
+});
+
+downloadBtn.addEventListener('click', () => {
+  if (!fullFileContent) return;
+  const blob = new Blob([fullFileContent], { type: 'text/javascript;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tg-posts.js';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+</script>
+
+</body>
+</html>

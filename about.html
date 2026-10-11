@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обо мне — EA Life</title>
+<meta name="description" content="Маркетолог в авто-сфере. Пишу о работе с брендами, жизни в Москве и о том, что помогает расти.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Обо мне — EA Life">
+<meta property="og:description" content="Маркетолог в авто-сфере. Пишу о работе, Москве и том, что вдохновляет.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="about.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.about-hero { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: start; padding: 40px 0 20px; }
+.about-photo {
+  width: 100%; aspect-ratio: 4/5; border-radius: 24px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(74,144,226,0.12);
+}
+.about-photo.has-image { color: transparent; }
+.about-photo span {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.85rem; text-align: center;
+  padding: 20px;
+}
+.about-text h1 { font-size: 2.6rem; margin-bottom: 14px; line-height: 1.15; }
+.about-text h1 em { font-style: italic; color: var(--accent); }
+.about-text .lead { font-size: 1.08rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.about-tag { padding: 5px 12px; border-radius: 20px; background: var(--accent-soft); color: var(--accent); font-size: 0.82rem; font-weight: 500; }
+
+.about-section { padding: 40px 0; }
+.about-section h2 { font-size: 1.5rem; margin-bottom: 18px; }
+.about-section p { color: var(--text); margin-bottom: 14px; font-size: 1rem; line-height: 1.75; }
+.about-section p:last-child { margin-bottom: 0; }
+.about-section strong { font-weight: 700; }
+
+/* Языки — особая секция */
+.langs-block {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  border-radius: 20px; padding: 32px 36px;
+  margin-top: 8px;
+}
+.langs-block h2 { color: var(--text); margin-bottom: 16px; }
+.lang-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem; font-style: italic;
+  color: var(--accent); font-weight: 500;
+  margin: 16px 0 4px;
+  letter-spacing: 0.01em;
+}
+.lang-translation {
+  font-size: 0.92rem; color: var(--muted);
+  margin-bottom: 20px;
+}
+.lang-translation strong { color: var(--text); }
+
+.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.contact-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 20px; text-decoration: none;
+  color: var(--text); display: flex; gap: 14px; align-items: center;
+  transition: all 0.2s;
+}
+.contact-card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 24px rgba(74,144,226,0.08); }
+.contact-card .cc-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: var(--accent-soft); color: var(--accent); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-card .cc-icon svg { width: 20px; height: 20px; }
+.contact-card .cc-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 2px; }
+.contact-card .cc-meta { font-size: 0.78rem; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .about-hero { grid-template-columns: 1fr; gap: 28px; }
+  .about-photo { max-width: 280px; margin: 0 auto; }
+  .about-text h1 { font-size: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .langs-block { padding: 24px; }
+  .lang-quote { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="about-hero">
+    <div class="about-photo has-image" style="background-image: url('img/me.jpg');" title="Это я"></div>
+    <div class="about-text">
+      <h1>Привет, я <em>eka_life</em></h1>
+      <p class="lead">Маркетолог в автомобильном бизнесе. Собираю здесь то, что помогает расти: заметки о работе, находки, любимые книги и чайные места. Делюсь с теми, кому это может быть полезно.</p>
+      <div class="about-tags">
+        <span class="about-tag">Авто-маркетинг</span>
+        <span class="about-tag">Блогинг</span>
+        <span class="about-tag">Москва</span>
+        <span class="about-tag">Чайные церемонии</span>
+        <span class="about-tag">F1 и картинг</span>
+        <span class="about-tag">Книги</span>
+        <span class="about-tag">Языки</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2>Чем занимаюсь</h2>
+    <p>Мне 26, и весь мой профессиональный путь — в автомобильном бизнесе. Успела поработать в разных импортёрах, а сейчас я в команде бренда <strong>TENET</strong>.</p>
+    <p>Работа — большая часть моей жизни. Не по принуждению, а потому что мне правда нравится: запускать кампании, придумывать коллаборации, разбираться, как работает маркетинг в авто.</p>
+    <p>Я постоянно учусь чему-то новому — кажется, мне нужно охватить <strong>ВСЁ</strong>. И это не метафора: если я чего-то не умею, я просто беру и осваиваю.</p>
+  </section>
+
+  <section class="about-section">
+    <h2>Что люблю</h2>
+    <p>Вне работы — целый мир. <strong>Китайский чай и чайные церемонии</strong> — это про замедление и внимание к деталям. <strong>Картинг и F1</strong> — про азарт и скорость. <strong>Книги</strong> — много книг. Фильмы и сериалы. <strong>Путешествия</strong> и поездки с близкими, с нашими маленькими традициями, которые делают каждую поездку особенной.</p>
+    <p>И, кстати, <strong>кодинг с ИИ</strong> — моё новое хобби. Учусь делать сайты и не только, и это очень увлекает.</p>
+  </section>
+
+  <section class="about-section">
+    <div class="langs-block">
+      <h2>Языки</h2>
+      <p>Отдельная любовь. Английский, французский, китайский — три разных мира. Мне нравится чувствовать, как одна и та же мысль звучит по-разному.</p>
+
+      <div class="lang-quote">Petit à petit, l'oiseau fait son nid.</div>
+      <div class="lang-translation"><strong>Перевод:</strong> маленькими шагами птица вьёт гнездо. Про то, что не надо спешить.</div>
+
+      <div class="lang-quote">慢慢来 — màn màn lái.</div>
+      <div class="lang-translation"><strong>Перевод:</strong> «не спеша». Похожий смысл, но иначе.</div>
+
+      <p style="margin-top: 20px;">Так и живу: делаю много, но не тороплюсь.</p>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2>Связаться</h2>
+    <p style="color: var(--muted);">Открыта к коллаборациям, консультациям и просто хорошим разговорам.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://t.me/ekallife" target="_blank">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </div>
+        <div>
+          <div class="cc-title">Telegram</div>
+          <div class="cc-meta">@ekallife · быстрее всего</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://instagram.com/_ea_life_" target="_blank">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </div>
+        <div>
+          <div class="cc-title">Instagram</div>
+          <div class="cc-meta">@_ea_life_</div>
+        </div>
+      </a>
+      <a class="contact-card" href="mailto:eabulatetskaya@gmail.com">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div>
+          <div class="cc-title">Email</div>
+          <div class="cc-meta">eabulatetskaya@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://ru.pinterest.com/ea_life/" target="_blank">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 15c.5-2 1.5-5 1.5-5"/><path d="M10 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3c-.8 0-1.5-.3-2-.8"/></svg>
+        </div>
+        <div>
+          <div class="cc-title">Pinterest</div>
+          <div class="cc-meta">визуальные подборки</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="now.html">Сейчас</a>
+      <a href="subscribe.html">Подписка</a>
+      <a href="themes.html">Все темы</a>
+      <a href="https://t.me/ekallife" target="_blank">Telegram</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подписка на обновления — EA Life</title>
+<meta name="description" content="Подпишитесь на новые заметки и подборки — в Telegram или по email.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Подписка — EA Life">
+<meta property="og:description" content="Новые заметки и находки — в Telegram или по email.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="subscribe.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.sub-hero { padding: 60px 0 40px; max-width: 720px; }
+.sub-hero h1 { font-size: 2.6rem; line-height: 1.15; margin-bottom: 16px; }
+.sub-hero h1 em { font-style: italic; color: var(--accent); }
+.sub-hero .lead { font-size: 1.1rem; color: var(--muted); }
+.sub-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0 40px; }
+.sub-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 32px;
+  display: flex; flex-direction: column;
+  transition: all 0.25s;
+}
+.sub-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(74,144,226,0.08); }
+.sub-card .sc-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.sub-card h2 { font-size: 1.25rem; margin-bottom: 8px; }
+.sub-card p { font-size: 0.94rem; color: var(--muted); margin-bottom: 24px; flex: 1; }
+.sub-form { display: flex; flex-direction: column; gap: 10px; }
+.sub-form input {
+  padding: 12px 16px; border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg); color: var(--text);
+  font-family: 'Manrope', sans-serif; font-size: 0.94rem;
+  outline: none; transition: border-color 0.15s;
+}
+.sub-form input:focus { border-color: var(--accent); }
+.sub-form button {
+  padding: 12px 20px; border-radius: 10px;
+  background: var(--accent); color: #fff;
+  border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.94rem; font-weight: 600;
+  transition: all 0.2s;
+}
+.sub-form button:hover { background: #3a7dd0; transform: translateY(-1px); }
+.sub-form .hint { font-size: 0.78rem; color: var(--muted); margin-top: -4px; }
+.sub-tg-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 12px 20px; border-radius: 10px;
+  background: var(--accent); color: #fff;
+  text-decoration: none; font-weight: 600; font-size: 0.94rem;
+  transition: all 0.2s;
+}
+.sub-tg-btn:hover { background: #3a7dd0; transform: translateY(-1px); }
+.form-msg {
+  padding: 10px 14px; border-radius: 8px; font-size: 0.86rem;
+  display: none;
+}
+.form-msg.success { background: var(--accent-3-soft); color: var(--accent-3); display: block; }
+.form-msg.error { background: var(--accent-4-soft); color: var(--accent-4); display: block; }
+.why-block {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 32px; margin: 40px 0;
+}
+.why-block h2 { font-size: 1.3rem; margin-bottom: 20px; }
+.why-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.why-item { display: flex; gap: 12px; }
+.why-item .wi-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.9rem;
+}
+.why-item .wi-text { font-size: 0.92rem; }
+.why-item .wi-text strong { display: block; margin-bottom: 2px; font-weight: 600; }
+.why-item .wi-text span { color: var(--muted); font-size: 0.86rem; }
+@media (max-width: 860px) {
+  .sub-options { grid-template-columns: 1fr; }
+  .why-list { grid-template-columns: 1fr; }
+  .sub-hero h1 { font-size: 1.9rem; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="sub-hero">
+    <h1>Подпишитесь на <em>обновления</em></h1>
+    <p class="lead">Пишу нечасто, но по делу. Никакого спама — только новые заметки, находки и то, что реально помогает.</p>
+  </section>
+
+  <section class="sub-options">
+
+    <div class="sub-card">
+      <div class="sc-icon" style="background:var(--accent-soft); color:var(--accent)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </div>
+      <h2>Telegram-канал</h2>
+      <p>Основная площадка. Здесь выходят посты каждый день или через день — быстрее всего.</p>
+      <a href="https://t.me/ekallife" target="_blank" class="sub-tg-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        Открыть @ekallife
+      </a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sc-icon" style="background:var(--accent-2-soft); color:var(--accent-2)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <h2>Email-подписка</h2>
+      <p>Раз в неделю собираю в письмо самое важное: новые заметки, кураторские находки, короткие мысли. Удобно, если не сидите в Telegram.</p>
+      <form class="sub-form" id="subForm">
+        <input type="email" name="email" placeholder="ваш@email.ru" required>
+        <button type="submit">Подписаться</button>
+        <div class="hint">Отпишусь в один клик, если передумаете</div>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+  </section>
+
+  <section class="why-block">
+    <h2>Что вы получите</h2>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="wi-icon">📝</div>
+        <div class="wi-text">
+          <strong>Новые заметки</strong>
+          <span>Разборы кейсов, инструменты, лайфхаки</span>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="wi-icon">🔖</div>
+        <div class="wi-text">
+          <strong>Кураторские ссылки</strong>
+          <span>Только то, что реально стоит прочитать</span>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="wi-icon">✨</div>
+        <div class="wi-text">
+          <strong>Короткие мысли</strong>
+          <span>Инсайды, которые не тянут на целый пост</span>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="wi-icon">🎁</div>
+        <div class="wi-text">
+          <strong>Без спама</strong>
+          <span>Никаких рекламных рассылок и «акций»</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+<script>
+const subForm = document.getElementById('subForm');
+const formMsg = document.getElementById('formMsg');
+const FORMSPREE_ID = '';
+
+if (subForm) {
+  subForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = subForm.email.value.trim();
+
+    if (!FORMSPREE_ID) {
+      formMsg.className = 'form-msg success';
+      formMsg.textContent = '✓ Демо-режим: вы успешно подписались (письма пока не отправляются). Чтобы включить реальную подписку — зарегистрируйтесь на formspree.io и вставьте ID в код.';
+      subForm.reset();
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        formMsg.className = 'form-msg success';
+        formMsg.textContent = '✓ Готово! Проверьте почту — там письмо для подтверждения.';
+        subForm.reset();
+      } else {
+        throw new Error('fail');
+      }
+    } catch (err) {
+      formMsg.className = 'form-msg error';
+      formMsg.textContent = 'Что-то пошло не так. Попробуйте ещё раз или напишите в Telegram.';
+    }
+  });
+}
+</script>
+</body>
+</html>

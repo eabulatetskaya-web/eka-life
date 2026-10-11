@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Съёмка с TENET — EA Life</title>
+<meta name="description" content="Как мы готовили съёмку с TENET: 3 дня, 12 часов монтажа, 4 локации. Делюсь деталями и выводами.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Съёмка с TENET — EA Life">
+<meta property="og:description" content="Как мы готовили съёмку с TENET: 3 дня, 12 часов монтажа, 4 локации.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="note.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.note-hero { padding: 40px 0 20px; max-width: 760px; }
+.note-breadcrumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+.note-breadcrumbs a { color: var(--accent); text-decoration: none; }
+.note-breadcrumbs a:hover { text-decoration: underline; }
+.note-breadcrumbs span { margin: 0 8px; }
+.note-title { font-size: 2.6rem; line-height: 1.15; margin-bottom: 16px; }
+.note-lead { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; font-style: italic; }
+.note-meta-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+  padding-bottom: 24px; border-bottom: 1px solid var(--line);
+  margin-bottom: 32px; align-items: center;
+}
+.note-meta-row .badge-status { padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+.badge-status.done { background: var(--accent-3-soft); color: var(--accent-3); }
+.badge-status.wip { background: #fff4e3; color: #d18a3d; }
+.badge-status.draft { background: var(--accent-4-soft); color: var(--accent-4); }
+.note-cover {
+  width: 100%; aspect-ratio: 16/9; border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.9rem;
+  margin-bottom: 32px; border: 1px solid var(--line);
+}
+.note-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1040px; }
+.toc { position: sticky; top: 40px; align-self: start; font-size: 0.88rem; }
+.toc-title {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 12px;
+}
+.toc a {
+  display: block; color: var(--muted); text-decoration: none;
+  padding: 6px 0 6px 12px; border-left: 2px solid var(--line);
+  transition: all 0.15s; line-height: 1.4;
+}
+.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.note-content { max-width: 720px; }
+.note-content h2 { font-size: 1.6rem; margin: 40px 0 16px; scroll-margin-top: 40px; }
+.note-content h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.15rem;
+  font-weight: 700; margin: 28px 0 12px; scroll-margin-top: 40px;
+}
+.note-content p { font-size: 1.02rem; margin-bottom: 18px; line-height: 1.75; color: var(--text); }
+.note-content ul, .note-content ol { margin: 0 0 18px 22px; font-size: 1.02rem; line-height: 1.75; }
+.note-content li { margin-bottom: 8px; }
+.note-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color 0.15s; }
+.note-content a:hover { border-bottom-color: var(--accent); }
+.note-content blockquote {
+  border-left: 3px solid var(--accent); padding: 4px 0 4px 20px;
+  margin: 24px 0; font-style: italic; color: var(--muted);
+  font-size: 1.05rem;
+}
+.note-content code {
+  background: var(--accent-soft); color: var(--accent);
+  padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', Consolas, monospace;
+}
+.note-content hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+.share-block {
+  margin: 48px 0 32px; padding: 24px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.share-block h4 {
+  font-family: 'Manrope', sans-serif; font-size: 0.95rem;
+  margin-bottom: 14px; font-weight: 600;
+}
+.share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+  font-size: 0.86rem; font-weight: 500;
+  cursor: pointer; font-family: 'Manrope', sans-serif;
+  transition: all 0.15s;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+.share-btn svg { width: 16px; height: 16px; }
+.note-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 40px 0; padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.note-nav a {
+  display: block; padding: 18px; border-radius: 14px;
+  background: var(--card); border: 1px solid var(--line);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.note-nav a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.note-nav .label {
+  font-size: 0.75rem; color: var(--muted); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+}
+.note-nav .title { font-size: 0.94rem; font-weight: 600; }
+.note-nav a:last-child { text-align: right; }
+@media (max-width: 860px) {
+  .note-layout { grid-template-columns: 1fr; gap: 24px; }
+  .toc { position: static; }
+  .note-title { font-size: 1.9rem; }
+  .note-content h2 { font-size: 1.35rem; }
+  .note-nav { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <article class="note-hero">
+    <div class="note-breadcrumbs">
+      <a href="index.html">Главная</a><span>·</span>
+      <a href="theme-career.html">Карьера и маркетинг</a><span>·</span>
+      Заметка
+    </div>
+    <h1 class="note-title">Съёмка с TENET</h1>
+    <p class="note-lead">Три дня съёмок, 12 часов монтажа, четыре локации. Разбираю, как мы готовили кампанию, что пошло не по плану и какие выводы я сделала.</p>
+    <div class="note-meta-row">
+      <span class="badge-status done">🌳 готово</span>
+      <span>📅 7 октября 2026</span>
+      <span>⏱ 8 минут чтения</span>
+      <span>🏷 карьера · кейс</span>
+    </div>
+  </article>
+
+  <div class="note-cover">Здесь будет обложка заметки</div>
+
+  <div class="note-layout">
+
+    <nav class="toc" id="toc">
+      <div class="toc-title">Содержание</div>
+      <a href="#intro" class="active">Как всё началось</a>
+      <a href="#brief">Бриф и цели</a>
+      <a href="#production">Съёмочный процесс</a>
+      <a href="#issues">Что пошло не так</a>
+      <a href="#results">Результаты</a>
+      <a href="#takeaways">Выводы</a>
+    </nav>
+
+    <div class="note-content">
+
+      <h2 id="intro">Как всё началось</h2>
+      <p>В конце августа мне написала команда TENET с предложением сделать кампанию к запуску новой модели. Сроки — три недели, включая препродакшн, съёмку и постпродакшн. Казалось, что нереально, но мы решили попробовать.</p>
+      <p>Кампания должна была решить сразу несколько задач: показать машину в новом свете, зацепить молодую аудиторию и заложить основу для будущих коллабораций.</p>
+
+      <h2 id="brief">Бриф и цели</h2>
+      <p>На первом созвоне мы сформулировали три ключевые метрики, на которые будем ориентироваться:</p>
+      <ul>
+        <li><strong>Охват</strong> — минимум 2 млн показов по всем каналам</li>
+        <li><strong>Вовлечённость</strong> — не ниже 4% ER (engagement rate)</li>
+        <li><strong>Конверсия</strong> — рост заявок на тест-драйв на 15% за период кампании</li>
+      </ul>
+      <p>Именно от этих цифр мы отталкивались в выборе локаций, форматов и креаторов.</p>
+
+      <blockquote>Хороший бриф — это когда ты можешь одной фразой объяснить, зачем делаешь эту кампанию. Если не можешь — значит, бриф не готов.</blockquote>
+
+      <h2 id="production">Съёмочный процесс</h2>
+      <p>Четыре локации: заброшенный завод под Москвой, трасса в Подмосковье, студия в центре и городская крыша с видом на Сити. Каждая — со своей задачей.</p>
+      <p>Снимали на <code>Sony FX6</code> и <code>Canon R5</code>. Свет — естественный плюс два источника для драматичных кадров. Основную сложность составило расписание: мы зависели от погоды и от доступности площадок.</p>
+
+      <h2 id="issues">Что пошло не так</h2>
+      <p>Честно: не всё получилось. Три момента, которые стоило бы продумать заранее:</p>
+      <ol>
+        <li><strong>Погода.</strong> На второй день лил дождь, и мы потеряли 4 часа. Спасли дубли на крыше.</li>
+        <li><strong>Логистика.</strong> Машина должна была приехать в 7 утра, приехала в 11. Опять же — потеря времени.</li>
+        <li><strong>Постпродакшн.</strong> Мы не заложили буфер на согласования. В итоге монтаж финальной версии шёл в ночь перед сдачей.</li>
+      </ol>
+      <p>Урок: в следующий раз закладываю минимум <strong>20% буфера</strong> на каждый этап.</p>
+
+      <h2 id="results">Результаты</h2>
+      <p>Итог по цифрам превзошёл ожидания:</p>
+      <ul>
+        <li>Охват — <strong>3.4 млн</strong> показов (в 1.7 раз больше плана)</li>
+        <li>ER — <strong>5.8%</strong> (план был 4%)</li>
+        <li>Заявки на тест-драйв — <strong>+22%</strong> за период кампании</li>
+      </ul>
+      <p>Больше всего вовлечения дали рилсы за кадром. Это подтвердило гипотезу: людям интересен процесс, а не только результат.</p>
+
+      <h2 id="takeaways">Выводы</h2>
+      <p>Если бы я начинала заново, я бы:</p>
+      <ul>
+        <li>Заложила <strong>больше времени</strong> на препродакшн и согласования</li>
+        <li>Назначила <strong>продюсера</strong>, который не участвует в творческой части, а только держит расписание</li>
+        <li>Записывала <strong>вертикальный контент</strong> параллельно с основным, а не отдельно</li>
+      </ul>
+      <p>Но в целом — это был классный опыт. И я обязательно расскажу про следующие проекты.</p>
+
+      <hr>
+
+      <div class="share-block">
+        <h4>Поделиться заметкой</h4>
+        <div class="share-buttons">
+          <button class="share-btn" id="copyLink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Скопировать ссылку
+          </button>
+          <a class="share-btn" target="_blank" href="https://t.me/share/url?url=note.html&text=Съёмка с TENET">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            Telegram
+          </a>
+          <a class="share-btn" target="_blank" href="https://twitter.com/intent/tweet?url=note.html&text=Съёмка с TENET">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            X
+          </a>
+          <a class="share-btn" target="_blank" href="https://ru.pinterest.com/pin/create/button/?url=note.html&description=Съёмка с TENET">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 15c.5-2 1.5-5 1.5-5"/><path d="M10 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3c-.8 0-1.5-.3-2-.8"/></svg>
+            Pinterest
+          </a>
+        </div>
+      </div>
+
+      <nav class="note-nav">
+        <a href="#">
+          <div class="label">← Предыдущая</div>
+          <div class="title">Как я пришла в авто-маркетинг</div>
+        </a>
+        <a href="#">
+          <div class="label">Следующая →</div>
+          <div class="title">Мой стек инструментов маркетолога</div>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+<script>
+const copyBtn = document.getElementById('copyLink');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      copyBtn.innerHTML = '✓ Ссылка скопирована';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
+      }, 2000);
+    });
+  });
+}
+
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('.note-content h2[id]');
+if (tocLinks.length && sections.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+</script>
+</body>
+</html>

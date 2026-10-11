@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Файлы и материалы — EA Life</title>
+<meta name="description" content="Скачиваемые материалы: шаблоны, гайды, чек-листы, таблицы — всё, что можно забрать себе.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Файлы и материалы — EA Life">
+<meta property="og:description" content="Шаблоны, гайды, чек-листы — скачивайте и пользуйтесь.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="files.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-head { padding: 40px 0 20px; }
+.page-head h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.page-head h1 em { font-style: italic; color: var(--accent); }
+.page-head p { font-size: 1.05rem; color: var(--muted); max-width: 620px; }
+
+.filters { display: flex; gap: 8px; margin: 28px 0 24px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.filter {
+  padding: 10px 4px; margin-right: 16px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem; font-weight: 500;
+  color: var(--muted); position: relative; transition: color 0.2s;
+}
+.filter:hover { color: var(--text); }
+.filter.active { color: var(--accent); font-weight: 600; }
+.filter.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.file-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: all 0.25s;
+  position: relative;
+}
+.file-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(74,144,226,0.10);
+  border-color: transparent;
+}
+
+.file-preview {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.file-icon-big {
+  width: 80px; height: 96px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; font-weight: 700;
+  position: relative;
+  transform: rotate(-3deg);
+  transition: transform 0.25s;
+}
+.file-card:hover .file-icon-big { transform: rotate(0deg) scale(1.05); }
+
+.file-icon-big.word { color: #2b579a; }
+.file-icon-big.word::before { content: 'W'; font-family: 'Manrope', sans-serif; font-weight: 800; }
+.file-icon-big.excel { color: #217346; }
+.file-icon-big.excel::before { content: 'X'; font-family: 'Manrope', sans-serif; font-weight: 800; }
+.file-icon-big.pdf { color: #d93025; }
+.file-icon-big.pdf::before { content: 'PDF'; font-size: 1.4rem; font-family: 'Manrope', sans-serif; font-weight: 800; }
+.file-icon-big.img { color: #8b7ad6; }
+.file-icon-big.img::before { content: '🖼'; font-size: 2.4rem; }
+.file-icon-big.zip { color: #e08bb0; }
+.file-icon-big.zip::before { content: '📦'; font-size: 2.4rem; }
+
+.file-badge {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+  padding: 3px 8px; border-radius: 6px;
+  background: var(--card); color: var(--muted);
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+}
+
+.file-body {
+  padding: 18px 20px 20px;
+  display: flex; flex-direction: column; flex: 1;
+}
+.file-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.02rem; font-weight: 600;
+  margin-bottom: 6px; line-height: 1.3;
+}
+.file-desc {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.55; flex: 1; margin-bottom: 16px;
+}
+.file-meta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font-size: 0.75rem; color: var(--muted);
+  padding-bottom: 14px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.file-meta span { display: flex; align-items: center; gap: 4px; }
+
+.file-actions {
+  display: flex; gap: 8px;
+}
+.file-btn {
+  flex: 1;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 14px; border-radius: 10px;
+  font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  transition: all 0.15s; border: 1px solid transparent;
+  font-family: 'Manrope', sans-serif;
+}
+.file-btn-primary { background: var(--accent); color: #fff; }
+.file-btn-primary:hover { background: #3a7dd0; transform: translateY(-1px); }
+.file-btn-ghost {
+  background: var(--bg); color: var(--muted);
+  border-color: var(--line);
+}
+.file-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.file-embed {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.file-embed iframe {
+  display: block;
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+.files-info {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  border-radius: 16px; padding: 20px 24px;
+  margin-bottom: 32px;
+  display: flex; gap: 16px; align-items: center;
+  font-size: 0.92rem; color: var(--text);
+}
+.files-info .fi-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--card); display: flex; align-items: center;
+  justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+}
+.files-info strong { display: block; margin-bottom: 2px; }
+.files-info span { color: var(--muted); font-size: 0.86rem; }
+
+@media (max-width: 860px) {
+  .page-head h1 { font-size: 1.9rem; }
+  .files-grid { grid-template-columns: 1fr; }
+  .files-info { flex-direction: column; text-align: center; }
+  .file-embed iframe { height: 320px; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="page-head">
+    <h1>Файлы и <em>материалы</em></h1>
+    <p>Шаблоны, гайды, чек-листы, таблицы — всё, что можно скачать и использовать. Делюсь тем, что реально помогает в работе и жизни.</p>
+  </section>
+
+  <div class="files-info">
+    <div class="fi-icon">💡</div>
+    <div>
+      <strong>Как это работает</strong>
+      <span>Нажмите «Скачать» — файл сохранится на вашем устройстве. Всё бесплатно, без регистрации. Если используете — буду рада обратной связи.</span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все</button>
+    <button class="filter" data-filter="doc">📄 Документы</button>
+    <button class="filter" data-filter="table">📊 Таблицы</button>
+    <button class="filter" data-filter="pdf">📕 PDF</button>
+    <button class="filter" data-filter="other">📦 Другое</button>
+  </div>
+
+  <section class="files-grid" id="filesGrid">
+
+    <div class="file-card" data-type="table">
+      <div class="file-preview">
+        <div class="file-icon-big excel"></div>
+        <span class="file-badge">Google Sheets</span>
+      </div>
+      <div class="file-body">
+        <div class="file-title">Шаблон: Контент-план</div>
+        <div class="file-desc">Готовый шаблон для планирования контента: темы, рубрики, статус публикации, даты и охваты. Можно смотреть онлайн или скачать и вести в своей таблице.</div>
+        <div class="file-meta">
+          <span>📊 Google Sheets</span>
+          <span>🔄 обновляется онлайн</span>
+          <span>📅 окт 2026</span>
+        </div>
+        <div class="file-actions">
+          <a href="https://docs.google.com/spreadsheets/d/1ObnccwX2i6rn8TTrBcreIP49Ri_U_cmojnohlsXtF_A/export?format=xlsx" target="_blank" class="file-btn file-btn-primary">
+            ⬇ Скачать .xlsx
+          </a>
+          <a href="https://docs.google.com/spreadsheets/d/1ObnccwX2i6rn8TTrBcreIP49Ri_U_cmojnohlsXtF_A/edit?usp=sharing" target="_blank" class="file-btn file-btn-ghost">
+            🔗 Открыть
+          </a>
+        </div>
+
+        <div class="file-embed">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSqRiR6cTfPwiChlBgankFJNCb15uzYo7_fe-yubabQoTCrgvgE2LRuk4zZ0K2IgchP5nIO3_HVK75_/pubhtml?widget=true&headers=false"
+                  loading="lazy"
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+<script>
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.file-card').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.type === f) ? 'flex' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

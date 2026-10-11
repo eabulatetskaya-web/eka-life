@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>База знаний — EA Life</title>
+<meta name="description" content="Все заметки: разборы кейсов, инструменты, лайфхаки по авто-маркетингу и не только.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="База знаний — EA Life">
+<meta property="og:description" content="Все мои заметки в одном месте.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="notes.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-head { padding: 40px 0 20px; }
+.page-head h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.page-head h1 em { font-style: italic; color: var(--accent); }
+.page-head p { font-size: 1.05rem; color: var(--muted); max-width: 620px; }
+.filters { display: flex; gap: 8px; margin: 28px 0 24px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.filter {
+  padding: 10px 4px; margin-right: 16px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem; font-weight: 500;
+  color: var(--muted); position: relative; transition: color 0.2s;
+}
+.filter:hover { color: var(--text); }
+.filter.active { color: var(--accent); font-weight: 600; }
+.filter.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+.notes-list { display: flex; flex-direction: column; gap: 12px; }
+.note-item {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 22px 24px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.note-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,144,226,0.08); border-color: transparent; }
+.note-item h3 { font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+.note-item p { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+.note-meta-row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted); }
+.badge { padding: 2px 8px; border-radius: 6px; font-weight: 500; }
+.badge.topic { background: var(--accent-soft); color: var(--accent); }
+.badge.done { background: var(--accent-3-soft); color: var(--accent-3); }
+.badge.wip { background: #fff4e3; color: #d18a3d; }
+.badge.draft { background: var(--accent-4-soft); color: var(--accent-4); }
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="page-head">
+    <h1>База <em>знаний</em></h1>
+    <p>Все мои заметки в одном месте: разборы кейсов, инструменты, лайфхаки, наблюдения. От свежих к старым.</p>
+  </section>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все</button>
+    <button class="filter" data-filter="career">🚗 Карьера</button>
+    <button class="filter" data-filter="life">🏙️ Лайфстайл</button>
+    <button class="filter" data-filter="hobby">🧩 Хоббис</button>
+    <button class="filter" data-filter="thoughts">💭 Закулисье</button>
+  </div>
+
+  <section class="notes-list" id="notesList">
+
+    <a class="note-item" href="note.html" data-topic="career">
+      <h3>Съёмка с TENET</h3>
+      <p>Три дня съёмок, 12 часов монтажа, четыре локации. Разбираю, как мы готовили кампанию, что пошло не по плану и какие выводы я сделала.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🚗 Карьера</span>
+        <span class="badge done">🌳 готово</span>
+        <span>7 октября 2026</span>
+        <span>8 мин чтения</span>
+      </div>
+    </a>
+
+    <a class="note-item" href="note.html" data-topic="career">
+      <h3>Разбор коллаборации с Chery</h3>
+      <p>Как мы готовили кампанию, что сработало, а что нет. Все цифры и выводы — как есть, без прикрас.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🚗 Карьера</span>
+        <span class="badge done">🌳 готово</span>
+        <span>2 октября 2026</span>
+        <span>8 мин чтения</span>
+      </div>
+    </a>
+
+    <a class="note-item" href="note.html" data-topic="career">
+      <h3>Как я пришла в авто-маркетинг</h3>
+      <p>Мой путь от первой стажировки до работы с крупными брендами. Что помогало, что мешало, чему я научилась.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🚗 Карьера</span>
+        <span class="badge done">🌳 готово</span>
+        <span>28 сентября 2026</span>
+        <span>5 мин чтения</span>
+      </div>
+    </a>
+
+    <a class="note-item" href="note.html" data-topic="career">
+      <h3>Мой стек инструментов маркетолога</h3>
+      <p>Чем я пользуюсь каждый день: аналитика, планирование, работа с креаторами. Скриншоты и лайфхаки.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🚗 Карьера</span>
+        <span class="badge wip">🌿 в работе</span>
+        <span>25 сентября 2026</span>
+        <span>4 мин чтения</span>
+      </div>
+    </a>
+
+    <a class="note-item" href="note.html" data-topic="career">
+      <h3>Как работать с блогерами в авто-нише</h3>
+      <p>Черновик о том, как выбирать креаторов, о чём договариваться и как считать эффективность.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🚗 Карьера</span>
+        <span class="badge draft">🌱 черновик</span>
+        <span>20 сентября 2026</span>
+        <span>6 мин чтения</span>
+      </div>
+    </a>
+
+    <a class="note-item" href="note.html" data-topic="hobby">
+      <h3>Опыт чайной церемонии: с чего начать</h3>
+      <p>Как я пришла к чаю, что нужно для первой церемонии, и почему это не так страшно, как кажется.</p>
+      <div class="note-meta-row">
+        <span class="badge topic">🧩 Хоббис</span>
+        <span class="badge draft">🌱 черновик</span>
+        <span>15 сентября 2026</span>
+        <span>6 мин чтения</span>
+      </div>
+    </a>
+
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=1"></script>
+<script src="common.js"></script>
+<script>
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.note-item').forEach(item => {
+      item.style.display = (f === 'all' || item.dataset.topic === f) ? 'block' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
