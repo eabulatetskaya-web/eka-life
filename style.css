@@ -1,3 +1,6 @@
+/* =========================================================
+   ПЕРЕМЕННЫЕ — СВЕТЛАЯ ТЕМА
+   ========================================================= */
 :root {
   --bg: #f6f9fd;
   --card: #ffffff;
@@ -7,16 +10,22 @@
 
   --accent: #4a90e2;
   --accent-soft: #e3f0ff;
+
   --accent-2: #8b7ad6;
   --accent-2-soft: #ece8fa;
+
   --accent-3: #4fb89a;
   --accent-3-soft: #d9f2ea;
+
   --accent-4: #e08bb0;
   --accent-4-soft: #fbe4ee;
 
   --sidebar-w: 250px;
 }
 
+/* =========================================================
+   ПЕРЕМЕННЫЕ — ТЁМНАЯ ТЕМА
+   ========================================================= */
 html[data-theme="dark"] {
   --bg: #0f172a;
   --card: #1a2437;
@@ -29,6 +38,9 @@ html[data-theme="dark"] {
   --accent-4-soft: #3d2530;
 }
 
+/* =========================================================
+   БАЗОВЫЕ СТИЛИ
+   ========================================================= */
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -39,7 +51,9 @@ body {
 }
 h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
 
-/* SIDEBAR */
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 aside {
   position: fixed; top: 0; left: 0;
   width: var(--sidebar-w); height: 100vh;
@@ -48,7 +62,10 @@ aside {
   z-index: 100; transition: background 0.2s, border-color 0.2s;
   overflow-y: auto;
 }
-.brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 4px; }
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700; margin-bottom: 4px;
+}
 .brand span { color: var(--accent); }
 .brand-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; }
 
@@ -83,7 +100,10 @@ nav a {
 nav a:hover { background: var(--accent-soft); color: var(--accent); }
 nav a.active { background: var(--accent-soft); color: var(--accent); }
 
-.socials { margin-top: auto; display: flex; flex-direction: column; gap: 6px; padding-top: 20px; }
+.socials {
+  margin-top: auto; display: flex; flex-direction: column; gap: 6px;
+  padding-top: 20px;
+}
 .socials a {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 12px; border-radius: 8px;
@@ -93,10 +113,14 @@ nav a.active { background: var(--accent-soft); color: var(--accent); }
 .socials a:hover { background: var(--bg); color: var(--accent); }
 .socials a svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* MAIN */
+/* =========================================================
+   MAIN
+   ========================================================= */
 main { margin-left: var(--sidebar-w); padding: 0 40px 60px; max-width: 1040px; }
 
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
 .hero { padding: 40px 0 20px; }
 .banner {
   width: 100%; height: 340px; border-radius: 20px;
@@ -104,9 +128,15 @@ main { margin-left: var(--sidebar-w); padding: 0 40px 60px; max-width: 1040px; }
   background-size: cover; background-position: center top;
   margin-bottom: 32px; border: 1px solid var(--line);
 }
-.hero h1 { font-size: 2.6rem; font-weight: 600; line-height: 1.15; margin-bottom: 14px; }
+.hero h1 {
+  font-size: 2.6rem; font-weight: 600;
+  line-height: 1.15; margin-bottom: 14px;
+}
 .hero h1 em { font-style: italic; color: var(--accent); }
-.hero p { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin-bottom: 28px; }
+.hero p {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 580px; margin-bottom: 28px;
+}
 .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
 
 .btn {
@@ -118,17 +148,24 @@ main { margin-left: var(--sidebar-w); padding: 0 40px 60px; max-width: 1040px; }
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: #3a7dd0; transform: translateY(-1px); }
-.btn-ghost { background: var(--card); color: var(--text); border-color: var(--line); }
+.btn-ghost {
+  background: var(--card); color: var(--text);
+  border-color: var(--line);
+}
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-/* SECTIONS */
+/* =========================================================
+   SECTIONS
+   ========================================================= */
 section { padding: 48px 0; }
 .section-head { margin-bottom: 24px; }
 .section-head h2 { font-size: 1.55rem; font-weight: 600; margin-bottom: 6px; }
 .section-head p { color: var(--muted); font-size: 0.94rem; }
 .section-head a { color: var(--accent); text-decoration: none; }
 
-/* TOPICS */
+/* =========================================================
+   TOPICS
+   ========================================================= */
 .topics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .topic {
   background: var(--card); border: 1px solid var(--line);
@@ -136,7 +173,11 @@ section { padding: 48px 0; }
   text-decoration: none; color: var(--text);
   transition: all 0.25s;
 }
-.topic:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(74,144,226,0.09); border-color: transparent; }
+.topic:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(74,144,226,0.09);
+  border-color: transparent;
+}
 .topic-icon {
   width: 42px; height: 42px; border-radius: 11px;
   display: flex; align-items: center; justify-content: center;
@@ -146,7 +187,9 @@ section { padding: 48px 0; }
 .topic p { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; }
 .topic-meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 14px; }
 
-/* NOW CARD */
+/* =========================================================
+   NOW CARD — на главной
+   ========================================================= */
 .now-card {
   display: flex; gap: 24px; align-items: center;
   background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
@@ -155,7 +198,10 @@ section { padding: 48px 0; }
   transition: all 0.25s; margin-top: 24px;
   border: 1px solid transparent;
 }
-.now-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(74,144,226,0.12); }
+.now-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(74,144,226,0.12);
+}
 .now-card .nc-icon {
   width: 52px; height: 52px; border-radius: 14px;
   background: var(--card); display: flex; align-items: center;
@@ -168,21 +214,37 @@ section { padding: 48px 0; }
   letter-spacing: 0.08em; color: var(--accent);
   font-weight: 700; margin-bottom: 4px;
 }
-.now-card .nc-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; }
+.now-card .nc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-weight: 600; margin-bottom: 4px;
+}
 .now-card .nc-sub { font-size: 0.9rem; color: var(--muted); }
-.now-card .nc-arrow { font-size: 1.4rem; color: var(--accent); transition: transform 0.2s; }
+.now-card .nc-arrow {
+  font-size: 1.4rem; color: var(--accent);
+  transition: transform 0.2s;
+}
 .now-card:hover .nc-arrow { transform: translateX(4px); }
 
-/* TWO COL */
+/* =========================================================
+   TWO COL — панели
+   ========================================================= */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.panel {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px;
+}
 .panel-head {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
 }
 .panel-head h3 { font-size: 1rem; font-weight: 600; font-family: 'Manrope', sans-serif; }
-.panel-head a { font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 500; }
-.note, .link { padding: 11px 0; border-bottom: 1px solid var(--line); }
+.panel-head a {
+  font-size: 0.8rem; color: var(--accent);
+  text-decoration: none; font-weight: 500;
+}
+.note, .link {
+  padding: 11px 0; border-bottom: 1px solid var(--line);
+}
 .note:last-child, .link:last-child { border-bottom: none; padding-bottom: 0; }
 .note-title, .link-title {
   font-size: 0.92rem; font-weight: 600;
@@ -197,8 +259,13 @@ section { padding: 48px 0; }
   margin-top: 6px;
 }
 
-/* TG FEED */
-.tg-feed { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+/* =========================================================
+   TG FEED
+   ========================================================= */
+.tg-feed {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px;
+}
 .tg-item {
   display: flex; gap: 14px; padding: 14px 0;
   border-bottom: 1px solid var(--line);
@@ -221,20 +288,36 @@ section { padding: 48px 0; }
 .tg-content p { font-size: 0.9rem; color: var(--text); }
 .tg-content .time { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
 
-/* GRAPH */
-.graph { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; text-align: center; }
+/* =========================================================
+   GRAPH — карта связей
+   ========================================================= */
+.graph {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px; text-align: center;
+}
 .graph p { color: var(--muted); font-size: 0.88rem; margin-top: 10px; }
 .graph svg line { stroke: var(--line); }
 
-/* FOOTER */
-footer { border-top: 1px solid var(--line); margin-top: 60px; padding: 32px 0; text-align: center; }
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 60px; padding: 32px 0;
+  text-align: center;
+}
 footer p { font-size: 0.84rem; color: var(--muted); margin-bottom: 6px; }
 footer a { color: var(--accent); text-decoration: none; }
-.footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
+.footer-links {
+  display: flex; justify-content: center; gap: 20px;
+  margin-top: 12px; flex-wrap: wrap;
+}
 .footer-links a { font-size: 0.82rem; color: var(--muted); }
 .footer-links a:hover { color: var(--accent); }
 
-/* SEARCH OVERLAY */
+/* =========================================================
+   SEARCH OVERLAY
+   ========================================================= */
 .overlay {
   position: fixed; inset: 0;
   background: rgba(15, 23, 42, 0.4);
@@ -272,11 +355,16 @@ footer a { color: var(--accent); text-decoration: none; }
   border-left: 2px solid transparent;
   transition: all 0.15s; cursor: pointer;
 }
-.search-result:hover, .search-result.selected { background: var(--bg); border-left-color: var(--accent); }
+.search-result:hover, .search-result.selected {
+  background: var(--bg); border-left-color: var(--accent);
+}
 .search-result .sr-title { font-size: 0.94rem; font-weight: 600; margin-bottom: 3px; }
 .search-result .sr-title mark { background: var(--accent-soft); color: var(--accent); padding: 0 2px; border-radius: 3px; }
 .search-result .sr-meta { font-size: 0.78rem; color: var(--muted); }
-.search-empty { padding: 40px 24px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.search-empty {
+  padding: 40px 24px; text-align: center; color: var(--muted);
+  font-size: 0.9rem;
+}
 .search-hint {
   padding: 12px 24px; border-top: 1px solid var(--line);
   font-size: 0.75rem; color: var(--muted);
@@ -287,7 +375,9 @@ footer a { color: var(--accent); text-decoration: none; }
   font-family: inherit; font-size: 0.72rem; border: 1px solid var(--line);
 }
 
-/* TG MODAL */
+/* =========================================================
+   TG MODAL
+   ========================================================= */
 .tg-modal {
   background: var(--card); border-radius: 18px;
   width: 100%; max-width: 560px; margin: 0 20px;
@@ -319,7 +409,10 @@ footer a { color: var(--accent); text-decoration: none; }
   font-size: 0.98rem; line-height: 1.65; color: var(--text);
   white-space: pre-wrap; margin-bottom: 16px;
 }
-.tg-modal-body .post-images { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
+.tg-modal-body .post-images {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+  margin-bottom: 16px;
+}
 .tg-modal-body .post-images.single { grid-template-columns: 1fr; }
 .tg-modal-body .post-image {
   aspect-ratio: 1; border-radius: 10px;
@@ -337,14 +430,19 @@ footer a { color: var(--accent); text-decoration: none; }
   background: var(--accent-soft); color: var(--accent);
   font-size: 0.82rem; font-weight: 600;
 }
-.tg-modal-body .post-meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 14px; margin-top: 8px; }
+.tg-modal-body .post-meta {
+  font-size: 0.8rem; color: var(--muted);
+  display: flex; gap: 14px; margin-top: 8px;
+}
 .tg-modal-foot {
   padding: 16px 24px; border-top: 1px solid var(--line);
   display: flex; gap: 10px; align-items: center;
 }
 .tg-modal-foot .btn { flex: 1; justify-content: center; }
 
-/* ANIMATIONS */
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: 0.05s; }
@@ -353,30 +451,6 @@ footer a { color: var(--accent); text-decoration: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* MOBILE */
-@media (max-width: 860px) {
-  aside {
-    position: static; width: 100%; height: auto;
-    flex-direction: row; flex-wrap: wrap;
-    padding: 14px 18px; gap: 12px;
-    border-right: none; border-bottom: 1px solid var(--line);
-  }
-  .brand { margin: 0; font-size: 1.1rem; }
-  .brand-sub { display: none; }
-  .search-btn, .theme-toggle { margin: 0; padding: 8px 12px; font-size: 0.8rem; width: auto; flex: 1; }
-  .search-btn kbd { display: none; }
-  .nav-title { display: none; }
-  nav { display: flex; gap: 4px; flex-wrap: wrap; width: 100%; }
-  nav a { padding: 6px 10px; font-size: 0.82rem; }
-  .socials { flex-direction: row; margin: 0; width: 100%; padding-top: 0; flex-wrap: wrap; }
-  main { margin-left: 0; padding: 0 18px 40px; }
-  .hero h1 { font-size: 1.9rem; }
-  .topics, .two-col { grid-template-columns: 1fr; }
-  .banner { height: 200px; }
-  .overlay { padding-top: 6vh; }
-  .now-card { padding: 22px; gap: 16px; flex-wrap: wrap; }
-  .now-card .nc-title { font-size: 1.1rem; }
-}
 /* =========================================================
    КЛИКАБЕЛЬНЫЙ БРЕНД
    ========================================================= */
@@ -466,12 +540,6 @@ a.brand-sub:hover { color: var(--accent); transition: color 0.2s; }
   transform: translateY(-1px);
 }
 
-/* Для карточек файлов — кнопка не на самом верху, а рядом с превью */
-.file-card .share-btn-inline {
-  top: 16px;
-  right: 16px;
-}
-
 /* =========================================================
    ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ (TOAST)
    ========================================================= */
@@ -498,8 +566,33 @@ a.brand-sub:hover { color: var(--accent); transition: color 0.2s; }
   transform: translateX(-50%) translateY(0);
 }
 
-/* Мобильный вид */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 @media (max-width: 860px) {
+  aside {
+    position: static; width: 100%; height: auto;
+    flex-direction: row; flex-wrap: wrap;
+    padding: 14px 18px; gap: 12px;
+    border-right: none; border-bottom: 1px solid var(--line);
+  }
+  .brand { margin: 0; font-size: 1.1rem; }
+  .brand-sub { display: none; }
+  .search-btn, .theme-toggle { margin: 0; padding: 8px 12px; font-size: 0.8rem; width: auto; flex: 1; }
+  .search-btn kbd { display: none; }
+  .nav-title { display: none; }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; width: 100%; }
+  nav a { padding: 6px 10px; font-size: 0.82rem; }
+  .socials { flex-direction: row; margin: 0; width: 100%; padding-top: 0; flex-wrap: wrap; }
+  main { margin-left: 0; padding: 0 18px 40px; }
+  .hero h1 { font-size: 1.9rem; }
+  .topics, .two-col { grid-template-columns: 1fr; }
+  .banner { height: 200px; }
+  .overlay { padding-top: 6vh; }
+  .now-card { padding: 22px; gap: 16px; flex-wrap: wrap; }
+  .now-card .nc-title { font-size: 1.1rem; }
+
+  /* Кнопка наверх и тост на мобильных */
   .scroll-top {
     bottom: 20px;
     right: 20px;
