@@ -41,6 +41,23 @@ function buildSidebar() {
 }
 
 /* =========================================================
+   КЛИКАБЕЛЬНЫЙ БРЕНД — оборачивает .brand и .brand-sub в ссылку на главную
+   ========================================================= */
+function makeBrandClickable() {
+  ['brand', 'brand-sub'].forEach(cls => {
+    const el = document.querySelector('.' + cls);
+    if (!el || el.tagName === 'A') return;
+
+    const a = document.createElement('a');
+    a.href = 'index.html';
+    a.className = el.className;
+    a.innerHTML = el.innerHTML;
+    a.setAttribute('title', 'На главную');
+    el.parentNode.replaceChild(a, el);
+  });
+}
+
+/* =========================================================
    ГЕНЕРАЦИЯ ОВЕРЛЕЕВ
    ========================================================= */
 function buildOverlays() {
@@ -80,6 +97,132 @@ function buildOverlays() {
       </div>`;
     document.body.appendChild(el);
   }
+}
+
+/* =========================================================
+   КНОПКА «НАВЕРХ»
+   ========================================================= */
+function buildScrollTop() {
+  if (document.getElementById('scrollTop')) return;
+
+  const btn = document.createElement('button');
+  btn.id = 'scrollTop';
+  btn.className = 'scroll-top';
+  btn.innerHTML = '↑';
+  btn.setAttribute('aria-label', 'Наверх');
+  btn.setAttribute('title', 'Наверх');
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  document.body.appendChild(btn);
+
+  const toggle = () => {
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
+
+/* =========================================================
+   КНОПКИ «ПОДЕЛИТЬСЯ»
+   ========================================================= */
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  // Fallback для локального просмотра
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      resolve();
+    } catch (e) {
+      document.body.removeChild(ta);
+      reject(e);
+    }
+  });
+}
+
+function showToast(message) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+function addShareButtons() {
+  // Для ссылок в подборке (links.html)
+  document.querySelectorAll('.link-item').forEach(item => {
+    if (item.querySelector('.share-btn-inline')) return;
+    const href = item.getAttribute('href');
+    if (!href || href === '#') return;
+
+    const btn = document.createElement('span');
+    btn.className = 'share-btn-inline';
+    btn.innerHTML = '🔗';
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
+    btn.setAttribute('title', 'Скопировать ссылку');
+    btn.setAttribute('aria-label', 'Скопировать ссылку');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      copyToClipboard(href)
+        .then(() => showToast('✓ Ссылка скопирована'))
+        .catch(() => showToast('Не удалось скопировать'));
+    });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+    item.appendChild(btn);
+  });
+
+  // Для карточек файлов (files.html)
+  document.querySelectorAll('.file-card').forEach(card => {
+    if (card.querySelector('.share-btn-inline')) return;
+    const title = card.querySelector('.file-title')?.textContent?.trim() || '';
+    const pageUrl = window.location.origin + window.location.pathname;
+    const shareUrl = title ? pageUrl + '#' + encodeURIComponent(title) : pageUrl;
+
+    const btn = document.createElement('span');
+    btn.className = 'share-btn-inline';
+    btn.innerHTML = '🔗';
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
+    btn.setAttribute('title', 'Скопировать ссылку');
+    btn.setAttribute('aria-label', 'Скопировать ссылку');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      copyToClipboard(shareUrl)
+        .then(() => showToast('✓ Ссылка скопирована'))
+        .catch(() => showToast('Не удалось скопировать'));
+    });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+    card.appendChild(btn);
+  });
 }
 
 function ready(fn) {
@@ -125,9 +268,9 @@ const searchData = [
   { type: 'Заметка', icon: '📝', title: 'Мой стек инструментов маркетолога', url: 'note.html', meta: 'инструменты · 4 мин' },
   { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего начать', url: 'note.html', meta: 'хобби · 6 мин' },
 
+  { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
+  { type: 'Ссылка', icon: '🔖', title: 'Для тех, кто читает', url: 'https://bookerlyheart.com/', meta: 'bookerlyheart.com · хоббис' },
   { type: 'Ссылка', icon: '🔖', title: 'Анатомия вирусного поста в TG', url: '#', meta: 'vc.ru · маркетинг' },
-  { type: 'Ссылка', icon: '🔖', title: 'Гайд: как вести lifestyle-блог и не выгореть', url: '#', meta: 'medium.com · блогинг' },
-  { type: 'Ссылка', icon: '🔖', title: 'Лучшие чайные Москвы 2026', url: '#', meta: 'the-village.ru · Москва' },
 
   { type: 'Файл', icon: '📊', title: 'Шаблон: Контент-план', url: 'files.html', meta: 'Google Sheets · таблица' },
 
@@ -147,7 +290,7 @@ const searchData = [
 ];
 
 /* =========================================================
-   TG-ПОСТЫ — читаем из tg-posts.js
+   TG-ПОСТЫ
    ========================================================= */
 function getTgPosts() {
   const arr = window.TG_POSTS_FEED || [];
@@ -297,8 +440,10 @@ function updateSelection(results) {
    ИНИЦИАЛИЗАЦИЯ
    ========================================================= */
 ready(() => {
+  makeBrandClickable();
   buildSidebar();
   buildOverlays();
+  buildScrollTop();
 
   searchOverlay = document.getElementById('searchOverlay');
   searchInput = document.getElementById('searchInput');
@@ -327,6 +472,7 @@ ready(() => {
   if (tgOverlay) tgOverlay.addEventListener('click', closeTg);
 
   renderTgFeed();
+  addShareButtons();
 
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
