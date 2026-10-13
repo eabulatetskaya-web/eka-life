@@ -11,6 +11,9 @@ const NAV_ITEMS = [
   { href: 'about.html',        icon: '👤', label: 'Обо мне' },
 ];
 
+/* Отдельный пункт — переход в чайный магазин */
+const SHOP_ITEM = { href: 'tea-qi.html', icon: '🍵', label: 'Чайный магазин' };
+
 const SOCIALS = [
   { href: 'https://t.me/ekallife',           label: 'Telegram',
     svg: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>' },
@@ -26,9 +29,17 @@ function buildSidebar() {
   if (!nav) return;
 
   const current = location.pathname.split('/').pop() || 'index.html';
-  nav.innerHTML = '<div class="nav-title">Разделы</div>' + NAV_ITEMS.map(item =>
+
+  let html = '<div class="nav-title">Разделы</div>';
+  html += NAV_ITEMS.map(item =>
     `<a href="${item.href}"${item.href === current ? ' class="active"' : ''}>${item.icon} ${item.label}</a>`
   ).join('');
+
+  /* Магазин — отдельным блоком */
+  html += '<div class="nav-title" style="margin-top:20px;">Проекты</div>';
+  html += `<a href="${SHOP_ITEM.href}"${SHOP_ITEM.href === current ? ' class="active"' : ''} style="background:var(--sage-soft); color:var(--sage-dark); font-weight:600;">${SHOP_ITEM.icon} ${SHOP_ITEM.label}</a>`;
+
+  nav.innerHTML = html;
 
   if (soc) {
     soc.innerHTML = SOCIALS.map(s =>
@@ -41,13 +52,25 @@ function buildSidebar() {
 }
 
 /* =========================================================
-   КЛИКАБЕЛЬНЫЙ БРЕНД — оборачивает .brand и .brand-sub в ссылку на главную
+   ССЫЛКА НА МАГАЗИН В ПОДВАЛАХ ВСЕХ СТРАНИЦ
+   ========================================================= */
+function addShopToFooters() {
+  document.querySelectorAll('.footer-links').forEach(footer => {
+    if (footer.querySelector('a[href="tea-qi.html"]')) return;
+    const link = document.createElement('a');
+    link.href = 'tea-qi.html';
+    link.textContent = '🍵 Tea Qi';
+    footer.appendChild(link);
+  });
+}
+
+/* =========================================================
+   КЛИКАБЕЛЬНЫЙ БРЕНД
    ========================================================= */
 function makeBrandClickable() {
   ['brand', 'brand-sub'].forEach(cls => {
     const el = document.querySelector('.' + cls);
     if (!el || el.tagName === 'A') return;
-
     const a = document.createElement('a');
     a.href = 'index.html';
     a.className = el.className;
@@ -104,18 +127,13 @@ function buildOverlays() {
    ========================================================= */
 function buildScrollTop() {
   if (document.getElementById('scrollTop')) return;
-
   const btn = document.createElement('button');
   btn.id = 'scrollTop';
   btn.className = 'scroll-top';
   btn.innerHTML = '↑';
   btn.setAttribute('aria-label', 'Наверх');
-  btn.setAttribute('title', 'Наверх');
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   document.body.appendChild(btn);
-
   const toggle = () => {
     if (window.scrollY > 400) btn.classList.add('visible');
     else btn.classList.remove('visible');
@@ -131,7 +149,6 @@ function copyToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
     return navigator.clipboard.writeText(text);
   }
-  // Fallback для локального просмотра
   return new Promise((resolve, reject) => {
     const ta = document.createElement('textarea');
     ta.value = text;
@@ -165,19 +182,16 @@ function showToast(message) {
 }
 
 function addShareButtons() {
-  // Для ссылок в подборке (links.html)
   document.querySelectorAll('.link-item').forEach(item => {
     if (item.querySelector('.share-btn-inline')) return;
     const href = item.getAttribute('href');
     if (!href || href === '#') return;
-
     const btn = document.createElement('span');
     btn.className = 'share-btn-inline';
     btn.innerHTML = '🔗';
     btn.setAttribute('role', 'button');
     btn.setAttribute('tabindex', '0');
     btn.setAttribute('title', 'Скопировать ссылку');
-    btn.setAttribute('aria-label', 'Скопировать ссылку');
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -185,41 +199,26 @@ function addShareButtons() {
         .then(() => showToast('✓ Ссылка скопирована'))
         .catch(() => showToast('Не удалось скопировать'));
     });
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      }
-    });
     item.appendChild(btn);
   });
 
-  // Для карточек файлов (files.html)
   document.querySelectorAll('.file-card').forEach(card => {
     if (card.querySelector('.share-btn-inline')) return;
     const title = card.querySelector('.file-title')?.textContent?.trim() || '';
     const pageUrl = window.location.origin + window.location.pathname;
     const shareUrl = title ? pageUrl + '#' + encodeURIComponent(title) : pageUrl;
-
     const btn = document.createElement('span');
     btn.className = 'share-btn-inline';
     btn.innerHTML = '🔗';
     btn.setAttribute('role', 'button');
     btn.setAttribute('tabindex', '0');
     btn.setAttribute('title', 'Скопировать ссылку');
-    btn.setAttribute('aria-label', 'Скопировать ссылку');
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       copyToClipboard(shareUrl)
         .then(() => showToast('✓ Ссылка скопирована'))
         .catch(() => showToast('Не удалось скопировать'));
-    });
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      }
     });
     card.appendChild(btn);
   });
@@ -270,9 +269,13 @@ const searchData = [
 
   { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
   { type: 'Ссылка', icon: '🔖', title: 'Для тех, кто читает', url: 'https://bookerlyheart.com/', meta: 'bookerlyheart.com · хоббис' },
-  { type: 'Ссылка', icon: '🔖', title: 'Анатомия вирусного поста в TG', url: '#', meta: 'vc.ru · маркетинг' },
 
   { type: 'Файл', icon: '📊', title: 'Шаблон: Контент-план', url: 'files.html', meta: 'Google Sheets · таблица' },
+
+  { type: 'Магазин', icon: '🍵', title: 'Tea Qi · Китайский чай', url: 'tea-qi.html', meta: '静心寻境 · найди состояние' },
+  { type: 'Магазин', icon: '🍵', title: 'Шу пуэр 2015', url: 'tea-qi.html', meta: '1 800 ₽ · 100 г' },
+  { type: 'Магазин', icon: '🍵', title: 'Лунцзин', url: 'tea-qi.html', meta: '2 400 ₽ · 50 г' },
+  { type: 'Магазин', icon: '🍵', title: 'Тегуаньинь', url: 'tea-qi.html', meta: '1 600 ₽ · 100 г' },
 
   { type: 'Тема', icon: '🚗', title: 'Карьера и маркетинг', url: 'theme-career.html', meta: '12 заметок · 34 ссылки' },
   { type: 'Тема', icon: '🏙️', title: 'Лайфстайл и жизнь в Москве', url: 'themes.html', meta: '8 заметок · 21 ссылка' },
@@ -286,7 +289,6 @@ const searchData = [
   { type: 'Страница', icon: '🔖', title: 'Подборка', url: 'links.html', meta: 'все ссылки' },
   { type: 'Страница', icon: '🕐', title: 'Сейчас', url: 'now.html', meta: 'чем живу прямо сейчас' },
   { type: 'Страница', icon: '👤', title: 'Обо мне', url: 'about.html', meta: 'био · контакты' },
-  { type: 'Страница', icon: '✉️', title: 'Подписка', url: 'subscribe.html', meta: 'Telegram · email' },
 ];
 
 /* =========================================================
@@ -302,9 +304,7 @@ function getTgPosts() {
 function renderTgFeed() {
   const feed = document.getElementById('tgFeed');
   if (!feed) return;
-
   const posts = window.TG_POSTS_FEED || [];
-
   if (!posts.length) {
     feed.innerHTML = `
       <div style="padding:24px; text-align:center; color:var(--muted); font-size:0.9rem;">
@@ -313,7 +313,6 @@ function renderTgFeed() {
       </div>`;
     return;
   }
-
   feed.innerHTML = posts.slice(0, 5).map(p => {
     const shortText = p.text.length > 180 ? p.text.slice(0, 180) + '…' : p.text;
     return `
@@ -326,7 +325,6 @@ function renderTgFeed() {
         </div>
       </button>`;
   }).join('');
-
   feed.querySelectorAll('.tg-item').forEach(el => {
     el.addEventListener('click', () => openTgPost(el.dataset.tgId));
   });
@@ -473,6 +471,7 @@ ready(() => {
 
   renderTgFeed();
   addShareButtons();
+  addShopToFooters();
 
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
