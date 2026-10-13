@@ -15,6 +15,68 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ============================================================
+   БАННЕР ЧАЙНОГО МАГАЗИНА НА ГЛАВНОЙ
+   ============================================================ */
+.tq-shop-banner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 28px;
+  margin-top: 24px;
+  background: linear-gradient(135deg, #e8eed8 0%, #d0d9b8 100%);
+  border-radius: 20px;
+  text-decoration: none;
+  color: #1a1d1a;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid #d0d9b8;
+}
+.tq-shop-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(122,149,86,0.18);
+}
+.tq-shop-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(122,149,86,0.1);
+}
+.tq-shop-content { flex: 1; }
+.tq-shop-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5f7840;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.tq-shop-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.tq-shop-desc {
+  font-size: 0.88rem;
+  color: #4a5230;
+  line-height: 1.5;
+}
+.tq-shop-arrow {
+  font-size: 1.5rem;
+  color: #5f7840;
+  transition: transform 0.2s;
+}
+.tq-shop-banner:hover .tq-shop-arrow { transform: translateX(5px); }
+
+@media (max-width: 860px) {
+  .tq-shop-banner { flex-wrap: wrap; padding: 20px; gap: 16px; }
+  .tq-shop-title { font-size: 1.05rem; }
+}
+</style>
 </head>
 <body>
 
@@ -71,6 +133,17 @@
         <div class="topic-meta"><span>📝 6 заметок</span><span>🔖 9 ссылок</span></div>
       </a>
     </div>
+
+    <!-- КАРТОЧКА ЧАЙНОГО МАГАЗИНА -->
+    <a href="tea-qi.html" class="tq-shop-banner">
+      <div class="tq-shop-icon">🍵</div>
+      <div class="tq-shop-content">
+        <div class="tq-shop-eyebrow">Наш проект</div>
+        <div class="tq-shop-title">Tea Qi · Китайский чайный магазин</div>
+        <div class="tq-shop-desc">Отборные пуэры, улуны, зелёные и красные чаи. Поштучно, на развес, в наборах. 静心寻境</div>
+      </div>
+      <div class="tq-shop-arrow">→</div>
+    </a>
 
     <a class="now-card" href="now.html">
       <div class="nc-icon">🕐</div>
