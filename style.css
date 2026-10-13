@@ -541,12 +541,12 @@ a.brand-sub:hover { color: var(--accent); transition: color 0.2s; }
 }
 
 /* =========================================================
-   БЕЙДЖ ФОРМАТА ФАЙЛА — теперь в левом углу, в стиле сайта
+   БЕЙДЖ ФОРМАТА ФАЙЛА — в правом нижнем углу обложки
    ========================================================= */
 .file-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  bottom: 12px;
+  right: 12px;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
