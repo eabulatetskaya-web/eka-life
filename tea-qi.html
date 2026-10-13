@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tea Qi · Китайский чайный магазин</title>
+<meta name="description" content="Tea Qi — китайский чайный домик. Отборные пуэры, улуны, зелёные и красные чаи. Поштучно, на развес, в наборах.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tea Qi · Китайский чайный магазин">
+<meta property="og:description" content="静心寻境 · Найди своё состояние.">
+<meta property="og:image" content="img/tea-qi-logo.jpg">
+<meta property="og:url" content="tea-qi.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237a9556'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf7;
+  --bg-soft: #f2f4ec;
+  --card: #ffffff;
+  --text: #1a1d1a;
+  --text-soft: #4a5230;
+  --muted: #8a9278;
+  --line: #e6e8de;
+
+  --sage: #7a9556;
+  --sage-dark: #5f7840;
+  --sage-deep: #4a5230;
+  --sage-soft: #e8eed8;
+  --sage-soft-2: #d0d9b8;
+  --sage-pale: #f0f4e6;
+
+  --gold: #b89968;
+  --gold-soft: #efe4cc;
+  --gold-dark: #8a6e3f;
+
+  --cream: #f5ebe0;
+  --cream-2: #e8ddc8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+
+/* ============================================================
+   ШАПКА
+   ============================================================ */
+.tq-header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 50;
+}
+.tq-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text);
+}
+.tq-logo-mark {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--sage);
+  flex-shrink: 0;
+}
+.tq-logo-mark img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.tq-logo-text {
+  display: flex; flex-direction: column;
+  line-height: 1.1;
+}
+.tq-logo-text .cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.75rem;
+  color: var(--sage-dark);
+  letter-spacing: 0.3em;
+  margin-bottom: 2px;
+}
+.tq-logo-text .en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.tq-logo-text .sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.tq-nav {
+  display: flex;
+  gap: 32px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.tq-nav a {
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.15s;
+}
+.tq-nav a:hover { color: var(--sage); }
+.tq-nav a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--sage);
+}
+
+/* ============================================================
+   BENTO-СЕТКА
+   ============================================================ */
+.tq-grid {
+  max-width: 1300px;
+  margin: 40px auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: 16px;
+}
+.tq-tile {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid var(--line);
+}
+.tq-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(122,149,86,0.1);
+}
+
+.tq-hero {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: linear-gradient(135deg, var(--sage-soft) 0%, var(--sage-soft-2) 100%);
+  justify-content: space-between;
+}
+.tq-hero::after {
+  content: '茶';
+  position: absolute;
+  bottom: -50px; right: -30px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15rem;
+  color: rgba(122,149,86,0.18);
+  font-weight: 700;
+  pointer-events: none;
+  line-height: 1;
+}
+.tq-hero .tq-hero-tag {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: auto;
+  font-weight: 600;
+}
+.tq-hero .tq-hero-tag::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--sage-dark);
+}
+.tq-hero h2 {
+  font-size: 2.8rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  position: relative; z-index: 1;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.tq-hero h2 em {
+  font-style: italic;
+  color: var(--sage-dark);
+}
+.tq-hero p {
+  font-size: 0.98rem;
+  color: var(--text-soft);
+  max-width: 400px;
+  position: relative; z-index: 1;
+  line-height: 1.65;
+}
+.tq-hero .tq-slogan-cn {
+  position: relative; z-index: 1;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(122,149,86,0.25);
+}
+.tq-hero .tq-slogan-cn .cn-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.1rem;
+  color: var(--sage-deep);
+  letter-spacing: 0.3em;
+  margin-bottom: 4px;
+}
+.tq-hero .tq-slogan-cn .cn-trans {
+  font-size: 0.78rem;
+  color: var(--sage-dark);
+  font-style: italic;
+}
+
+.tq-product {
+  background: var(--sage-pale);
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid var(--line);
+}
+.tq-product:hover { border-color: var(--sage); }
+.tq-product-visual {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 3.5rem;
+  color: var(--sage);
+  opacity: 0.9;
+}
+.tq-product-info {
+  padding: 14px 18px;
+  background: var(--card);
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--line);
+}
+.tq-product-info h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.tq-product-info .price {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sage-dark);
+}
+
+.tq-simple { justify-content: space-between; }
+.tq-simple .tq-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.tq-simple .tq-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 1;
+  margin: 8px 0 4px;
+}
+.tq-simple .tq-desc {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.tq-accent {
+  background: var(--sage);
+  color: #ffffff;
+  justify-content: center;
+  border: none;
+}
+.tq-accent h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.tq-accent p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.tq-wide {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--sage-deep) 0%, var(--sage-dark) 100%);
+  color: #ffffff;
+  justify-content: center;
+  align-items: flex-start;
+  border: none;
+}
+.tq-wide h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.tq-wide p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 420px;
+}
+.tq-wide .tq-cta {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s;
+}
+.tq-wide .tq-cta:hover {
+  transform: translateY(-1px);
+  background: #ffffff;
+}
+
+.tq-tall {
+  grid-row: span 2;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  justify-content: flex-end;
+  border: none;
+}
+.tq-tall::before {
+  content: '茶';
+  font-family: 'Noto Serif SC', serif;
+  font-size: 7rem;
+  color: rgba(184,153,104,0.35);
+  position: absolute;
+  top: 10px; right: 10px;
+  line-height: 1;
+}
+.tq-tall h3 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 6px;
+  position: relative; z-index: 1;
+}
+.tq-tall p {
+  font-size: 0.85rem;
+  color: #6b5a3a;
+  position: relative; z-index: 1;
+}
+
+.tq-set {
+  background: linear-gradient(135deg, var(--gold-soft) 0%, #e8d9b8 100%);
+  justify-content: space-between;
+  border: 1px solid var(--gold);
+}
+.tq-set .tq-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+.tq-set h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-top: 8px;
+}
+.tq-set .tq-price-tag {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   О МАГАЗИНЕ
+   ============================================================ */
+.tq-about {
+  max-width: 1300px;
+  margin: 80px auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.tq-about-text .tq-about-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.tq-about-text h2 {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.tq-about-text h2 em {
+  font-style: italic;
+  color: var(--sage-dark);
+}
+.tq-about-text p {
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+.tq-about-visual {
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  background: linear-gradient(160deg, var(--sage-soft) 0%, var(--sage-soft-2) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 8rem;
+  color: rgba(122,149,86,0.35);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================
+   ПРЕИМУЩЕСТВА
+   ============================================================ */
+.tq-features {
+  max-width: 1300px;
+  margin: 80px auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.tq-feature {
+  text-align: center;
+  padding: 24px 20px;
+}
+.tq-feature-icon {
+  width: 52px; height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: var(--sage-soft);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sage-dark);
+  border: 1px solid var(--line);
+}
+.tq-feature-icon svg { width: 26px; height: 26px; }
+.tq-feature h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.tq-feature p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+/* ============================================================
+   ПОДВАЛ
+   ============================================================ */
+.tq-footer {
+  margin-top: 80px;
+  padding: 48px 40px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.tq-footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.tq-footer h5 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.tq-footer a {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  transition: color 0.15s;
+}
+.tq-footer a:hover { color: var(--sage-dark); }
+.tq-footer .tq-copy {
+  max-width: 1300px;
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+.tq-footer .tq-copy a {
+  display: inline;
+  color: var(--sage-dark);
+  padding: 0;
+}
+
+/* Кнопка «назад на сайт» */
+.tq-back {
+  position: fixed;
+  top: 20px; right: 20px;
+  padding: 10px 18px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  z-index: 100;
+  transition: all 0.2s;
+}
+.tq-back:hover {
+  border-color: var(--sage);
+  color: var(--sage-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 860px) {
+  .tq-header {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .tq-nav {
+    gap: 16px;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tq-logo-text .en { font-size: 1.15rem; }
+
+  .tq-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 130px;
+    padding: 0 16px;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .tq-hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    padding: 20px;
+  }
+  .tq-hero h2 { font-size: 1.7rem; }
+  .tq-hero::after { font-size: 8rem; }
+  .tq-hero p { font-size: 0.85rem; }
+  .tq-hero .tq-slogan-cn .cn-text { font-size: 0.95rem; }
+
+  .tq-wide,
+  .tq-tall {
+    grid-column: span 2;
+    grid-row: span 1;
+    padding: 20px;
+  }
+  .tq-wide h3 { font-size: 1.2rem; }
+
+  .tq-tile { padding: 18px; border-radius: 16px; }
+  .tq-simple .tq-num { font-size: 2.4rem; }
+
+  .tq-about {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0 20px;
+    margin-top: 60px;
+  }
+  .tq-about-text h2 { font-size: 1.9rem; }
+  .tq-about-visual { font-size: 5rem; }
+
+  .tq-features {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 16px;
+    gap: 16px;
+    margin-top: 60px;
+  }
+
+  .tq-footer { padding: 32px 20px 24px; }
+  .tq-footer-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  .tq-back { top: 12px; right: 12px; padding: 8px 14px; font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Кнопка возврата на основной сайт -->
+<a href="index.html" class="tq-back">← eka_life</a>
+
+<!-- ШАПКА -->
+<header class="tq-header">
+  <a href="tea-qi.html" class="tq-logo">
+    <div class="tq-logo-mark">
+      <img src="img/tea-qi-logo.jpg" alt="Tea Qi">
+    </div>
+    <div class="tq-logo-text">
+      <span class="cn">茶气灵动</span>
+      <span class="en">Tea Qi</span>
+      <span class="sub">Chinese Tea Shop</span>
+    </div>
+  </a>
+  <nav class="tq-nav">
+    <a href="#catalog">Чай</a>
+    <a href="#catalog">Посуда</a>
+    <a href="#catalog">Наборы</a>
+    <a href="#about">О нас</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+</header>
+
+<!-- BENTO-СЕТКА -->
+<section class="tq-grid" id="catalog">
+
+  <div class="tq-tile tq-hero">
+    <span class="tq-hero-tag">Китайский чай · с 2026</span>
+    <div>
+      <h2>Найди <em>своё</em><br>состояние</h2>
+      <p>Отборные сорта из провинций Китая. Поштучно, на развес и в наборах. Доставляем бережно — упаковываем с уважением к традиции.</p>
+      <div class="tq-slogan-cn">
+        <div class="cn-text">静 心 寻 境</div>
+        <div class="cn-trans">jìng xīn xún jìng · успокой сердце, найди состояние</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tq-tile tq-product">
+    <div class="tq-product-visual">普</div>
+    <div class="tq-product-info">
+      <h4>Шу пуэр 2015</h4>
+      <span class="price">1 800 ₽</span>
+    </div>
+  </div>
+
+  <div class="tq-tile tq-product">
+    <div class="tq-product-visual">龙</div>
+    <div class="tq-product-info">
+      <h4>Лунцзин</h4>
+      <span class="price">2 400 ₽</span>
+    </div>
+  </div>
+
+  <div class="tq-tile tq-simple">
+    <span class="tq-label">В коллекции</span>
+    <div>
+      <div class="tq-num">48</div>
+      <div class="tq-desc">сортов чая</div>
+    </div>
+  </div>
+
+  <div class="tq-tile tq-accent">
+    <h3>Свежий сбор 2026</h3>
+    <p>Весенние зелёные чаи уже здесь</p>
+  </div>
+
+  <div class="tq-tile tq-wide">
+    <h3>Соберём набор под вас</h3>
+    <p>Расскажите, какой чай любите — подберём 3 сорта, которые удивят</p>
+    <a href="#contacts" class="tq-cta">Собрать набор →</a>
+  </div>
+
+  <div class="tq-tile tq-tall">
+    <h3>Лунцзин</h3>
+    <p>Свежий, весенний, цветочный. Собран вручную в провинции Чжэцзян.</p>
+  </div>
+
+  <div class="tq-tile tq-product">
+    <div class="tq-product-visual">仙</div>
+    <div class="tq-product-info">
+      <h4>Тегуаньинь</h4>
+      <span class="price">1 600 ₽</span>
+    </div>
+  </div>
+
+  <div class="tq-tile tq-set">
+    <span class="tq-label">Подарочный набор</span>
+    <div>
+      <h3>Первый шаг в чай</h3>
+      <div class="tq-price-tag">4 сорта · 2 500 ₽</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- О МАГАЗИНЕ -->
+<section class="tq-about" id="about">
+  <div class="tq-about-text">
+    <div class="tq-about-eyebrow">О нас</div>
+    <h2>Маленький чайный домик <em>с большой любовью к чаю</em></h2>
+    <p>Мы — небольшой магазин китайского чая. Привозим отборные сорта напрямую из провинций: Юньнань, Фуцзянь, Чжэцзян, Гуандун. Работаем с проверенными фермерами, у которых знаем каждый куст.</p>
+    <p>У нас можно купить чай поштучно, на развес или собрать собственный набор. Поможем выбрать — под ваш вкус, опыт и настроение. Расскажем, как заваривать правильно.</p>
+    <p>静心寻境 — «успокой сердце, найди состояние». Это то, что мы хотим подарить каждому, кто заходит к нам за чаем.</p>
+  </div>
+  <div class="tq-about-visual">茶</div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="tq-features" id="contacts">
+  <div class="tq-feature">
+    <div class="tq-feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="13" rx="2"/><path d="M16 10h4l3 3v6h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    <h4>Доставка 2–5 дней</h4>
+    <p>По всей России. Бесплатно от 3 000 ₽</p>
+  </div>
+
+  <div class="tq-feature">
+    <div class="tq-feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Шишечка крышки -->
+        <circle cx="12" cy="3" r="0.9"/>
+        <!-- Крышка -->
+        <path d="M9.5 5.5c0-1.1 1.1-2 2.5-2s2.5.9 2.5 2"/>
+        <!-- Корпус чайника -->
+        <ellipse cx="12" cy="11.5" rx="6.5" ry="5"/>
+        <!-- Ручка — дуга слева -->
+        <path d="M5.5 10c-1.5 0-2.6.7-3 2"/>
+        <!-- Носик справа -->
+        <path d="M18.5 10c1.5 0 2.6.7 3 2"/>
+        <!-- Дно -->
+        <path d="M8 16.5c1.2.6 6.8.6 8 0" opacity="0.5"/>
+      </svg>
+    </div>
+    <h4>Свежий сбор</h4>
+    <p>Прямые поставки от фермеров Китая</p>
+  </div>
+
+  <div class="tq-feature">
+    <div class="tq-feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+    </div>
+    <h4>Поштучно · на развес</h4>
+    <p>Пробуйте малым объёмом перед покупкой</p>
+  </div>
+
+  <div class="tq-feature">
+    <div class="tq-feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <h4>Поможем с выбором</h4>
+    <p>Подберём чай под ваш вкус и настроение</p>
+  </div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer class="tq-footer">
+  <div class="tq-footer-inner">
+    <div>
+      <a href="tea-qi.html" class="tq-logo" style="margin-bottom:12px; text-decoration:none;">
+        <div class="tq-logo-mark" style="width:44px;height:44px;">
+          <img src="img/tea-qi-logo.jpg" alt="Tea Qi">
+        </div>
+        <div class="tq-logo-text">
+          <span class="cn">茶气灵动</span>
+          <span class="en" style="font-size:1.15rem;">Tea Qi</span>
+        </div>
+      </a>
+      <p style="font-size:0.88rem; color:var(--text-soft); max-width:280px;">Китайский чайный домик. Отборные сорта, бережная доставка, помощь в выборе.</p>
+    </div>
+
+    <div>
+      <h5>Каталог</h5>
+      <a href="#">Пуэры</a>
+      <a href="#">Улуны</a>
+      <a href="#">Зелёные</a>
+      <a href="#">Красные</a>
+      <a href="#">Наборы</a>
+    </div>
+
+    <div>
+      <h5>Помощь</h5>
+      <a href="#">Как заказать</a>
+      <a href="#">Доставка и оплата</a>
+      <a href="#">Как заваривать</a>
+      <a href="#">Вопрос-ответ</a>
+    </div>
+
+    <div>
+      <h5>Связь</h5>
+      <a href="https://t.me/" target="_blank">Telegram</a>
+      <a href="https://instagram.com/" target="_blank">Instagram</a>
+      <a href="https://avito.ru/" target="_blank">Авито</a>
+      <a href="#">Написать нам</a>
+    </div>
+  </div>
+
+  <div class="tq-copy">
+    © 2026 Tea Qi · 茶气灵动 · <a href="index.html">eka_life</a>
+  </div>
+</footer>
+
+</body>
+</html>
