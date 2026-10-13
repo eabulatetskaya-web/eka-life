@@ -541,6 +541,25 @@ a.brand-sub:hover { color: var(--accent); transition: color 0.2s; }
 }
 
 /* =========================================================
+   БЕЙДЖ ФОРМАТА ФАЙЛА — теперь в левом углу, в стиле сайта
+   ========================================================= */
+.file-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-transform: uppercase;
+  border: none;
+  z-index: 2;
+}
+
+/* =========================================================
    ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ (TOAST)
    ========================================================= */
 .toast {
@@ -592,7 +611,6 @@ a.brand-sub:hover { color: var(--accent); transition: color 0.2s; }
   .now-card { padding: 22px; gap: 16px; flex-wrap: wrap; }
   .now-card .nc-title { font-size: 1.1rem; }
 
-  /* Кнопка наверх и тост на мобильных */
   .scroll-top {
     bottom: 20px;
     right: 20px;
