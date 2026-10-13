@@ -64,6 +64,11 @@
   text-align: center; padding: 16px;
 }
 .now-cover.has-image { color: transparent; }
+.now-cover.with-emoji {
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
 .now-cover span { opacity: 0.5; }
 .now-body {
   padding: 18px 20px 20px;
@@ -83,16 +88,52 @@
   background: var(--bg); color: var(--muted);
   align-self: flex-start;
 }
-.now-note {
-  margin: 40px 0; padding: 20px 24px;
-  background: var(--bg); border-left: 3px solid var(--accent);
-  border-radius: 0 12px 12px 0;
-  font-size: 0.92rem; color: var(--muted); font-style: italic;
+/* Широкая карточка для "В фокусе" */
+.now-focus {
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-2-soft) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  border: 1px solid var(--line);
 }
-.now-note a { color: var(--accent); }
+.now-focus .nf-cover {
+  width: 260px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--accent-soft);
+  position: relative;
+}
+.now-focus .nf-content {
+  flex: 1;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.now-focus .nf-label {
+  font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent); font-weight: 700;
+  margin-bottom: 6px;
+}
+.now-focus .nf-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.now-focus .nf-desc {
+  font-size: 0.98rem; color: var(--text);
+  line-height: 1.6;
+}
 @media (max-width: 860px) {
   .now-hero h1 { font-size: 1.9rem; }
   .now-grid { grid-template-columns: 1fr; gap: 16px; }
+  .now-focus { flex-direction: column; }
+  .now-focus .nf-cover { width: 100%; aspect-ratio: 16/9; }
+  .now-focus .nf-content { padding: 24px; }
+  .now-focus .nf-title { font-size: 1.35rem; }
 }
 </style>
 </head>
@@ -111,10 +152,11 @@
 
   <section class="now-hero">
     <h1>Что у меня <em>сейчас</em></h1>
-    <p class="lead">Короткая страница-снимок. Что читаю, смотрю, слушаю, пробую — прямо в этот момент.</p>
-    <span class="updated">🔄 обновлено 10 октября 2026</span>
+    <p class="lead">Короткая страница-снимок. Что читаю, смотрю, пробую — прямо в этот момент.</p>
+    <span class="updated">🔄 обновлено 13 октября 2026</span>
   </section>
 
+  <!-- ЧИТАЮ -->
   <section class="now-section">
     <div class="now-section-head">
       <div class="ns-icon">📖</div>
@@ -142,6 +184,7 @@
     </div>
   </section>
 
+  <!-- СМОТРЮ -->
   <section class="now-section">
     <div class="now-section-head">
       <div class="ns-icon">🎬</div>
@@ -169,9 +212,77 @@
     </div>
   </section>
 
-  <div class="now-note">
-    Идея этой страницы — из движения <a href="https://nownownow.com/" target="_blank">Now Now Now</a>.
-  </div>
+  <!-- ПРОБУЮ -->
+  <section class="now-section">
+    <div class="now-section-head">
+      <div class="ns-icon">✨</div>
+      <h2>Пробую</h2>
+    </div>
+    <div class="now-grid">
+      <div class="now-card-item">
+        <div class="now-cover has-image" style="background-image: url('img/coding.jpg');"></div>
+        <div class="now-body">
+          <div class="now-title">Кодинг с ИИ</div>
+          <div class="now-author">новое хобби</div>
+          <div class="now-desc">Собираю этот сайт, учусь работать с кодом через нейросети. Оказалось, это затягивает — а главное, сразу видно результат.</div>
+          <span class="now-tag">💻 хобби</span>
+        </div>
+      </div>
+      <div class="now-card-item">
+        <div class="now-cover has-image" style="background-image: url('img/stretching.jpg');"></div>
+        <div class="now-body">
+          <div class="now-title">Стретчинг</div>
+          <div class="now-author">спорт</div>
+          <div class="now-desc">Начала заниматься растяжкой — для тела, спины и спокойствия. Пока в самом начале, но уже нравится.</div>
+          <span class="now-tag">🤸‍♀️ спорт</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПЛАНИРУЮ -->
+  <section class="now-section">
+    <div class="now-section-head">
+      <div class="ns-icon">✈️</div>
+      <h2>Планирую</h2>
+    </div>
+    <div class="now-grid">
+      <div class="now-card-item">
+        <div class="now-cover has-image" style="background-image: url('img/arkhangelsk.jpg');"></div>
+        <div class="now-body">
+          <div class="now-title">Архангельск</div>
+          <div class="now-author">ноябрь 2026</div>
+          <div class="now-desc">Поездка на север. Хочется увидеть северное небо, деревянное зодчество и настоящую зиму.</div>
+          <span class="now-tag">✈️ поездка</span>
+        </div>
+      </div>
+      <div class="now-card-item">
+        <div class="now-cover has-image" style="background-image: url('img/saratov.jpg');"></div>
+        <div class="now-body">
+          <div class="now-title">Саратов</div>
+          <div class="now-author">Новый год 2027</div>
+          <div class="now-desc">Новый год дома, с родными. Традиция — и то, чего жду больше всего в этом сезоне.</div>
+          <span class="now-tag">🎄 Новый год</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- В ФОКУСЕ -->
+  <section class="now-section">
+    <div class="now-section-head">
+      <div class="ns-icon">🎯</div>
+      <h2>В фокусе</h2>
+    </div>
+    <div class="now-focus">
+      <div class="nf-cover" style="background-image: url('img/career.jpg');"></div>
+      <div class="nf-content">
+        <div class="nf-label">Смена деятельности</div>
+        <div class="nf-title">Перехожу в продажи</div>
+        <div class="nf-desc">Меняю не компанию, а род деятельности. Ухожу из маркетинга в продажи — это новый вызов, новая область, где нужно много учиться. Немного страшно и очень интересно.</div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>© 2026 Eka_Life</p>
@@ -185,7 +296,7 @@
 
 </main>
 
-<script src="tg-posts.js?v=1"></script>
+<script src="tg-posts.js?v=2"></script>
 <script src="common.js"></script>
 </body>
 </html>
