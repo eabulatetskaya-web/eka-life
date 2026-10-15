@@ -136,6 +136,13 @@
   object-fit: cover;
   display: block;
 }
+.note-img-fallback {
+  display: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+.note-img.no-image .note-img-fallback { display: block; }
 
 .note-sources {
   background: var(--bg); border-radius: 14px;
@@ -161,14 +168,21 @@
 }
 .note-sources a:hover { border-bottom-color: var(--accent); }
 
+/* Блок «Поделиться» — вертикальный, но вдвое уже */
 .share-block {
-  margin: 48px 0 32px; padding: 24px;
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: 16px;
+  margin: 40px 0 24px;
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  max-width: 340px;
 }
 .share-block h4 {
-  font-family: 'Manrope', sans-serif; font-size: 0.95rem;
-  margin-bottom: 14px; font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: var(--text);
 }
 .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
 .share-btn {
@@ -176,12 +190,12 @@
   padding: 9px 16px; border-radius: 10px;
   background: var(--bg); border: 1px solid var(--line);
   color: var(--text); text-decoration: none;
-  font-size: 0.86rem; font-weight: 500;
+  font-size: 0.85rem; font-weight: 500;
   cursor: pointer; font-family: 'Manrope', sans-serif;
   transition: all 0.15s;
 }
 .share-btn:hover { border-color: var(--accent); color: var(--accent); }
-.share-btn svg { width: 16px; height: 16px; }
+.share-btn svg { width: 15px; height: 15px; }
 
 .note-nav {
   display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -211,6 +225,7 @@
   .note-stat { grid-template-columns: 1fr; }
   .note-cover { aspect-ratio: 4/3; }
   .note-cover::before { font-size: 8rem; }
+  .share-block { max-width: 100%; }
 }
 </style>
 </head>
@@ -273,7 +288,8 @@
       <p>Заодно Liberty Media пересмотрела контракты на трансляции. ESPN в США раньше платил символические $5 млн в год — новый контракт оценивается в <strong>$75–90 млн</strong> ежегодно. Sky Sports теперь платит около <strong>$300 млн</strong> в год вместо прежних скромных сумм. Гонки превратились в медийное событие на весь уикенд, а не просто в воскресное шоу.</p>
 
       <div class="note-img">
-        <img src="img/f1-drive-to-survive.jpg" alt="Кадр из сериала Drive to Survive">
+        <img src="img/f1-drive-to-survive.jpg" alt="Кадр из сериала Drive to Survive" onerror="this.style.display='none'; this.parentNode.classList.add('no-image');">
+        <span class="note-img-fallback">📷 Кадр из «Drive to Survive»</span>
       </div>
 
       <h2 id="money">Почему это важно и при чём тут деньги</h2>
@@ -310,7 +326,8 @@
       <p>В январе 2025 года на заводе Nestlé в Италии с конвейера сошёл болид Формулы-1, сделанный из <strong>350 кг шоколада Kit Kat</strong> — в натуральную величину, с точностью до ливреи. Через несколько недель его выставили у трассы на открытии сезона в Мельбурне. Это не просто «спонсорский логотип на машине» — это физический объект, о котором пишут, который фотографируют и который обсуждают. Kit Kat подписал контракт с F1 в ноябре 2024 года, приурочив его к своему 90-летию и 75-летию Формулы-1. Соглашение рассчитано до 2028 года и охватывает 12 гонок на ключевых рынках Nestlé.</p>
 
       <div class="note-img">
-        <img src="img/f1-kitkat-lego.jpg" alt="Шоколадный болид Kit Kat и LEGO-машины F1">
+        <img src="img/f1-kitkat-lego.jpg" alt="Шоколадный болид Kit Kat и LEGO-машины F1" onerror="this.style.display='none'; this.parentNode.classList.add('no-image');">
+        <span class="note-img-fallback">📷 Шоколадный болид Kit Kat и LEGO-машины</span>
       </div>
 
       <p>LEGO пошли ещё дальше. В сентябре 2024 года они объявили о партнёрстве, которое покрывает все 10 команд на стартовой решётке — от доступных мини-машинок до премиальных наборов Technic для взрослых фанатов. На Гран-при Майами 2025 года LEGO построили <strong>10 полноразмерных управляемых болидов F1</strong> — по одному на каждую команду, каждый из более чем 400 000 деталей, с полной спонсорской ливреей, на настоящих шинах. 20 гонщиков проехали на них в параде пилотов.</p>
@@ -377,7 +394,7 @@ if (copyBtn) {
     navigator.clipboard.writeText(window.location.href).then(() => {
       copyBtn.innerHTML = '✓ Ссылка скопирована';
       setTimeout(() => {
-        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
       }, 2000);
     });
   });
