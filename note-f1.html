@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как маркетинг спас Формулу-1 — EA Life</title>
+<meta name="description" content="Как Netflix, Kit Kat, LEGO и спонсорские миллионы превратили закрытый клуб в главное шоу планеты.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как маркетинг спас Формулу-1 — EA Life">
+<meta property="og:description" content="Как Netflix, Kit Kat, LEGO и спонсорские миллионы превратили F1 в главное шоу.">
+<meta property="og:image" content="img/f1-cover.jpg">
+<meta property="og:url" content="note-f1.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.note-hero { padding: 40px 0 20px; max-width: 760px; }
+.note-breadcrumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+.note-breadcrumbs a { color: var(--accent); text-decoration: none; }
+.note-breadcrumbs a:hover { text-decoration: underline; }
+.note-breadcrumbs span { margin: 0 8px; }
+
+.note-title { font-size: 2.6rem; line-height: 1.15; margin-bottom: 16px; }
+.note-lead { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; font-style: italic; }
+.note-meta-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+  padding-bottom: 24px; border-bottom: 1px solid var(--line);
+  margin-bottom: 32px; align-items: center;
+}
+.note-meta-row .badge-status {
+  padding: 4px 10px; border-radius: 20px; font-weight: 500;
+}
+.badge-status.done { background: var(--accent-3-soft); color: var(--accent-3); }
+
+.note-cover {
+  width: 100%; aspect-ratio: 21/9; border-radius: 20px;
+  background: linear-gradient(135deg, #1a1d1a 0%, #4a5230 60%, #7a9556 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #ffffff; font-size: 0.9rem;
+  margin-bottom: 32px; border: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.note-cover::before {
+  content: 'F1';
+  font-family: 'Playfair Display', serif;
+  font-size: 14rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.08);
+  position: absolute;
+  right: 20px; top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.note-cover span {
+  position: relative; z-index: 1;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.note-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1040px; }
+
+.toc { position: sticky; top: 40px; align-self: start; font-size: 0.88rem; }
+.toc-title {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 12px;
+}
+.toc a {
+  display: block; color: var(--muted); text-decoration: none;
+  padding: 6px 0 6px 12px; border-left: 2px solid var(--line);
+  transition: all 0.15s; line-height: 1.4;
+}
+.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+.note-content { max-width: 720px; }
+.note-content h2 {
+  font-size: 1.7rem; margin: 48px 0 18px;
+  scroll-margin-top: 40px;
+}
+.note-content h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.15rem;
+  font-weight: 700; margin: 32px 0 12px; scroll-margin-top: 40px;
+}
+.note-content p { font-size: 1.02rem; margin-bottom: 18px; line-height: 1.8; color: var(--text); }
+.note-content ul, .note-content ol { margin: 0 0 18px 22px; font-size: 1.02rem; line-height: 1.8; }
+.note-content li { margin-bottom: 10px; }
+.note-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color 0.15s; }
+.note-content a:hover { border-bottom-color: var(--accent); }
+.note-content strong { font-weight: 700; }
+.note-content em { font-style: italic; }
+.note-content blockquote {
+  border-left: 3px solid var(--accent); padding: 4px 0 4px 20px;
+  margin: 24px 0; font-style: italic; color: var(--muted);
+  font-size: 1.05rem;
+}
+.note-content hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+/* Числовой блок — акцент */
+.note-stat {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  border-radius: 16px; padding: 24px 28px;
+  margin: 24px 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  text-align: center;
+}
+.note-stat .stat-item { display: flex; flex-direction: column; }
+.note-stat .stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.note-stat .stat-label {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Плейсхолдер-картинка в тексте */
+.note-img {
+  width: 100%; border-radius: 16px;
+  margin: 28px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Источники */
+.note-sources {
+  background: var(--bg); border-radius: 14px;
+  padding: 24px; margin: 40px 0 20px;
+  border-left: 3px solid var(--accent);
+}
+.note-sources h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+.note-sources ul { margin: 0; padding-left: 20px; }
+.note-sources li { margin-bottom: 6px; font-size: 0.92rem; }
+
+.share-block {
+  margin: 48px 0 32px; padding: 24px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.share-block h4 {
+  font-family: 'Manrope', sans-serif; font-size: 0.95rem;
+  margin-bottom: 14px; font-weight: 600;
+}
+.share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+  font-size: 0.86rem; font-weight: 500;
+  cursor: pointer; font-family: 'Manrope', sans-serif;
+  transition: all 0.15s;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+.share-btn svg { width: 16px; height: 16px; }
+
+.note-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 40px 0; padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.note-nav a {
+  display: block; padding: 18px; border-radius: 14px;
+  background: var(--card); border: 1px solid var(--line);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.note-nav a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.note-nav .label {
+  font-size: 0.75rem; color: var(--muted); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+}
+.note-nav .title { font-size: 0.94rem; font-weight: 600; }
+.note-nav a:last-child { text-align: right; }
+
+@media (max-width: 860px) {
+  .note-layout { grid-template-columns: 1fr; gap: 24px; }
+  .toc { position: static; }
+  .note-title { font-size: 1.9rem; }
+  .note-content h2 { font-size: 1.35rem; }
+  .note-nav { grid-template-columns: 1fr; }
+  .note-stat { grid-template-columns: 1fr; }
+  .note-cover { aspect-ratio: 4/3; }
+  .note-cover::before { font-size: 8rem; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <article class="note-hero">
+    <div class="note-breadcrumbs">
+      <a href="index.html">Главная</a><span>·</span>
+      <a href="notes.html">База знаний</a><span>·</span>
+      Хоббис
+    </div>
+    <h1 class="note-title">Как маркетинг спас Формулу-1</h1>
+    <p class="note-lead">И почему её теперь смотрят даже те, кто не любит спорт. Про Netflix, шоколадный Kit Kat, LEGO-гонки и спонсорские миллионы.</p>
+    <div class="note-meta-row">
+      <span class="badge-status done">🌳 готово</span>
+      <span>📅 15 октября 2026</span>
+      <span>⏱ 12 минут чтения</span>
+      <span>🏷 хоббис · маркетинг</span>
+    </div>
+  </article>
+
+  <div class="note-cover">
+    <span>Обложка: болид F1 / фото с гонок</span>
+  </div>
+
+  <div class="note-layout">
+
+    <nav class="toc" id="toc">
+      <div class="toc-title">Содержание</div>
+      <a href="#start" class="active">Королевская гонка для избранных</a>
+      <a href="#change">Что вообще изменилось</a>
+      <a href="#money">Почему это важно и при чём тут деньги</a>
+      <a href="#who">Кто смотрит теперь</a>
+      <a href="#kitkat">Про Kit Kat и LEGO</a>
+      <a href="#thoughts">Что я об этом думаю</a>
+      <a href="#sources">Источники</a>
+    </nav>
+
+    <div class="note-content">
+
+      <h2 id="start">Королевская гонка для избранных</h2>
+      <p>Лет 20 назад Формула-1 казалась чем-то из другого мира. Не в плохом смысле — просто не для всех. Паддок, закрытые вечеринки, яхты, Кими Райкконен, который после схода на Гран-при Монако просто уходит на свою яхту, пришвартованную рядом. Красиво, но как будто не про обычных людей.</p>
+      <p>Трансляции платные, билеты дорогие, атмосфера — «королевская гонка» для тех, у кого есть связи и бюджет. Я раньше думала: ну ок, это просто спорт для избранных. Не моя история.</p>
+      <p>А потом что-то сломалось. В хорошем смысле. В 2018 году я впервые поехала на F1 в Сочи — и понеслось.</p>
+
+      <h2 id="change">Что вообще изменилось</h2>
+      <p>В 2017 году Формулу-1 купила <strong>Liberty Media</strong> — американская компания, которая, по сути, купила не просто гоночную лигу, а неиспользованную глобальную интеллектуальную собственность. И начала делать то, что до этого казалось почти кощунством: <em>превращать закрытый клуб в массовое развлечение</em>.</p>
+      <p>Первым делом Liberty Media три месяца изучала аудиторию чемпионата и выяснила простую вещь: фанаты хотели больше закулисья, хотели видеть гонщиков не только в шлемах, но и в жизни. Так появился сериал <strong>«Formula 1: Drive to Survive»</strong> на Netflix — вышел в 2019-м и сделал то, чего не смогли сделать десятилетия трансляций: показал не только гонки, но и людей. Драмы, конфликты, характеры, закулисье команд.</p>
+      <p>И это сработало. После выхода сериала продажи билетов на Гран-при Мексики выросли — промоутеры напрямую связали это с показом «Drive to Survive». Интерес женской аудитории вырос на 30%. Глобальная база фанатов увеличилась на 63% по сравнению с 2018 годом.</p>
+      <p>Заодно Liberty Media пересмотрела контракты на трансляции. ESPN в США раньше платил символические $5 млн в год — новый контракт оценивается в <strong>$75–90 млн</strong> ежегодно. Sky Sports теперь платит около <strong>$300 млн</strong> в год вместо прежних скромных сумм. Гонки превратились в медийное событие на весь уикенд, а не просто в воскресное шоу.</p>
+
+      <div class="note-img">
+        <span>📷 Плейсхолдер: кадр из «Drive to Survive» / болид F1</span>
+      </div>
+
+      <h2 id="money">Почему это важно и при чём тут деньги</h2>
+      <p>Увеличение зрителей — это не просто красивая цифра для презентаций. Это прямой доступ к спонсорским деньгам. В среднем <strong>42% бюджета команды</strong> составляют спонсорские средства. Чем больше аудитория — тем выше ставки, которые команды могут запросить у брендов.</p>
+      <p>В 2021 году официальные спонсорские контракты (трековая реклама, мерч и права F1) принесли <strong>$340 млн</strong>. Команды считают свои машины «рекламной витриной» и продают места для логотипов за суммы от $1 млн до $50 млн. Партнёры приходят за ассоциацией с ценностями спорта: инновации, скорость, точность.</p>
+      <p>Liberty Media создала мощную спонсорскую экосистему — бренды размещаются не только на машинах, но и в цифровых активах, контенте, на трассах, в технологиях. Crypto.com стал титульным спонсором спринт-заездов F1 Sprint в Майами. Santander разместил логотипы на трассах в США, Бразилии, Мексике, Испании и Великобритании. С 2025 года TAG Heuer заменит Rolex в качестве официального хронометриста. Даже LVMH подписал партнёрство с Формулой-1 на 10 лет.</p>
+
+      <div class="note-stat">
+        <div class="stat-item">
+          <span class="stat-num">+138%</span>
+          <span class="stat-label">рост доходов от спонсорства с 2021 по 2025</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">+53%</span>
+          <span class="stat-label">рост квартальной выручки F1</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$617M</span>
+          <span class="stat-label">выручка F1 за квартал</span>
+        </div>
+      </div>
+
+      <h2 id="who">Кто смотрит теперь</h2>
+      <p>Вот тут самое интересное.</p>
+      <ul>
+        <li><strong>43% фанатов F1 — младше 35 лет</strong> (в 2025 году, рост на 20% за год).</li>
+        <li><strong>40% подписчиков F1 в Instagram — младше 25 лет.</strong></li>
+        <li><strong>Более 40% аудитории — женщины.</strong> Многие из них меньше интересуются технической частью и машинами, но больше — социокультурной стороной спорта.</li>
+      </ul>
+      <p>Это уже не «папин спорт». Это контент, который живёт в TikTok, Instagram и Twitch. Формула-1 перестала быть просто гонкой и стала медиапродуктом: постоянным потоком контента, историй и эмоций.</p>
+
+      <h2 id="kitkat">Про Kit Kat и LEGO — самое интересное</h2>
+      <p>Вот где маркетинг становится по-настоящему осязаемым.</p>
+      <p>В январе 2025 года на заводе Nestlé в Италии с конвейера сошёл болид Формулы-1, сделанный из <strong>350 кг шоколада Kit Kat</strong> — в натуральную величину, с точностью до ливреи. Через несколько недель его выставили у трассы на открытии сезона в Мельбурне. Это не просто «спонсорский логотип на машине» — это физический объект, о котором пишут, который фотографируют и который обсуждают. Kit Kat подписал контракт с F1 в ноябре 2024 года, приурочив его к своему 90-летию и 75-летию Формулы-1. Соглашение рассчитано до 2028 года и охватывает 12 гонок на ключевых рынках Nestlé.</p>
+
+      <div class="note-img">
+        <span>📷 Плейсхолдер: шоколадный болид Kit Kat / LEGO-машины на параде</span>
+      </div>
+
+      <p>LEGO пошли ещё дальше. В сентябре 2024 года они объявили о партнёрстве, которое покрывает все 10 команд на стартовой решётке — от доступных мини-машинок до премиальных наборов Technic для взрослых фанатов. На Гран-при Майами 2025 года LEGO построили <strong>10 полноразмерных управляемых болидов F1</strong> — по одному на каждую команду, каждый из более чем 400 000 деталей, с полной спонсорской ливреей, на настоящих шинах. 20 гонщиков проехали на них в параде пилотов.</p>
+      <p>И это сработало. Активация сгенерировала <strong>$14 млн спонсорской медиастоимости за один день</strong>. Впереди Гран-при Китая LEGO превратили пешеходную зону Нанкин-Роуд в поп-ап «F1 Speed Station», полностью воссоздав трассу, пит-стопы и гаражи команд из кирпичиков LEGO. А к сезону 2026 в Шанхае обернули вагон метро в полноразмерный болид F1 с встроенным LEGO-гаражом и более чем 20 пасхалками.</p>
+      <p>CEO LEGO Нильс Кристиансен назвал партнёрство с F1 одной из инноваций, обеспечивших компании рекордную выручку и операционную прибыль в первом полугодии.</p>
+
+      <h2 id="thoughts">Что я об этом думаю</h2>
+      <p><strong>Самое крутое в этой истории — не цифры. А то, что маркетинг здесь не «продал» спорт. Он раскрыл его.</strong> Показал, что за болидами стоят люди: с амбициями, обидами, юмором и драмами. И оказалось, что это интересно не только фанатам автоспорта.</p>
+      <p>Формула-1 не стала «проще» или «хуже». Она стала доступнее. И это, по-моему, отличный пример того, как правильный сторителлинг может оживить даже самую закрытую индустрию.</p>
+
+      <div class="note-sources" id="sources">
+        <h3>Источники</h3>
+        <ul>
+          <li>«Как маркетинг спас Формулу-1» — The Steppe (the-steppe.com)</li>
+          <li>«Как маркетинг перезапустил "Формулу-1"» — Дзен (dzen.ru)</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="share-block">
+        <h4>Поделиться статьёй</h4>
+        <div class="share-buttons">
+          <button class="share-btn" id="copyLink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Скопировать ссылку
+          </button>
+          <a class="share-btn" target="_blank" href="https://t.me/share/url?url=note-f1.html&text=Как маркетинг спас Формулу-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            Telegram
+          </a>
+          <a class="share-btn" target="_blank" href="https://twitter.com/intent/tweet?url=note-f1.html&text=Как маркетинг спас Формулу-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            X
+          </a>
+          <a class="share-btn" target="_blank" href="https://ru.pinterest.com/pin/create/button/?url=note-f1.html&description=Как маркетинг спас Формулу-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 15c.5-2 1.5-5 1.5-5"/><path d="M10 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3c-.8 0-1.5-.3-2-.8"/></svg>
+            Pinterest
+          </a>
+        </div>
+      </div>
+
+      <nav class="note-nav">
+        <a href="note.html">
+          <div class="label">← Другая статья</div>
+          <div class="title">Съёмка с TENET</div>
+        </a>
+        <a href="notes.html">
+          <div class="label">Все заметки →</div>
+          <div class="title">База знаний</div>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+const copyBtn = document.getElementById('copyLink');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      copyBtn.innerHTML = '✓ Ссылка скопирована';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
+      }, 2000);
+    });
+  });
+}
+
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('.note-content h2[id]');
+if (tocLinks.length && sections.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+</script>
+</body>
+</html>
