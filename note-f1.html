@@ -38,6 +38,8 @@
 .note-cover {
   width: 100%; aspect-ratio: 21/9; border-radius: 20px;
   background: linear-gradient(135deg, #1a1d1a 0%, #4a5230 60%, #7a9556 100%);
+  background-size: cover;
+  background-position: center;
   display: flex; align-items: center; justify-content: center;
   color: #ffffff; font-size: 0.9rem;
   margin-bottom: 32px; border: 1px solid var(--line);
@@ -54,13 +56,7 @@
   transform: translateY(-50%);
   line-height: 1;
   letter-spacing: -0.05em;
-}
-.note-cover span {
-  position: relative; z-index: 1;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .note-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1040px; }
@@ -101,7 +97,6 @@
 }
 .note-content hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
 
-/* Числовой блок — акцент */
 .note-stat {
   background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
   border-radius: 16px; padding: 24px 28px;
@@ -123,21 +118,25 @@
   line-height: 1.4;
 }
 
-/* Плейсхолдер-картинка в тексте */
 .note-img {
   width: 100%; border-radius: 16px;
   margin: 28px 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  position: relative;
   aspect-ratio: 16/9;
   background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
   display: flex; align-items: center; justify-content: center;
   color: var(--muted); font-size: 0.85rem;
   text-align: center;
+  position: relative;
+}
+.note-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* Источники */
 .note-sources {
   background: var(--bg); border-radius: 14px;
   padding: 24px; margin: 40px 0 20px;
@@ -153,7 +152,14 @@
   font-weight: 700;
 }
 .note-sources ul { margin: 0; padding-left: 20px; }
-.note-sources li { margin-bottom: 6px; font-size: 0.92rem; }
+.note-sources li { margin-bottom: 8px; font-size: 0.92rem; }
+.note-sources a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+  transition: border-color 0.15s;
+}
+.note-sources a:hover { border-bottom-color: var(--accent); }
 
 .share-block {
   margin: 48px 0 32px; padding: 24px;
@@ -237,8 +243,7 @@
     </div>
   </article>
 
-  <div class="note-cover">
-    <span>Обложка: болид F1 / фото с гонок</span>
+  <div class="note-cover" style="background-image: url('img/f1-cover.jpg');">
   </div>
 
   <div class="note-layout">
@@ -268,7 +273,7 @@
       <p>Заодно Liberty Media пересмотрела контракты на трансляции. ESPN в США раньше платил символические $5 млн в год — новый контракт оценивается в <strong>$75–90 млн</strong> ежегодно. Sky Sports теперь платит около <strong>$300 млн</strong> в год вместо прежних скромных сумм. Гонки превратились в медийное событие на весь уикенд, а не просто в воскресное шоу.</p>
 
       <div class="note-img">
-        <span>📷 Плейсхолдер: кадр из «Drive to Survive» / болид F1</span>
+        <img src="img/f1-drive-to-survive.jpg" alt="Кадр из сериала Drive to Survive">
       </div>
 
       <h2 id="money">Почему это важно и при чём тут деньги</h2>
@@ -305,7 +310,7 @@
       <p>В январе 2025 года на заводе Nestlé в Италии с конвейера сошёл болид Формулы-1, сделанный из <strong>350 кг шоколада Kit Kat</strong> — в натуральную величину, с точностью до ливреи. Через несколько недель его выставили у трассы на открытии сезона в Мельбурне. Это не просто «спонсорский логотип на машине» — это физический объект, о котором пишут, который фотографируют и который обсуждают. Kit Kat подписал контракт с F1 в ноябре 2024 года, приурочив его к своему 90-летию и 75-летию Формулы-1. Соглашение рассчитано до 2028 года и охватывает 12 гонок на ключевых рынках Nestlé.</p>
 
       <div class="note-img">
-        <span>📷 Плейсхолдер: шоколадный болид Kit Kat / LEGO-машины на параде</span>
+        <img src="img/f1-kitkat-lego.jpg" alt="Шоколадный болид Kit Kat и LEGO-машины F1">
       </div>
 
       <p>LEGO пошли ещё дальше. В сентябре 2024 года они объявили о партнёрстве, которое покрывает все 10 команд на стартовой решётке — от доступных мини-машинок до премиальных наборов Technic для взрослых фанатов. На Гран-при Майами 2025 года LEGO построили <strong>10 полноразмерных управляемых болидов F1</strong> — по одному на каждую команду, каждый из более чем 400 000 деталей, с полной спонсорской ливреей, на настоящих шинах. 20 гонщиков проехали на них в параде пилотов.</p>
@@ -319,14 +324,14 @@
       <div class="note-sources" id="sources">
         <h3>Источники</h3>
         <ul>
-          <li>«Как маркетинг спас Формулу-1» — The Steppe (the-steppe.com)</li>
-          <li>«Как маркетинг перезапустил "Формулу-1"» — Дзен (dzen.ru)</li>
+          <li><a href="https://the-steppe.com/novosti/kak-marketing-spas-formulu-1?ysclid=mv94dfw8ep936868293" target="_blank" rel="noopener">Как маркетинг спас Формулу-1 — The Steppe</a></li>
+          <li><a href="https://dzen.ru/a/agRobz3LoXbD00aT?ysclid=mv94dhhbff100649085" target="_blank" rel="noopener">Как маркетинг перезапустил «Формулу-1» — Дзен</a></li>
         </ul>
       </div>
 
       <hr>
 
-            <div class="share-block">
+      <div class="share-block">
         <h4>Поделиться статьёй</h4>
         <div class="share-buttons">
           <button class="share-btn" id="copyLink">
