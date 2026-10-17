@@ -96,4 +96,85 @@
   <section class="theme-head">
     <div class="theme-icon">💭</div>
     <h1>Её закулисье</h1>
-    <p>Мысли, ре
+    <p>Мысли, рефлексия и «кухня» попыток быть блогером: как планирую день, ошибаюсь, учусь, мои инсайты, победы и поражения и что думаю обо всём этом. Без красивой картинки — а как это реально есть.</p>
+    <div class="theme-stats">
+      <span>📝 0 заметок</span>
+      <span>🔖 0 ссылок</span>
+      <span>🕐 обновлено только что</span>
+    </div>
+  </section>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все</button>
+    <button class="filter" data-filter="knowledge">📝 Заметки</button>
+    <button class="filter" data-filter="link">🔖 Ссылки</button>
+  </div>
+
+  <div class="items" id="items">
+
+    <a class="item" data-type="knowledge" href="#">
+      <div class="item-icon" style="background:var(--accent-soft)">📝</div>
+      <div class="item-body">
+        <h3>Скоро здесь появятся заметки</h3>
+        <p>Раздел только открылся. Здесь будут мысли, рефлексия и «кухня» блогера — без прикрас. Заглядывайте позже.</p>
+        <div class="item-meta">
+          <span class="badge knowledge">заметка</span>
+          <span class="badge status-draft">🌱 в работе</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <section class="related">
+    <h2>Другие темы</h2>
+    <div class="related-grid">
+      <a class="related-card" href="theme-career.html">
+        <div class="rc-icon">🚗</div>
+        <h3>Карьера и маркетинг</h3>
+        <p>Кейсы, коллаборации, инструменты</p>
+      </a>
+      <a class="related-card" href="theme-lifestyle.html">
+        <div class="rc-icon">🏙️</div>
+        <h3>Лайфстайл и Москва</h3>
+        <p>Места, маршруты, находки</p>
+      </a>
+      <a class="related-card" href="theme-hobby.html">
+        <div class="rc-icon">🧩</div>
+        <h3>Хоббис</h3>
+        <p>Чай, книги, фильмы, F1, путешествия</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+const buttons = document.querySelectorAll('.filter');
+const items = document.querySelectorAll('.item');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    items.forEach(item => {
+      item.style.display = (filter === 'all' || item.dataset.type === filter) ? 'flex' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
