@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор каталога — Tea Qi</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f9f9f7; color: #1a1d1a; padding: 40px 20px; line-height: 1.6; }
+  .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+  h1 { margin-top: 0; font-size: 1.8rem; }
+  label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: #4a5230; }
+  input[type="text"] { width: 100%; padding: 12px 16px; border: 1px solid #d0d9b8; border-radius: 8px; font-size: 1rem; margin-bottom: 20px; box-sizing: border-box; }
+  button { background: #7a9556; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  button:hover { background: #5f7840; }
+  .status { margin-top: 16px; font-size: 0.9rem; display: none; padding: 12px; border-radius: 8px; }
+  .status.error { display: block; background: #fbe4ee; color: #b04a76; }
+  .status.success { display: block; background: #d9f2ea; color: #2d7a65; }
+  textarea { width: 100%; height: 300px; margin-top: 20px; padding: 16px; border: 1px solid #d0d9b8; border-radius: 8px; font-family: monospace; font-size: 0.85rem; box-sizing: border-box; background: #fafaf7; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Генератор каталога</h1>
+  <p>Вставьте ссылку на <strong>опубликованную</strong> Google Таблицу (Файл → Поделиться → Опубликовать в интернете).</p>
+  
+  <label for="sheetUrl">Ссылка на таблицу (CSV или HTML-экспорт):</label>
+  <input type="text" id="sheetUrl" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv">
+  
+  <button onclick="generateCatalog()">Сгенерировать код</button>
+  
+  <div id="status" class="status"></div>
+  
+  <div id="outputBlock" style="display:none; margin-top:24px;">
+    <label>Готовый HTML-код (скопируйте и вставьте в tea-qi.html):</label>
+    <textarea id="outputCode" readonly onclick="this.select()"></textarea>
+  </div>
+</div>
+
+<script>
+async function generateCatalog() {
+  const url = document.getElementById('sheetUrl').value.trim();
+  const status = document.getElementById('status');
+  const outputBlock = document.getElementById('outputBlock');
+  const outputCode = document.getElementById('outputCode');
+
+  if (!url) {
+    status.className = 'status error';
+    status.textContent = 'Вставьте ссылку на таблицу';
+    return;
+  }
+
+  status.className = 'status';
+  status.textContent = 'Загружаю данные из Google...';
+  status.style.display = 'block';
+  outputBlock.style.display = 'none';
+
+  try {
+    // Пытаемся получить CSV. Если ссылка заканчивается на pubhtml, пробуем заменить на output=csv
+    let fetchUrl = url;
+    if (url.includes('/pubhtml')) {
+      fetchUrl = url.replace('/pubhtml', '/pub?output=csv');
+    } else if (!url.includes('output=csv')) {
+      // Если это просто ссылка на редактирование, пробуем преобразовать (хотя лучше использовать опубликованную)
+      fetchUrl = url.replace('/edit#gid=', '/export?format=csv&gid=').replace('/edit', '/export?format=csv');
+    }
+
+    const response = await fetch(fetchUrl);
+    if (!response.ok) throw new Error('Ошибка загрузки. Убедитесь, что таблица опубликована.');
+    
+    const csvText = await response.text();
+    
+    // Простой парсер CSV (для сложных случаев с кавычками может понадобиться библиотека, но для базовых таблиц сработает)
+    const rows = parseCSV(csvText);
+    
+    if (rows.length < 2) throw new Error('В таблице нет данных (нужен заголовок и хотя бы одна строка).');
+
+    const headers = rows[0].map(h => h.toLowerCase().trim());
+    const dataRows = rows.slice(1);
+
+    // Ищем индексы колонок
+    const idx = {
+      category: headers.findIndex(h => h.includes('категор') || h.includes('тип')),
+      name: headers.findIndex(h => h.includes('назван') || h.includes('имя')),
+      price: headers.findIndex(h => h.includes('цена') || h.includes('стоим')),
+      weight: headers.findIndex(h => h.includes('вес') || h.includes('грамм')),
+      desc: headers.findIndex(h => h.includes('описан') || h.includes('вкус')),
+      stock: headers.findIndex(h => h.includes('налич') || h.includes('статус')),
+      image: headers.findIndex(h => h.includes('картин') || h.includes('фото') || h.includes('изображ'))
+    };
+
+    if (idx.name === -1 || idx.price === -1) throw new Error('Не найдены обязательные колонки: Название и Цена.');
+
+    let htmlOutput = '';
+
+    dataRows.forEach(row => {
+      if (!row[idx.name] || !row[idx.name].trim()) return; // Пропускаем пустые строки
+
+      const name = row[idx.name];
+      const price = idx.price > -1 ? row[idx.price] : '';
+      const weight = idx.weight > -1 ? row[idx.weight] : '';
+      const desc = idx.desc > -1 ? row[idx.desc] : '';
+      const category = idx.category > -1 ? row[idx.category] : '';
+      const stock = idx.stock > -1 ? row[idx.stock].toLowerCase() : 'в наличии';
+      const image = idx.image > -1 ? row[idx.image] : '';
+
+      const isAvailable = !stock.includes('нет') && !stock.includes('0');
+      
+      // Формируем карточку товара (используем классы из tea-qi.html)
+      htmlOutput += `
+    <div class="tq-tile tq-product" style="opacity: ${isAvailable ? '1' : '0.6'};">
+      <div class="tq-product-visual" style="background-image: url('${image}'); background-size: cover; background-position: center; color: transparent;">
+        ${!image ? (category ? category[0] : '茶') : ''}
+      </div>
+      <div class="tq-product-info">
+        <h4>${name} ${weight ? '<span style="font-size:0.8em; color:#8a9278;">(' + weight + ')</span>' : ''}</h4>
+        <span class="price">${price}</span>
+      </div>
+    </div>`;
+    });
+
+    outputCode.value = htmlOutput;
+    outputBlock.style.display = 'block';
+    
+    status.className = 'status success';
+    status.textContent = `Успешно обработано карточек: ${dataRows.length}. Скопируйте код ниже.`;
+
+  } catch (err) {
+    status.className = 'status error';
+    status.textContent = 'Ошибка: ' + err.message;
+    console.error(err);
+  }
+}
+
+// Простой парсер CSV
+function parseCSV(text) {
+  const lines = [];
+  let currentLine = [];
+  let currentCell = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const nextChar = text[i + 1];
+
+    if (inQuotes) {
+      if (char === '"' && nextChar === '"') {
+        currentCell += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        currentCell += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === ',') {
+        currentLine.push(currentCell);
+        currentCell = '';
+      } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
+        if (char === '\r') i++; 
+        currentLine.push(currentCell);
+        lines.push(currentLine);
+        currentLine = [];
+        currentCell = '';
+      } else {
+        currentCell += char;
+      }
+    }
+  }
+  if (currentCell || currentLine.length > 0) {
+    currentLine.push(currentCell);
+    lines.push(currentLine);
+  }
+  return lines;
+}
+</script>
+</body>
+</html>
