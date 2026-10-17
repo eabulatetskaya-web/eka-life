@@ -51,9 +51,10 @@
   border-color: transparent;
 }
 
+/* Превью файла — красивое, без iframe */
 .file-preview {
   width: 100%; aspect-ratio: 4/3;
-  background: var(--bg);
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg));
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -72,16 +73,8 @@
 }
 .file-card:hover .file-icon-big { transform: rotate(0deg) scale(1.05); }
 
-.file-icon-big.word { color: #2b579a; }
-.file-icon-big.word::before { content: 'W'; font-family: 'Manrope', sans-serif; font-weight: 800; }
 .file-icon-big.excel { color: #217346; }
 .file-icon-big.excel::before { content: 'X'; font-family: 'Manrope', sans-serif; font-weight: 800; }
-.file-icon-big.pdf { color: #d93025; }
-.file-icon-big.pdf::before { content: 'PDF'; font-size: 1.4rem; font-family: 'Manrope', sans-serif; font-weight: 800; }
-.file-icon-big.img { color: #8b7ad6; }
-.file-icon-big.img::before { content: '🖼'; font-size: 2.4rem; }
-.file-icon-big.zip { color: #e08bb0; }
-.file-icon-big.zip::before { content: '📦'; font-size: 2.4rem; }
 
 .file-badge {
   position: absolute; top: 12px; right: 12px;
@@ -113,9 +106,7 @@
 }
 .file-meta span { display: flex; align-items: center; gap: 4px; }
 
-.file-actions {
-  display: flex; gap: 8px;
-}
+.file-actions { display: flex; gap: 8px; }
 .file-btn {
   flex: 1;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
@@ -127,25 +118,8 @@
 }
 .file-btn-primary { background: var(--accent); color: #fff; }
 .file-btn-primary:hover { background: #3a7dd0; transform: translateY(-1px); }
-.file-btn-ghost {
-  background: var(--bg); color: var(--muted);
-  border-color: var(--line);
-}
+.file-btn-ghost { background: var(--bg); color: var(--muted); border-color: var(--line); }
 .file-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-.file-embed {
-  margin-top: 20px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-.file-embed iframe {
-  display: block;
-  width: 100%;
-  height: 400px;
-  border: none;
-}
 
 .files-info {
   background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
@@ -166,7 +140,6 @@
   .page-head h1 { font-size: 1.9rem; }
   .files-grid { grid-template-columns: 1fr; }
   .files-info { flex-direction: column; text-align: center; }
-  .file-embed iframe { height: 320px; }
 }
 </style>
 </head>
@@ -206,6 +179,7 @@
 
   <section class="files-grid" id="filesGrid">
 
+    <!-- КАРТОЧКА: Шаблон «Контент-план» -->
     <div class="file-card" data-type="table">
       <div class="file-preview">
         <div class="file-icon-big excel"></div>
@@ -227,13 +201,6 @@
             🔗 Открыть
           </a>
         </div>
-
-        <div class="file-embed">
-          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSqRiR6cTfPwiChlBgankFJNCb15uzYo7_fe-yubabQoTCrgvgE2LRuk4zZ0K2IgchP5nIO3_HVK75_/pubhtml?widget=true&headers=false"
-                  loading="lazy"
-                  allowfullscreen>
-          </iframe>
-        </div>
       </div>
     </div>
 
@@ -252,7 +219,7 @@
 
 </main>
 
-<script src="tg-posts.js?v=1"></script>
+<script src="tg-posts.js?v=2"></script>
 <script src="common.js"></script>
 <script>
 document.querySelectorAll('.filter').forEach(btn => {
