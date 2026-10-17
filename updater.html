@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Обновление TG-постов — EA Life</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,7 +32,7 @@ h1 em { font-style: italic; color: #4a90e2; }
   font-size: 1rem; font-weight: 600; margin-bottom: 16px;
 }
 label { display: block; font-size: 0.85rem; color: #64748b; font-weight: 500; margin-bottom: 6px; }
-input[type="text"], input[type="password"], textarea {
+input, textarea {
   width: 100%; padding: 12px 16px;
   border-radius: 10px; border: 1px solid #e6edf5;
   background: #f6f9fd; color: #0f172a;
@@ -128,10 +130,10 @@ ol { margin-left: 20px; font-size: 0.9rem; line-height: 1.9; }
 <div class="wrap">
 
   <h1>Обновление <em>Telegram-постов</em></h1>
-  <p class="lead">Собирает посты из канала в файл <code>tg-posts.js</code>. Новые добавляются к уже сохранённым — ничего не теряется.</p>
+  <p class="lead">Собирает посты из канала в файл <code>tg-posts.js</code>. Открывайте эту страницу, когда хотите обновить ленту на сайте.</p>
 
   <div class="warn">
-    ⚠️ <strong>Не выкладывайте эту страницу в интернет.</strong>
+    ⚠️ <strong>Токен нигде не сохраняется.</strong> Он живёт только в памяти браузера — как только вы закроете вкладку, он забудется.
   </div>
 
   <div class="card">
@@ -205,7 +207,7 @@ ol { margin-left: 20px; font-size: 0.9rem; line-height: 1.9; }
       <textarea class="code-area" id="textOutput" readonly onclick="this.select()"></textarea>
       <button class="secondary" id="copyTextBtn">📋 Скопировать всё в буфер</button>
       <div class="field-hint" style="margin-top:12px;">
-        Скопировали? Откройте <code>tg-posts.js</code> в Блокноте (<strong>правый клик → Открыть с помощью → Блокнот</strong>), удалите всё старое (<code>Ctrl+A</code> → <code>Delete</code>), вставьте новое (<code>Ctrl+V</code>) и сохраните (<code>Ctrl+S</code>).
+        Скопировали? Откройте <code>tg-posts.js</code> в GitHub (<strong>иконка карандаша</strong>), удалите всё старое (<code>Ctrl+A</code> → <code>Delete</code>), вставьте новое (<code>Ctrl+V</code>) и нажмите <strong>Commit changes</strong>.
       </div>
     </div>
   </div>
@@ -213,9 +215,10 @@ ol { margin-left: 20px; font-size: 0.9rem; line-height: 1.9; }
   <div class="card">
     <h2>5. Что делать после</h2>
     <ol>
-      <li>Сохранить <code>tg-posts.js</code> в папку <code>ea-life-site</code></li>
-      <li>Открыть <code>index.html</code> в браузере</li>
-      <li>Нажать <code>Ctrl+Shift+R</code></li>
+      <li>Скопировать содержимое файла</li>
+      <li>Открыть <code>tg-posts.js</code> в GitHub через карандаш ✏️</li>
+      <li>Вставить новый код → Commit changes</li>
+      <li>Через 30 секунд — обновить сайт</li>
     </ol>
   </div>
 
