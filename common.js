@@ -11,7 +11,6 @@ const NAV_ITEMS = [
   { href: 'about.html',        icon: '👤', label: 'Обо мне' },
 ];
 
-/* Отдельный пункт — переход в чайный магазин */
 const SHOP_ITEM = { href: 'tea-qi.html', icon: '🍵', label: 'Чайный магазин' };
 
 const SOCIALS = [
@@ -35,7 +34,6 @@ function buildSidebar() {
     `<a href="${item.href}"${item.href === current ? ' class="active"' : ''}>${item.icon} ${item.label}</a>`
   ).join('');
 
-  /* Магазин — отдельным блоком */
   html += '<div class="nav-title" style="margin-top:20px;">Проекты</div>';
   html += `<a href="${SHOP_ITEM.href}"${SHOP_ITEM.href === current ? ' class="active"' : ''} style="background:var(--sage-soft); color:var(--sage-dark); font-weight:600;">${SHOP_ITEM.icon} ${SHOP_ITEM.label}</a>`;
 
@@ -143,7 +141,7 @@ function buildScrollTop() {
 }
 
 /* =========================================================
-   КНОПКИ «ПОДЕЛИТЬСЯ»
+   КНОПКИ «ПОДЕЛИТЬСЯ» — только для ссылок в подборке
    ========================================================= */
 function copyToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
@@ -182,6 +180,7 @@ function showToast(message) {
 }
 
 function addShareButtons() {
+  // Только для ссылок в подборке (links.html) — на карточках файлов кнопку НЕ добавляем
   document.querySelectorAll('.link-item').forEach(item => {
     if (item.querySelector('.share-btn-inline')) return;
     const href = item.getAttribute('href');
@@ -199,28 +198,13 @@ function addShareButtons() {
         .then(() => showToast('✓ Ссылка скопирована'))
         .catch(() => showToast('Не удалось скопировать'));
     });
-    item.appendChild(btn);
-  });
-
-  document.querySelectorAll('.file-card').forEach(card => {
-    if (card.querySelector('.share-btn-inline')) return;
-    const title = card.querySelector('.file-title')?.textContent?.trim() || '';
-    const pageUrl = window.location.origin + window.location.pathname;
-    const shareUrl = title ? pageUrl + '#' + encodeURIComponent(title) : pageUrl;
-    const btn = document.createElement('span');
-    btn.className = 'share-btn-inline';
-    btn.innerHTML = '🔗';
-    btn.setAttribute('role', 'button');
-    btn.setAttribute('tabindex', '0');
-    btn.setAttribute('title', 'Скопировать ссылку');
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      copyToClipboard(shareUrl)
-        .then(() => showToast('✓ Ссылка скопирована'))
-        .catch(() => showToast('Не удалось скопировать'));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
     });
-    card.appendChild(btn);
+    item.appendChild(btn);
   });
 }
 
@@ -265,10 +249,12 @@ const searchData = [
   { type: 'Заметка', icon: '📝', title: 'Как я пришла в авто-маркетинг', url: 'note.html', meta: 'карьера · 5 мин' },
   { type: 'Заметка', icon: '📝', title: 'Разбор коллаборации с Chery', url: 'note.html', meta: 'кейс · 8 мин' },
   { type: 'Заметка', icon: '📝', title: 'Мой стек инструментов маркетолога', url: 'note.html', meta: 'инструменты · 4 мин' },
-  { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего начать', url: 'note.html', meta: 'хобби · 6 мин' },
+  { type: 'Заметка', icon: '📝', title: 'Как маркетинг спас Формулу-1', url: 'note-f1.html', meta: 'хоббис · 12 мин' },
+  { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего я начинала', url: 'note-tea.html', meta: 'хоббис · 8 мин' },
 
   { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
   { type: 'Ссылка', icon: '🔖', title: 'Для тех, кто читает', url: 'https://bookerlyheart.com/', meta: 'bookerlyheart.com · хоббис' },
+  { type: 'Ссылка', icon: '🔖', title: 'Как автобренды работают с инфлюенсерами', url: 'https://www.sostav.ru/publication/formaty-raboty-s-inflyuenserami-87531.html', meta: 'Sostav.ru · маркетинг' },
 
   { type: 'Файл', icon: '📊', title: 'Шаблон: Контент-план', url: 'files.html', meta: 'Google Sheets · таблица' },
 
@@ -278,9 +264,9 @@ const searchData = [
   { type: 'Магазин', icon: '🍵', title: 'Тегуаньинь', url: 'tea-qi.html', meta: '1 600 ₽ · 100 г' },
 
   { type: 'Тема', icon: '🚗', title: 'Карьера и маркетинг', url: 'theme-career.html', meta: '12 заметок · 34 ссылки' },
-  { type: 'Тема', icon: '🏙️', title: 'Лайфстайл и жизнь в Москве', url: 'themes.html', meta: '8 заметок · 21 ссылка' },
-  { type: 'Тема', icon: '🧩', title: 'Хоббис', url: 'themes.html', meta: '15 заметок · 42 ссылки' },
-  { type: 'Тема', icon: '💭', title: 'Её закулисье', url: 'themes.html', meta: '6 заметок · 9 ссылок' },
+  { type: 'Тема', icon: '🏙️', title: 'Лайфстайл и жизнь в Москве', url: 'theme-lifestyle.html', meta: '8 заметок · 21 ссылка' },
+  { type: 'Тема', icon: '🧩', title: 'Хоббис', url: 'theme-hobby.html', meta: '15 заметок · 42 ссылки' },
+  { type: 'Тема', icon: '💭', title: 'Её закулисье', url: 'theme-thoughts.html', meta: '6 заметок · 9 ссылок' },
 
   { type: 'Страница', icon: '🏠', title: 'Главная', url: 'index.html', meta: 'обзор сайта' },
   { type: 'Страница', icon: '🗂', title: 'Все темы', url: 'themes.html', meta: 'сетка направлений' },
