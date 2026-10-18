@@ -10,7 +10,6 @@
 <meta property="og:description" content="静心寻境 · Найди своё состояние.">
 <meta property="og:image" content="img/tea-qi-logo.jpg">
 <meta property="og:url" content="tea-qi.html">
-<!-- Зелёный фавикон с иероглифом 茶 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237a9556'/%3E%3Ctext x='50' y='70' font-family='serif' font-size='60' font-weight='700' fill='white' text-anchor='middle'%3E%E8%8C%B6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -428,6 +427,142 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   overflow: hidden;
 }
 
+/* ============================================================
+   НОВЫЙ БЛОК: КАК ЗАКАЗАТЬ
+   ============================================================ */
+.tq-how-to-order {
+  max-width: 1300px;
+  margin: 80px auto 0;
+  padding: 0 40px;
+}
+.tq-how-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.tq-how-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+}
+.tq-how-text .tq-how-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.tq-how-text h2 {
+  font-size: 2.4rem;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.tq-how-text h2 em {
+  font-style: italic;
+  color: var(--sage-dark);
+}
+.tq-how-text > p {
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 28px;
+  line-height: 1.75;
+}
+.tq-how-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tq-how-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.tq-how-num {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--sage-soft);
+  color: var(--sage-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.tq-how-item p {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+.tq-how-item strong { font-weight: 600; }
+
+.tq-how-visual {
+  background: linear-gradient(160deg, var(--sage-soft) 0%, var(--sage-pale) 100%);
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--line);
+}
+.tq-how-visual h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.tq-how-visual .tq-how-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.94rem;
+  transition: all 0.2s;
+}
+.tq-how-visual .tq-how-btn:hover {
+  border-color: var(--sage);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(122,149,86,0.1);
+}
+.tq-how-visual .tq-how-btn svg {
+  width: 20px; height: 20px;
+  color: var(--sage-dark);
+  flex-shrink: 0;
+}
+.tq-how-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+@media (max-width: 860px) {
+  .tq-how-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+  .tq-how-text h2 { font-size: 1.9rem; }
+}
+
 .tq-features {
   max-width: 1300px;
   margin: 80px auto 0;
@@ -617,7 +752,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
     <a href="#catalog">Посуда</a>
     <a href="#catalog">Наборы</a>
     <a href="#about">О нас</a>
-    <a href="#contacts">Контакты</a>
+    <a href="#how-to-order">Как заказать</a>
   </nav>
 </header>
 
@@ -667,7 +802,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   <div class="tq-tile tq-wide">
     <h3>Соберём набор под вас</h3>
     <p>Расскажите, какой чай любите — подберём 3 сорта, которые удивят</p>
-    <a href="#contacts" class="tq-cta">Собрать набор →</a>
+    <a href="#how-to-order" class="tq-cta">Как заказать →</a>
   </div>
 
   <div class="tq-tile tq-tall">
@@ -704,96 +839,39 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   <div class="tq-about-visual">茶</div>
 </section>
 
-<section class="tq-features" id="contacts">
-  <div class="tq-feature">
-    <div class="tq-feature-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="13" rx="2"/><path d="M16 10h4l3 3v6h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-    </div>
-    <h4>Доставка 2–5 дней</h4>
-    <!-- Исправлен рубль: текст разбит на две строки -->
-    <p>По всей России. Бесплатно<br>от 3 000 ₽</p>
-  </div>
+<!-- НОВЫЙ БЛОК: КАК ЗАКАЗАТЬ -->
+<section class="tq-how-to-order" id="how-to-order">
+  <div class="tq-how-card">
+    <div class="tq-how-text">
+      <div class="tq-how-eyebrow">Как заказать</div>
+      <h2>Просто <em>напишите нам</em></h2>
+      <p>У нас нет корзины и сложной формы. Мы общаемся напрямую — так проще подобрать чай под ваш вкус и ответить на все вопросы.</p>
 
-  <div class="tq-feature">
-    <div class="tq-feature-icon">
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 18c0-4 2.8-7 7-7s7 3 7 7"/>
-        <path d="M5 18c0-1.5 2.5-2.5 7-2.5s7 1 7 2.5"/>
-        <circle cx="12" cy="11" r="0.8"/>
-        <ellipse cx="12" cy="22" rx="7" ry="5"/>
-        <path d="M5.2 21l-3.2 1.3"/>
-        <line x1="1" y1="27" x2="31" y2="27"/>
-        <line x1="3" y1="27" x2="3" y2="29.5"/>
-        <line x1="29" y1="27" x2="29" y2="29.5"/>
-        <path d="M22.5 24h5.5v3a1 1 0 0 1-1 1h-3.5a1 1 0 0 1-1-1z"/>
-      </svg>
-    </div>
-    <h4>Свежий сбор</h4>
-    <p>Прямые поставки от фермеров<br>Китая</p>
-  </div>
-
-  <div class="tq-feature">
-    <div class="tq-feature-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-    </div>
-    <h4>Поштучно · на развес</h4>
-    <p>Пробуйте малым объёмом перед<br>покупкой</p>
-  </div>
-
-  <div class="tq-feature">
-    <div class="tq-feature-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    </div>
-    <h4>Поможем с выбором</h4>
-    <p>Подберём чай под ваш вкус и<br>настроение</p>
-  </div>
-</section>
-
-<footer class="tq-footer">
-  <div class="tq-footer-inner">
-    <div>
-      <a href="tea-qi.html" class="tq-logo" style="margin-bottom:12px; text-decoration:none;">
-        <div class="tq-logo-mark" style="width:44px;height:44px;">
-          <img src="img/tea-qi-logo.jpg" alt="Tea Qi">
+      <div class="tq-how-list">
+        <div class="tq-how-item">
+          <div class="tq-how-num">1</div>
+          <p><strong>Выберите чай</strong> в каталоге или напишите, какой вкус ищете. Поможем определиться.</p>
         </div>
-        <div class="tq-logo-text">
-          <span class="cn">茶气灵动</span>
-          <span class="en" style="font-size:1.15rem;">Tea Qi</span>
+        <div class="tq-how-item">
+          <div class="tq-how-num">2</div>
+          <p><strong>Напишите нам</strong> в любое удобное место: Telegram, Instagram, Авито или на почту.</p>
         </div>
+        <div class="tq-how-item">
+          <div class="tq-how-num">3</div>
+          <p><strong>Договоримся об оплате и доставке</strong>. Отправим удобным вам способом.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tq-how-visual">
+      <h4>Напишите нам</h4>
+      <a href="https://t.me/" target="_blank" class="tq-how-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        Telegram
       </a>
-      <p style="font-size:0.88rem; color:var(--text-soft); max-width:280px;">Китайский чайный домик. Отборные сорта, бережная доставка, помощь в выборе.</p>
-    </div>
-
-    <div>
-      <h5>Каталог</h5>
-      <a href="#">Пуэры</a>
-      <a href="#">Улуны</a>
-      <a href="#">Зелёные</a>
-      <a href="#">Красные</a>
-      <a href="#">Наборы</a>
-    </div>
-
-    <div>
-      <h5>Помощь</h5>
-      <a href="#">Как заказать</a>
-      <a href="#">Доставка и оплата</a>
-      <a href="#">Как заваривать</a>
-      <a href="#">Вопрос-ответ</a>
-    </div>
-
-    <div>
-      <h5>Связь</h5>
-      <a href="https://t.me/" target="_blank">Telegram</a>
-      <a href="https://instagram.com/" target="_blank">Instagram</a>
-      <a href="https://avito.ru/" target="_blank">Авито</a>
-      <a href="#">Написать нам</a>
-    </div>
-  </div>
-
-  <div class="tq-copy">
-    © 2026 Tea Qi · 茶气灵动 · <a href="index.html">eka_life</a>
-  </div>
-</footer>
-
-</body>
-</html>
+      <a href="https://instagram.com/" target="_blank" class="tq-how-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="https://avito.ru/" target="_blank" class="tq-how-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c-5 0-9 4-9 9v7"/><path
