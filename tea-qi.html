@@ -48,8 +48,9 @@ body {
 }
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
+/* ШАПКА */
 .tq-header {
-  padding: 20px 40px;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,15 +58,17 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   background: var(--bg);
   position: sticky; top: 0; z-index: 50;
 }
+
 .tq-logo {
   display: flex;
   align-items: center;
   gap: 14px;
   text-decoration: none;
   color: var(--text);
+  flex-shrink: 0;
 }
 .tq-logo-mark {
-  width: 56px; height: 56px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   background: var(--sage-soft);
   display: flex; align-items: center; justify-content: center;
@@ -83,31 +86,35 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 }
 .tq-logo-text .cn {
   font-family: 'Noto Serif SC', serif;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--sage-dark);
   letter-spacing: 0.3em;
   margin-bottom: 2px;
 }
 .tq-logo-text .en {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text);
 }
 .tq-logo-text .sub {
   font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 2px;
 }
 
+/* Меню по центру */
 .tq-nav {
   display: flex;
   gap: 32px;
   font-size: 0.9rem;
   font-weight: 500;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .tq-nav a {
   color: var(--text);
@@ -123,6 +130,25 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   height: 1px;
   background: var(--sage);
 }
+
+/* Кнопка возврата справа */
+.tq-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 8px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  flex-shrink: 0;
+}
+.tq-back-link:hover { color: var(--text); border-color: var(--sage); }
 
 .tq-grid {
   max-width: 1300px;
@@ -427,9 +453,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   overflow: hidden;
 }
 
-/* ============================================================
-   НОВЫЙ БЛОК: КАК ЗАКАЗАТЬ
-   ============================================================ */
 .tq-how-to-order {
   max-width: 1300px;
   margin: 80px auto 0;
@@ -554,15 +577,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   font-style: italic;
 }
 
-@media (max-width: 860px) {
-  .tq-how-card {
-    grid-template-columns: 1fr;
-    padding: 32px 24px;
-    gap: 32px;
-  }
-  .tq-how-text h2 { font-size: 1.9rem; }
-}
-
 .tq-features {
   max-width: 1300px;
   margin: 80px auto 0;
@@ -643,43 +657,29 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   padding: 0;
 }
 
-.tq-back {
-  position: fixed;
-  top: 20px; right: 20px;
-  padding: 10px 18px;
-  background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  z-index: 100;
-  transition: all 0.2s;
-}
-.tq-back:hover {
-  border-color: var(--sage);
-  color: var(--sage-dark);
-  transform: translateY(-1px);
-}
-
 @media (max-width: 860px) {
   .tq-header {
     padding: 14px 20px;
     flex-direction: column;
     gap: 14px;
   }
+  .tq-logo-mark { width: 42px; height: 42px; }
+  
+  /* Возвращаем меню в поток на мобильных */
   .tq-nav {
+    position: static;
+    transform: none;
     gap: 16px;
     font-size: 0.82rem;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+    order: 3; /* меню уходит вниз */
   }
-  .tq-logo-text .en { font-size: 1.15rem; }
+  .tq-back-link {
+    position: absolute;
+    top: 14px; right: 20px;
+  }
 
   .tq-grid {
     grid-template-columns: 1fr 1fr;
@@ -718,6 +718,13 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   .tq-about-text h2 { font-size: 1.9rem; }
   .tq-about-visual { font-size: 5rem; }
 
+  .tq-how-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+  .tq-how-text h2 { font-size: 1.9rem; }
+
   .tq-features {
     grid-template-columns: 1fr 1fr;
     padding: 0 16px;
@@ -727,14 +734,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
   .tq-footer { padding: 32px 20px 24px; }
   .tq-footer-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
-
-  .tq-back { top: 12px; right: 12px; padding: 8px 14px; font-size: 0.78rem; }
 }
 </style>
 </head>
 <body>
-
-<a href="index.html" class="tq-back">← eka_life</a>
 
 <header class="tq-header">
   <a href="tea-qi.html" class="tq-logo">
@@ -747,6 +750,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
       <span class="sub">Chinese Tea Shop</span>
     </div>
   </a>
+  
   <nav class="tq-nav">
     <a href="#catalog">Чай</a>
     <a href="#catalog">Посуда</a>
@@ -754,6 +758,8 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
     <a href="#about">О нас</a>
     <a href="#how-to-order">Как заказать</a>
   </nav>
+
+  <a href="index.html" class="tq-back-link">← eka_life</a>
 </header>
 
 <section class="tq-grid" id="catalog">
@@ -839,7 +845,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   <div class="tq-about-visual">茶</div>
 </section>
 
-<!-- НОВЫЙ БЛОК: КАК ЗАКАЗАТЬ -->
 <section class="tq-how-to-order" id="how-to-order">
   <div class="tq-how-card">
     <div class="tq-how-text">
