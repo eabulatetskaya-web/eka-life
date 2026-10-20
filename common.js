@@ -264,6 +264,7 @@ const searchData = [
   { type: 'Заметка', icon: '📝', title: 'Как маркетинг спас Формулу-1', url: 'note-f1.html', meta: 'хоббис · 12 мин' },
   { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего я начинала', url: 'note-tea.html', meta: 'хоббис · 8 мин' },
 
+  { type: 'Ссылка', icon: '🔖', title: 'Рынок меняется ежедневно: как «Динамика» из Архангельска стала игроком Северо-Запада', url: 'https://abreview.ru/ab/interview/dealers/andrey_bulatetskiy_dynamica/?srs=slider', meta: 'abreview.ru · интервью' },
   { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
   { type: 'Ссылка', icon: '🔖', title: 'Для тех, кто читает', url: 'https://bookerlyheart.com/', meta: 'bookerlyheart.com · хоббис' },
   { type: 'Ссылка', icon: '🔖', title: 'Как автобренды работают с инфлюенсерами', url: 'https://www.sostav.ru/publication/formaty-raboty-s-inflyuenserami-87531.html', meta: 'Sostav.ru · маркетинг' },
