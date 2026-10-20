@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kindle vs бумажные книги — EA Life</title>
+<meta name="description" content="Разбираю свой опыт: почему я читаю больше на Kindle, но не могу перестать покупать физические книги.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kindle vs бумажные книги — EA Life">
+<meta property="og:description" content="Электронка или бумага? Разбираю свой опыт.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="note-books.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.note-hero { padding: 40px 0 20px; max-width: 760px; }
+.note-breadcrumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+.note-breadcrumbs a { color: var(--accent); text-decoration: none; }
+.note-breadcrumbs a:hover { text-decoration: underline; }
+.note-breadcrumbs span { margin: 0 8px; }
+
+.note-title { font-size: 2.6rem; line-height: 1.15; margin-bottom: 16px; }
+.note-lead { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; font-style: italic; }
+.note-meta-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+  padding-bottom: 24px; border-bottom: 1px solid var(--line);
+  margin-bottom: 32px; align-items: center;
+}
+.note-meta-row .badge-status {
+  padding: 4px 10px; border-radius: 20px; font-weight: 500;
+}
+.badge-status.done { background: var(--accent-3-soft); color: var(--accent-3); }
+
+.note-cover {
+  width: 100%; aspect-ratio: 21/9; border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-2-soft) 100%);
+  background-size: cover;
+  background-position: center;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); font-size: 0.9rem;
+  margin-bottom: 32px; border: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.note-cover::before {
+  content: '📖';
+  font-size: 10rem;
+  position: absolute;
+  right: 40px; top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.2;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.note-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1040px; }
+
+.toc { position: sticky; top: 40px; align-self: start; font-size: 0.88rem; }
+.toc-title {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 12px;
+}
+.toc a {
+  display: block; color: var(--muted); text-decoration: none;
+  padding: 6px 0 6px 12px; border-left: 2px solid var(--line);
+  transition: all 0.15s; line-height: 1.4;
+}
+.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+.note-content { max-width: 720px; }
+.note-content h2 { font-size: 1.7rem; margin: 48px 0 18px; scroll-margin-top: 40px; }
+.note-content h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.15rem;
+  font-weight: 700; margin: 32px 0 12px; scroll-margin-top: 40px;
+}
+.note-content p { font-size: 1.02rem; margin-bottom: 18px; line-height: 1.8; color: var(--text); }
+.note-content ul, .note-content ol { margin: 0 0 18px 22px; font-size: 1.02rem; line-height: 1.8; }
+.note-content li { margin-bottom: 10px; }
+.note-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color 0.15s; }
+.note-content a:hover { border-bottom-color: var(--accent); }
+.note-content strong { font-weight: 700; }
+.note-content em { font-style: italic; }
+.note-content hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+.share-block {
+  margin: 40px 0 24px; padding: 20px 22px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; max-width: 340px;
+}
+.share-block h4 {
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem;
+  margin-bottom: 14px; font-weight: 600; color: var(--text);
+}
+.share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+  font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; font-family: 'Manrope', sans-serif;
+  transition: all 0.15s;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+.share-btn svg { width: 15px; height: 15px; }
+
+.note-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 40px 0; padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.note-nav a {
+  display: block; padding: 18px; border-radius: 14px;
+  background: var(--card); border: 1px solid var(--line);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.note-nav a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.note-nav .label {
+  font-size: 0.75rem; color: var(--muted); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+}
+.note-nav .title { font-size: 0.94rem; font-weight: 600; }
+.note-nav a:last-child { text-align: right; }
+
+@media (max-width: 860px) {
+  .note-layout { grid-template-columns: 1fr; gap: 24px; }
+  .toc { position: static; }
+  .note-title { font-size: 1.9rem; }
+  .note-content h2 { font-size: 1.35rem; }
+  .note-nav { grid-template-columns: 1fr; }
+  .note-cover { aspect-ratio: 4/3; }
+  .note-cover::before { font-size: 6rem; right: 20px; }
+  .share-block { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <article class="note-hero">
+    <div class="note-breadcrumbs">
+      <a href="index.html">Главная</a><span>·</span>
+      <a href="notes.html">База знаний</a><span>·</span>
+      Закулисье
+    </div>
+    <h1 class="note-title">Kindle vs бумажные книги: за что я на самом деле держусь</h1>
+    <p class="note-lead">Я не из тех, кто говорит «электронка убивает книгу». И не из тех, кто «только бумага, только хардкор». У меня дома живут оба варианта — и, честно, я до сих пор не решила, кто из них главный (на самом деле решила).</p>
+    <div class="note-meta-row">
+      <span class="badge-status done">🌳 готово</span>
+      <span>📅 20 октября 2026</span>
+      <span>⏱ 4 минуты чтения</span>
+      <span>🏷 закулисье · книги</span>
+    </div>
+  </article>
+
+  <div class="note-cover" style="background-image: url('img/books-cover.jpg');"></div>
+
+  <div class="note-layout">
+
+    <nav class="toc" id="toc">
+      <div class="toc-title">Содержание</div>
+      <a href="#kindle" class="active">За что я люблю Kindle</a>
+      <a href="#paper">За что я люблю бумагу</a>
+      <a href="#observations">Что я заметила про себя</a>
+      <a href="#choice">Так что выбрать?</a>
+    </nav>
+
+    <div class="note-content">
+
+      <p>Давайте по-честному.</p>
+
+      <h2 id="kindle">За что я люблю свой Kindle</h2>
+      <p>Он всегда со мной. В сумке, в рюкзаке, в поезде, в самолёте. Одна маленькая штука — и там «Мастер и Маргарита», «Проект "Аве Мария"», «20 000 лье под водой», «Метро-2033», какая-то книга про чай и ещё тридцать штук, которые я скачала «на всякий случай» и никогда не открою.</p>
+      <p>Kindle не боится воды, не желтеет, не занимает полку. Можно читать в темноте, не будя никого. Можно увеличить шрифт, если глаза устали. Можно выделить абзац и потом найти его за две секунды. Можно купить/скачать новую книгу в два клика в три часа ночи — и это, кстати, главная опасность.</p>
+      <p>И ещё: Kindle не пахнет. Это минус, но с ним можно жить.</p>
+
+      <h2 id="paper">За что я люблю бумагу</h2>
+      <p>Бумага — это ритуал. Ты берёшь книгу, чувствуешь вес, открываешь, слышишь этот звук переплёта. Она пахнет — по-разному, в зависимости от возраста и типографии. У неё есть фактура, поля, на которых можно писать, и закладки, которые можно оставить на середине и вернуться через год.</p>
+      <p>Бумажную книгу видно. Она стоит на полке и говорит: «я это читала». С Kindle такого нет — там всё спрятано в памяти устройства, и никто не узнает, что ты осилила «Чёрный лебедь» (или не осилила). И не забываем про лимитированные издания, о да, это отдельная тема.</p>
+      <p>И ещё — бумага не отвлекает. На Kindle есть интернет-магазин. На бумаге — только ты и текст.</p>
+
+      <h2 id="observations">Что я заметила про себя</h2>
+      <p>С Kindle я читаю больше. Просто потому что он всегда под рукой. Пять минут в метро, десять минут перед сном, очередь в поликлинике — везде можно открыть и продолжить.</p>
+      <p>С бумагой я читаю внимательнее. Когда беру физическую книгу, это уже решение: я сажусь, я выделяю время, я никуда не спешу. Я выбираю закладку, я помечаю стикером.</p>
+
+      <h2 id="choice">Так что выбрать?</h2>
+      <p>Если ты читаешь в дороге, в темноте, в отпуске, где не хочешь тащить три книги — Kindle. Если ты любишь ритуал, запах, полки и ощущение «я дочитала до конца» — бумага.</p>
+      <p>А можно, как я: Kindle для всего подряд, бумага для того, что хочется оставить. Не «или-или», а «и то, и другое».</p>
+      <p><strong>Но при этом бумажные я не перестану покупать :)</strong></p>
+
+      <hr>
+
+      <div class="share-block">
+        <h4>Поделиться заметкой</h4>
+        <div class="share-buttons">
+          <button class="share-btn" id="copyLink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Скопировать ссылку
+          </button>
+        </div>
+      </div>
+
+      <nav class="note-nav">
+        <a href="note-f1.html">
+          <div class="label">← Другая статья</div>
+          <div class="title">Как маркетинг спас Формулу-1</div>
+        </a>
+        <a href="notes.html">
+          <div class="label">Все заметки →</div>
+          <div class="title">База знаний</div>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+const copyBtn = document.getElementById('copyLink');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      copyBtn.innerHTML = '✓ Ссылка скопирована';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
+      }, 2000);
+    });
+  });
+}
+
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('.note-content h2[id]');
+if (tocLinks.length && sections.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+</script>
+</body>
+</html>
