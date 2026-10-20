@@ -16,9 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ============================================================
-   БАННЕР ЧАЙНОГО МАГАЗИНА НА ГЛАВНОЙ
-   ============================================================ */
+/* Стили для баннера Tea Qi на главной */
 .tq-shop-banner {
   display: flex;
   align-items: center;
@@ -71,7 +69,6 @@
   transition: transform 0.2s;
 }
 .tq-shop-banner:hover .tq-shop-arrow { transform: translateX(5px); }
-
 @media (max-width: 860px) {
   .tq-shop-banner { flex-wrap: wrap; padding: 20px; gap: 16px; }
   .tq-shop-title { font-size: 1.05rem; }
@@ -134,7 +131,6 @@
       </a>
     </div>
 
-    <!-- КАРТОЧКА ЧАЙНОГО МАГАЗИНА -->
     <a href="tea-qi.html" class="tq-shop-banner">
       <div class="tq-shop-icon">🍵</div>
       <div class="tq-shop-content">
@@ -148,7 +144,7 @@
     <a class="now-card" href="now.html">
       <div class="nc-icon">🕐</div>
       <div class="nc-body">
-        <div class="nc-label">сейчас · 10 октября 2026</div>
+        <div class="nc-label">сейчас · 20 октября 2026</div>
         <div class="nc-title">Что у меня прямо сейчас</div>
         <div class="nc-sub">Книги, сериалы, подкасты — короткий снимок моей жизни</div>
       </div>
@@ -160,16 +156,16 @@
     <div class="two-col">
       <div class="panel">
         <div class="panel-head"><h3>📝 База знаний</h3><a href="notes.html">все →</a></div>
-        <div class="note"><a href="note.html" class="note-title">Как я пришла в авто-маркетинг</a><div class="note-meta">карьера · 5 мин · 🌳 готово</div></div>
-        <div class="note"><a href="note.html" class="note-title">Разбор коллаборации с Chery</a><div class="note-meta">кейс · 8 мин · 🌳 готово</div></div>
-        <div class="note"><a href="note.html" class="note-title">Мой стек инструментов маркетолога</a><div class="note-meta">инструменты · 4 мин · 🌿 в работе</div></div>
-        <div class="note"><a href="note-tea.html" class="note-title">Опыт чайной церемонии: с чего начать</a><div class="note-meta">хобби · 6 мин · 🌱 черновик</div></div>
+        <div class="note"><a href="note-books.html" class="note-title">Kindle vs бумажные книги</a><div class="note-meta">закулисье · 4 мин · 🌳 готово</div></div>
+        <div class="note"><a href="note-tea.html" class="note-title">Опыт чайной церемонии</a><div class="note-meta">хоббис · 8 мин · 🌳 готово</div></div>
+        <div class="note"><a href="note-f1.html" class="note-title">Как маркетинг спас Формулу-1</a><div class="note-meta">хоббис · 12 мин · 🌳 готово</div></div>
+        <div class="note"><a href="note.html" class="note-title">Как я пришла в авто-маркетинг</a><div class="note-meta">карьера · 5 мин · 🌱 черновик</div></div>
       </div>
       <div class="panel" id="links">
         <div class="panel-head"><h3>🔖 Кураторская подборка</h3><a href="links.html">все →</a></div>
+        <div class="link"><a href="https://abreview.ru/ab/interview/dealers/andrey_bulatetskiy_dynamica/?srs=slider" target="_blank" class="link-title">Рынок меняется ежедневно: как «Динамика» из Архангельска стала игроком Северо-Запада</a><div class="link-meta">abreview.ru · интервью</div><div class="link-note">Цифры, прогнозы и немного неожиданной откровенности</div></div>
         <div class="link"><a href="https://pisca.ru/" target="_blank" class="link-title">Сумки в виш-лист!</a><div class="link-meta">pisca.ru · лайфстайл</div><div class="link-note">Смотреть на них каждый день и всё-таки купить когда-нибудь :)</div></div>
         <div class="link"><a href="https://bookerlyheart.com/" target="_blank" class="link-title">Для тех, кто читает</a><div class="link-meta">bookerlyheart.com · хоббис</div><div class="link-note">Я что, зря купила себе Kindle? Он просит — я покупаю.</div></div>
-        <div class="link"><a href="#" class="link-title">Анатомия вирусного поста в TG</a><div class="link-meta">vc.ru · маркетинг</div><div class="link-note">главное — первые 3 строки, остальное вода</div></div>
       </div>
     </div>
   </section>
@@ -230,7 +226,22 @@
 
 </main>
 
+<!-- Плавающий виджет Tea Qi -->
+<a href="tea-qi.html" class="tea-widget" id="teaWidget" title="Заглянуть в чайный магазин">
+  <div class="tea-widget-bubble">Чай?</div>
+  <div class="tea-widget-avatar">
+    <img src="img/tea-qi-logo.jpg" alt="Мастер Tea Qi">
+  </div>
+</a>
+
 <script src="tg-posts.js?v=2"></script>
 <script src="common.js"></script>
+<script>
+  // Появление виджета через 3 секунды
+  setTimeout(() => {
+    const widget = document.getElementById('teaWidget');
+    if(widget) widget.classList.add('show');
+  }, 3000);
+</script>
 </body>
 </html>
