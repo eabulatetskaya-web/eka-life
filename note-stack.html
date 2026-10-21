@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой стек инструментов маркетолога — EA Life</title>
+<meta name="description" content="Вордстат, таблицы, папки в телеге и бумажный блокнот. Рассказываю про свой ежедневный стек, лайфхаки и мечты о Figma и Miro.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Мой стек инструментов маркетолога — EA Life">
+<meta property="og:description" content="Чем реально пользуюсь каждый день: аналитика, планирование, работа. С лайфхаками.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="note-stack.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.note-hero { padding: 40px 0 20px; max-width: 760px; }
+.note-breadcrumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+.note-breadcrumbs a { color: var(--accent); text-decoration: none; }
+.note-breadcrumbs a:hover { text-decoration: underline; }
+.note-breadcrumbs span { margin: 0 8px; }
+
+.note-title { font-size: 2.6rem; line-height: 1.15; margin-bottom: 16px; }
+.note-lead { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; font-style: italic; }
+.note-meta-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+  padding-bottom: 24px; border-bottom: 1px solid var(--line);
+  margin-bottom: 32px; align-items: center;
+}
+.note-meta-row .badge-status {
+  padding: 4px 10px; border-radius: 20px; font-weight: 500;
+}
+.badge-status.done { background: var(--accent-3-soft); color: var(--accent-3); }
+
+.note-cover {
+  width: 100%; aspect-ratio: 21/9; border-radius: 20px;
+  background: linear-gradient(135deg, #e3f0ff 0%, #ece8fa 100%);
+  background-size: cover;
+  background-position: center;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); font-size: 0.9rem;
+  margin-bottom: 32px; border: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.note-cover::before {
+  content: '🛠';
+  font-size: 10rem;
+  position: absolute;
+  right: 40px; top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.2;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.note-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1040px; }
+
+.toc { position: sticky; top: 40px; align-self: start; font-size: 0.88rem; }
+.toc-title {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 12px;
+}
+.toc a {
+  display: block; color: var(--muted); text-decoration: none;
+  padding: 6px 0 6px 12px; border-left: 2px solid var(--line);
+  transition: all 0.15s; line-height: 1.4;
+}
+.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+.note-content { max-width: 720px; }
+.note-content h2 { font-size: 1.7rem; margin: 48px 0 18px; scroll-margin-top: 40px; }
+.note-content h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.15rem;
+  font-weight: 700; margin: 32px 0 12px; scroll-margin-top: 40px;
+}
+.note-content p { font-size: 1.02rem; margin-bottom: 18px; line-height: 1.8; color: var(--text); }
+.note-content ul, .note-content ol { margin: 0 0 18px 22px; font-size: 1.02rem; line-height: 1.8; }
+.note-content li { margin-bottom: 10px; }
+.note-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color 0.15s; }
+.note-content a:hover { border-bottom-color: var(--accent); }
+.note-content strong { font-weight: 700; }
+.note-content em { font-style: italic; }
+.note-content hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+/* Плейсхолдеры для скриншотов */
+.note-img {
+  width: 100%; border-radius: 16px;
+  margin: 28px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.85rem;
+  text-align: center;
+}
+.note-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.note-img-fallback {
+  display: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+.note-img.no-image .note-img-fallback { display: block; }
+
+.share-block {
+  margin: 40px 0 24px; padding: 20px 22px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; max-width: 340px;
+}
+.share-block h4 {
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem;
+  margin-bottom: 14px; font-weight: 600; color: var(--text);
+}
+.share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+  font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; font-family: 'Manrope', sans-serif;
+  transition: all 0.15s;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+.share-btn svg { width: 15px; height: 15px; }
+
+.note-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 40px 0; padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.note-nav a {
+  display: block; padding: 18px; border-radius: 14px;
+  background: var(--card); border: 1px solid var(--line);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.note-nav a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.note-nav .label {
+  font-size: 0.75rem; color: var(--muted); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+}
+.note-nav .title { font-size: 0.94rem; font-weight: 600; }
+.note-nav a:last-child { text-align: right; }
+
+@media (max-width: 860px) {
+  .note-layout { grid-template-columns: 1fr; gap: 24px; }
+  .toc { position: static; }
+  .note-title { font-size: 1.9rem; }
+  .note-content h2 { font-size: 1.35rem; }
+  .note-nav { grid-template-columns: 1fr; }
+  .note-cover { aspect-ratio: 4/3; }
+  .note-cover::before { font-size: 6rem; right: 20px; }
+  .share-block { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <article class="note-hero">
+    <div class="note-breadcrumbs">
+      <a href="index.html">Главная</a><span>·</span>
+      <a href="notes.html">База знаний</a><span>·</span>
+      Карьера
+    </div>
+    <h1 class="note-title">Чем на самом деле пользуется маркетолог</h1>
+    <p class="note-lead">Вордстат, таблицы, папки в телеге и бумажный блокнот. Рассказываю про свой ежедневный стек, лайфхаки и неосуществленные мечты о Figma и Miro.</p>
+    <div class="note-meta-row">
+      <span class="badge-status done">🌳 готово</span>
+      <span>📅 21 октября 2026</span>
+      <span>⏱ 6 минут чтения</span>
+      <span>🏷 карьера · инструменты</span>
+    </div>
+  </article>
+
+  <div class="note-cover" style="background-image: url('img/stack-cover.jpg');"></div>
+
+  <div class="note-layout">
+
+    <nav class="toc" id="toc">
+      <div class="toc-title">Содержание</div>
+      <a href="#intro" class="active">Вступление</a>
+      <a href="#analytics">Аналитика</a>
+      <a href="#planning">Планирование</a>
+      <a href="#work">Работа</a>
+      <a href="#wishlist">Вишлист</a>
+      <a href="#lifehack">Главный лайфхак</a>
+      <a href="#outro">Вместо итога</a>
+    </nav>
+
+    <div class="note-content">
+
+      <p id="intro">Если честно, я с подозрением отношусь к подборкам в духе «Топ-100 инструментов маркетолога, которые изменят твою жизнь». Потому что на деле мы все пользуемся пятью-шестью сервисами, а остальные висят в закладках «на потом», молча собирают пыль и тратят ваши денежки на подписку :)</p>
+      <p>Я не буду рассказывать про экзотические нейросети, которые сами пишут стратегии на миллион (иначе я бы уже тут не работала). Расскажу про свой рабочий стек. Чем реально пользуюсь каждый день — в аналитике, планировании и работе. С лайфхаками и скриншотами (как и обещала).</p>
+
+      <h2 id="analytics">Аналитика: без магии, только цифры</h2>
+      <p>Каждый маркетолог хочет быть креативным, но если ты не видишь цифры, твоя креативность ничего не стоит.</p>
+      <p><strong>Вордстат.</strong> База для понимания спроса. Смотрю, что и как ищут люди, прежде чем запускать рекламу или писать тексты. А еще это мой главный аргумент, когда нужно доказать что-то отделу продаж или дилеру. Приходишь с сухими цифрами частотности — и вопросы «а мне кажется, это не сработает» отпадают сами собой.</p>
+      <p><strong>Google Sheets.</strong> Да, это не специализированный сервис, но 99% моей аналитики живет в гугл-таблицах и опросах. Свести данные из трех источников, посчитать CPL или CPO вручную, собрать контент-план — все там.</p>
+      <p><strong>Excel.</strong> Как ни странно, да! Умеешь делать сводные таблицы и знаешь формулы — маркетолог из тебя уже получился. Иногда старый добрый Excel работает быстрее и надежнее любых модных дашбордов.</p>
+
+      <div class="note-img">
+        <img src="img/stack-analytics.jpg" alt="Скриншот таблицы или Вордстата" onerror="this.style.display='none'; this.parentNode.classList.add('no-image');">
+        <span class="note-img-fallback">📷 Скриншот таблицы или Вордстата</span>
+      </div>
+
+      <h2 id="planning">Планирование: чтобы голова не лопнула</h2>
+      <p>Работа маркетолога — это когда у тебя одновременно 15 задач, 3 дедлайна и «срочно поменяй кнопку». Без системы тут можно сойти с ума.</p>
+      <p><strong>Telegram (Папки).</strong> Мой самый недооцененный инструмент планирования. У меня есть отдельные папки: «Работа» (только подрядчики и коллеги), «Инфополе» (каналы, которые читаю по работе), «Личное» и еще миллион папок. Иначе рабочий чат утонет в мемах из чайных каналов.</p>
+      <p><strong>Блокнот.</strong> Звучит как прошлый век, но это святое. Быстро записать мысль на созвоне, нарисовать схему воронки, пока едешь в метро. Плюс бумага не разрядится в самый неподходящий момент.</p>
+      <p><strong>Заметки на телефоне.</strong> Для внезапных инсайтов. Увидела крутой заголовок в метро, придумала идею для поста, пока пила чай — сразу в заметки. Потом это все уходит в работу или перекочевывает в бумажный блокнот.</p>
+
+      <div class="note-img">
+        <img src="img/stack-telegram.jpg" alt="Скриншот структуры папок в ТГ" onerror="this.style.display='none'; this.parentNode.classList.add('no-image');">
+        <span class="note-img-fallback">📷 Скриншот структуры папок в ТГ</span>
+      </div>
+
+      <h2 id="work">Работа: от ТЗ до результата</h2>
+      <p>Тут главное — не изобретать велосипед и не терять людей в переписках.</p>
+      <p><strong>Canva.</strong> Мой спаситель, когда нужно быстро собрать презентацию, накидать простенький макет для соцсетей или сделать визуал для креаторов. Дизайнер занят, а нам «надо вчера» — открываем Канву.</p>
+      <p><strong>Google Docs + комментарии.</strong> Все ТЗ для креаторов — только там. Никаких голосовых в телеге, которые потом невозможно найти. В гуглдоке пишу бриф, отправляю на комментирование. Редактура в режиме реального времени — это спасает от кучи правок.</p>
+      <p><strong>Яндекс.Телемост и Zoom.</strong> На постоянке для созвонов с командой и подрядчиками. Иногда кажется, что мы там живем. Классика жанра: пока дизайнер занят в Канве, мы всей командой ищем на созвоне файл с ТЗ.</p>
+      <p><strong>AI world: GPT, Gemini.</strong> Куда без друзей! Не для того, чтобы они писали за меня тексты (тут я сама), а для генерации идей, поиска структуры, быстрых переводов и чтобы объяснить сложное простыми словами. Отличные ассистенты для рутины.</p>
+
+      <div class="note-img">
+        <img src="img/stack-canva.jpg" alt="Скриншот из Canva" onerror="this.style.display='none'; this.parentNode.classList.add('no-image');">
+        <span class="note-img-fallback">📷 Скриншот из Canva</span>
+      </div>
+
+      <h2 id="wishlist">А что в вишлисте? (пока неосуществленные мечты)</h2>
+      <p>Есть инструменты, про которые я регулярно читаю, сохраняю себе ссылки, но в ежедневную рутину они пока так и не зашли. Но я верю, что всё впереди.</p>
+      <p><strong>Notion.</strong> Моя мечта. Хотелось бы, но пока нет — хотя даже статьи для этого сайта я делала под впечатлением от его структуры и логики. Когда-нибудь точно перееду туда.</p>
+      <p><strong>Figma.</strong> Хотелось бы, но нет. Пока собираю мудборды там, где получается, но чувствую, что однажды мы с ней подружимся.</p>
+      <p><strong>Miro.</strong> Активно использовала его во время учебы, сейчас присматриваюсь к нему или к аналогам, которые работают в России. Очень не хватает доски для брейнштормов и визуализации всех этих маркетинговых схем!</p>
+
+      <h2 id="lifehack">Мой главный лайфхак (вместо тысячи сервисов)</h2>
+      <p>Заведите себе правило одного таба. Если во время работы у вас открыто больше 20 вкладок в браузере — вы не работаете, вы просто переключаете внимание. Мое строгое правило: открыты только нужные вкладки! Я закрываю все, что не нужно прямо сейчас. Это не инструмент, но работает лучше любого таск-трекера.</p>
+
+      <h2 id="outro">Вместо итога</h2>
+      <p>В маркетинге нет волшебной кнопки. Есть базовые инструменты, которые вы настроили под себя, и умение ими пользоваться. Не гонитесь за 100 сервисами из подборок. Возьмите пять, доведите до автоматизма — и будет вам счастье. И это не только про маркетологов.</p>
+
+      <hr>
+
+      <div class="share-block">
+        <h4>Поделиться заметкой</h4>
+        <div class="share-buttons">
+          <button class="share-btn" id="copyLink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Скопировать ссылку
+          </button>
+        </div>
+      </div>
+
+      <nav class="note-nav">
+        <a href="note.html">
+          <div class="label">← Другая статья</div>
+          <div class="title">Как я пришла в авто-маркетинг</div>
+        </a>
+        <a href="notes.html">
+          <div class="label">Все заметки →</div>
+          <div class="title">База знаний</div>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="now.html">Сейчас</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+const copyBtn = document.getElementById('copyLink');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      copyBtn.innerHTML = '✓ Ссылка скопирована';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Скопировать ссылку';
+      }, 2000);
+    });
+  });
+}
+
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('.note-content h2[id]');
+if (tocLinks.length && sections.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+</script>
+</body>
+</html>
