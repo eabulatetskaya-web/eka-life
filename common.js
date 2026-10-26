@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { href: 'index.html',        icon: '🏠', label: 'Главная' },
   { href: 'themes.html',       icon: '🗂', label: 'Все темы' },
   { href: 'notes.html',        icon: '📝', label: 'База знаний' },
+  { href: 'guides.html',       icon: '📌', label: 'Шпаргалки' },
   { href: 'files.html',        icon: '📁', label: 'Файлы' },
   { href: 'links.html',        icon: '🔖', label: 'Подборка' },
   { href: 'now.html',          icon: '🕐', label: 'Сейчас' },
@@ -265,6 +266,8 @@ const searchData = [
   { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего я начинала', url: 'note-tea.html', meta: 'хоббис · 8 мин' },
   { type: 'Заметка', icon: '📝', title: 'Kindle vs бумажные книги', url: 'note-books.html', meta: 'закулисье · 4 мин' },
 
+  { type: 'Шпаргалка', icon: '📌', title: 'Как заваривать Шу пуэр', url: 'guides.html', meta: 'хоббис · 6 шагов' },
+
   { type: 'Ссылка', icon: '🔖', title: 'Рынок меняется ежедневно: как «Динамика» из Архангельска стала игроком Северо-Запада', url: 'https://abreview.ru/ab/interview/dealers/andrey_bulatetskiy_dynamica/?srs=slider', meta: 'abreview.ru · интервью' },
   { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
   { type: 'Ссылка', icon: '🔖', title: 'Для тех, кто читает', url: 'https://bookerlyheart.com/', meta: 'bookerlyheart.com · хоббис' },
@@ -285,6 +288,7 @@ const searchData = [
   { type: 'Страница', icon: '🏠', title: 'Главная', url: 'index.html', meta: 'обзор сайта' },
   { type: 'Страница', icon: '🗂', title: 'Все темы', url: 'themes.html', meta: 'сетка направлений' },
   { type: 'Страница', icon: '📝', title: 'База знаний', url: 'notes.html', meta: 'все заметки' },
+  { type: 'Страница', icon: '📌', title: 'Шпаргалки', url: 'guides.html', meta: 'визуальные инструкции' },
   { type: 'Страница', icon: '📁', title: 'Файлы и материалы', url: 'files.html', meta: 'шаблоны, гайды, таблицы' },
   { type: 'Страница', icon: '🔖', title: 'Подборка', url: 'links.html', meta: 'все ссылки' },
   { type: 'Страница', icon: '🕐', title: 'Сейчас', url: 'now.html', meta: 'чем живу прямо сейчас' },
@@ -503,7 +507,7 @@ ready(() => {
   });
 
   const revealTargets = document.querySelectorAll(
-    '.hero, section, .topic, .panel, .tg-feed, .graph, .note-content, .sub-card, .why-block, .theme-card, .about-section, .item, .file-card, .masonry-item, .quote-card'
+    '.hero, section, .topic, .panel, .tg-feed, .graph, .note-content, .sub-card, .why-block, .theme-card, .about-section, .item, .file-card, .guide-card, .masonry-item, .quote-card'
   );
   revealTargets.forEach((el, i) => {
     if (el.classList.contains('reveal')) return;
