@@ -124,40 +124,40 @@
 
   <section class="guides-list">
 
-    <!-- ШПАРГАЛКА: ПУЭР -->
+    <!-- ШПАРГАЛКА: ГАБА -->
     <div class="guide-card" data-topic="hobby">
       <div class="guide-header">
         <div>
-          <div class="guide-title">Как заваривать Шу пуэр</div>
+          <div class="guide-title">Что такое ГАБА чай?</div>
           <div class="guide-tag">🧩 Хоббис</div>
         </div>
       </div>
       
       <div class="carousel-wrap guide-carousel">
         <div class="carousel-track">
-          <!-- Картинки для шпаргалки. Названия: img/guides/puer-1.jpg и т.д. -->
+          <!-- ВАЖНО: Файлы картинок должны называться gaba-1.jpg, gaba-2.jpg и т.д. -->
           <div class="carousel-slide">
-            <img src="img/guides/puer-1.jpg" alt="Шаг 1" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-1.jpg" alt="Шаг 1" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 1</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/guides/puer-2.jpg" alt="Шаг 2" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-2.jpg" alt="Шаг 2" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 2</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/guides/puer-3.jpg" alt="Шаг 3" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-3.jpg" alt="Шаг 3" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 3</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/guides/puer-4.jpg" alt="Шаг 4" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-4.jpg" alt="Шаг 4" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 4</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/guides/puer-5.jpg" alt="Шаг 5" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-5.jpg" alt="Шаг 5" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 5</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/guides/puer-6.jpg" alt="Шаг 6" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <img src="img/guides/gaba-6.jpg" alt="Шаг 6" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
             <div class="img-fallback">📷 Шаг 6</div>
           </div>
         </div>
@@ -175,22 +175,6 @@
         <div class="dot"></div>
       </div>
     </div>
-
-    <!-- Пример пустой карточки для будущих шпаргалок (можно удалить или раскомментировать) -->
-    <!--
-    <div class="guide-card" data-topic="career">
-      <div class="guide-header">
-        <div>
-          <div class="guide-title">Название шпаргалки</div>
-          <div class="guide-tag">🚗 Карьера</div>
-        </div>
-      </div>
-      <div class="carousel-wrap guide-carousel">
-         ... слайды ...
-      </div>
-      <div class="carousel-dots"> ... точки ... </div>
-    </div>
-    -->
 
   </section>
 
@@ -227,7 +211,7 @@
     const slides = carousel.querySelectorAll('.carousel-slide');
     const btnPrev = carousel.querySelector('.prev');
     const btnNext = carousel.querySelector('.next');
-    const dotsContainer = carousel.nextElementSibling; // Блок с точками идет сразу после карусели
+    const dotsContainer = carousel.nextElementSibling;
     const dots = dotsContainer.querySelectorAll('.dot');
     let currentIndex = 0;
 
@@ -251,7 +235,6 @@
       });
     });
 
-    // Свайп
     let startX = 0;
     track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
     track.addEventListener('touchend', e => {
