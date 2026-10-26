@@ -81,9 +81,25 @@
 .related-card .rc-icon { font-size: 1.4rem; margin-bottom: 8px; }
 .related-card h3 { font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
 .related-card p { font-size: 0.82rem; color: var(--muted); }
+
+/* Блок-ссылка на шпаргалки */
+.guide-link-block {
+  display: flex; align-items: center; gap: 20px;
+  background: linear-gradient(135deg, var(--accent-3-soft), var(--accent-soft));
+  border-radius: 16px; padding: 24px; margin-bottom: 24px;
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.guide-link-block:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(74,144,226,0.1); border-color: var(--line); }
+.guide-link-icon { font-size: 2rem; }
+.guide-link-text h3 { font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+.guide-link-text p { font-size: 0.9rem; color: var(--muted); }
+
 @media (max-width: 860px) {
   .theme-head h1 { font-size: 1.8rem; }
   .related-grid { grid-template-columns: 1fr; }
+  .guide-link-block { flex-direction: column; text-align: center; gap: 12px; }
 }
 </style>
 </head>
@@ -118,6 +134,15 @@
   </div>
 
   <div class="items" id="items">
+
+    <!-- Блок-ссылка на шпаргалку -->
+    <a href="guides.html" class="guide-link-block">
+      <div class="guide-link-icon">📌</div>
+      <div class="guide-link-text">
+        <h3>Визуальная шпаргалка: Как заваривать Шу пуэр</h3>
+        <p>Пошаговая инструкция в 6 картинках. Листайте прямо на сайте!</p>
+      </div>
+    </a>
 
     <a class="item" data-type="knowledge" href="note-tea.html">
       <div class="item-icon" style="background:var(--accent-soft)">📝</div>
