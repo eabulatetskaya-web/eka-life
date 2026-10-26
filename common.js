@@ -21,6 +21,7 @@ const NAV_ITEMS = [
   { href: 'files.html',        icon: '📁', label: 'Файлы' },
   { href: 'links.html',        icon: '🔖', label: 'Подборка' },
   { href: 'now.html',          icon: '🕐', label: 'Сейчас' },
+  { href: 'inspiration.html',  icon: '✨', label: 'Вдохновение' },
   { href: 'about.html',        icon: '👤', label: 'Обо мне' },
 ];
 
@@ -154,7 +155,7 @@ function buildScrollTop() {
 }
 
 /* =========================================================
-   КНОПКИ «ПОДЕЛИТЬСЯ» — только для ссылок в подборке
+   КНОПКИ «ПОДЕЛИТЬСЯ»
    ========================================================= */
 function copyToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
@@ -287,6 +288,7 @@ const searchData = [
   { type: 'Страница', icon: '📁', title: 'Файлы и материалы', url: 'files.html', meta: 'шаблоны, гайды, таблицы' },
   { type: 'Страница', icon: '🔖', title: 'Подборка', url: 'links.html', meta: 'все ссылки' },
   { type: 'Страница', icon: '🕐', title: 'Сейчас', url: 'now.html', meta: 'чем живу прямо сейчас' },
+  { type: 'Страница', icon: '✨', title: 'Вдохновение', url: 'inspiration.html', meta: 'мудборд и цитаты' },
   { type: 'Страница', icon: '👤', title: 'Обо мне', url: 'about.html', meta: 'био · контакты' },
 ];
 
@@ -501,7 +503,7 @@ ready(() => {
   });
 
   const revealTargets = document.querySelectorAll(
-    '.hero, section, .topic, .panel, .tg-feed, .graph, .note-content, .sub-card, .why-block, .theme-card, .about-section, .item, .file-card'
+    '.hero, section, .topic, .panel, .tg-feed, .graph, .note-content, .sub-card, .why-block, .theme-card, .about-section, .item, .file-card, .masonry-item, .quote-card'
   );
   revealTargets.forEach((el, i) => {
     if (el.classList.contains('reveal')) return;
