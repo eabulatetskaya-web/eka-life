@@ -266,7 +266,7 @@ const searchData = [
   { type: 'Заметка', icon: '📝', title: 'Опыт чайной церемонии: с чего я начинала', url: 'note-tea.html', meta: 'хоббис · 8 мин' },
   { type: 'Заметка', icon: '📝', title: 'Kindle vs бумажные книги', url: 'note-books.html', meta: 'закулисье · 4 мин' },
 
-  { type: 'Шпаргалка', icon: '📌', title: 'Как заваривать Шу пуэр', url: 'guides.html', meta: 'хоббис · 6 шагов' },
+  { type: 'Шпаргалка', icon: '📌', title: 'Что такое ГАБА чай?', url: 'guides.html', meta: 'хоббис · 6 шагов' },
 
   { type: 'Ссылка', icon: '🔖', title: 'Рынок меняется ежедневно: как «Динамика» из Архангельска стала игроком Северо-Запада', url: 'https://abreview.ru/ab/interview/dealers/andrey_bulatetskiy_dynamica/?srs=slider', meta: 'abreview.ru · интервью' },
   { type: 'Ссылка', icon: '🔖', title: 'Сумки в виш-лист!', url: 'https://pisca.ru/', meta: 'pisca.ru · лайфстайл' },
