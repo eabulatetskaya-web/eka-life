@@ -52,6 +52,7 @@
 .carousel-wrap {
   position: relative; background: var(--bg);
   border-radius: 16px; overflow: hidden; aspect-ratio: 4/3;
+  border: 1px solid var(--line); /* Рамка, чтобы поля смотрелись аккуратно */
 }
 .carousel-track {
   display: flex; height: 100%;
@@ -60,9 +61,13 @@
 .carousel-slide {
   min-width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
 }
+/* ВАЖНО: object-fit: contain — картинка не обрезается */
 .carousel-slide img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  width: 100%; height: 100%; 
+  object-fit: contain; 
+  display: block;
 }
 .carousel-slide .img-fallback {
   display: none; color: var(--muted); font-size: 0.9rem; text-align: center; padding: 20px;
@@ -78,7 +83,11 @@
   align-items: center; justify-content: center; cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10; transition: all 0.2s;
 }
-.carousel-btn:hover { background: var(--card); transform: translateY(-50%) scale(1.05); }
+/* В темной теме кнопки тоже должны быть темными */
+html[data-theme="dark"] .carousel-btn {
+  background: rgba(26, 36, 55, 0.9); color: var(--text); border-color: var(--line);
+}
+.carousel-btn:hover { transform: translateY(-50%) scale(1.05); }
 .carousel-btn.prev { left: 16px; }
 .carousel-btn.next { right: 16px; }
 
@@ -90,7 +99,8 @@
 .dot.active { background: var(--accent); transform: scale(1.2); }
 
 @media (max-width: 600px) {
-  .carousel-wrap { aspect-ratio: 3/4; }
+  /* Убрал aspect-ratio: 3/4, чтобы горизонтальные картинки не были крошечными */
+  .carousel-wrap { aspect-ratio: 4/3; }
   .page-head h1 { font-size: 2rem; }
   .guide-title { font-size: 1.2rem; }
 }
