@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вдохновение — EA Life</title>
+<meta name="description" content="Мудборд и цитаты. Визуальные образы и мысли, которые меня вдохновляют.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Вдохновение — EA Life">
+<meta property="og:description" content="Мудборд и цитаты.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="inspiration.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-head { padding: 40px 0 20px; max-width: 720px; }
+.page-head h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.page-head h1 em { font-style: italic; color: var(--accent); }
+.page-head p { font-size: 1.05rem; color: var(--muted); }
+
+/* === ТАБЫ === */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+  margin-top: 12px;
+}
+.tab-btn {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); }
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === МУДБОРД === */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  grid-auto-rows: 220px;
+}
+.masonry-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft));
+  border: 1px solid var(--line);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.masonry-item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(74,144,226,0.1); }
+.masonry-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.masonry-item:nth-child(1) { grid-row: span 2; }
+.masonry-item:nth-child(2) { grid-row: span 1; }
+.masonry-item:nth-child(3) { grid-row: span 1; }
+.masonry-item:nth-child(4) { grid-row: span 2; }
+.masonry-item:nth-child(5) { grid-row: span 1; }
+.masonry-item:nth-child(6) { grid-row: span 1; }
+
+/* Заглушка для мудборда, если картинки нет */
+.img-placeholder {
+  display: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 20px;
+}
+.masonry-item.no-img .img-placeholder { display: block; }
+
+/* === ЦИТАТЫ === */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.quote-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+.quote-card:hover { transform: translateY(-2px); }
+.quote-card::before {
+  content: '“';
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.15;
+  position: absolute;
+  top: 20px; left: 20px;
+}
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.quote-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.quote-author::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .masonry-grid { grid-template-columns: 1fr 1fr; }
+  .masonry-item:nth-child(n) { grid-row: span 1; }
+  .quotes-grid { grid-template-columns: 1fr; }
+  .page-head h1 { font-size: 2rem; }
+  .tabs { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="page-head">
+    <h1>Вдохновение</h1>
+    <p>Здесь я собираю то, что цепляет глаз и душу. Визуальные образы, которые формируют мою эстетику, и цитаты, которые помогают думать.</p>
+  </section>
+
+  <!-- ПЕРЕКЛЮЧАТЕЛЬ -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('board')">
+      <span>🖼</span> Мудборд
+    </button>
+    <button class="tab-btn" onclick="openTab('quotes')">
+      <span>💬</span> Цитаты
+    </button>
+  </div>
+
+  <!-- ВКЛАДКА: МУДБОРД -->
+  <div id="board" class="tab-content active">
+    <div class="masonry-grid">
+      <!-- Чтобы картинки появились, загрузите их в папку img с этими именами -->
+      <div class="masonry-item">
+        <img src="img/board-1.jpg" alt="Вдохновение 1" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 1 (например, чайная церемония)</div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/board-2.jpg" alt="Вдохновение 2" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 2</div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/board-3.jpg" alt="Вдохновение 3" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 3</div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/board-4.jpg" alt="Вдохновение 4" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 4</div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/board-5.jpg" alt="Вдохновение 5" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 5</div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/board-6.jpg" alt="Вдохновение 6" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+        <div class="img-placeholder">📷 Фото 6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА: ЦИТАТЫ -->
+  <div id="quotes" class="tab-content">
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <div class="quote-text">Не гонитесь за 100 сервисами из подборок. Возьмите пять, доведите до автоматизма — и будет вам счастье.</div>
+        <div class="quote-author">Из моей статьи про стек</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Хороший бриф — это когда ты можешь одной фразой объяснить, зачем делаешь эту кампанию. Если не можешь — значит, бриф не готов.</div>
+        <div class="quote-author">Правило из работы</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Kindle не пахнет. Это минус, но с ним можно жить.</div>
+        <div class="quote-author">Из статьи про книги</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Самое крутое в этой истории — не цифры. А то, что маркетинг здесь не «продал» спорт. Он раскрыл его.</div>
+        <div class="quote-author">Из статьи про F1</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Petit à petit, l'oiseau fait son nid. Маленькими шагами птица вьёт гнездо.</div>
+        <div class="quote-author">Французская поговорка</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">慢慢来. Не спеша.</div>
+        <div class="quote-author">Китайская мудрость</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+  function openTab(tabName) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(c => c.classList.remove('active'));
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+
+    document.getElementById(tabName).classList.add('active');
+
+    if (tabName === 'board') {
+      buttons[0].classList.add('active');
+    } else {
+      buttons[1].classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>
