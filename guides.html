@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шпаргалки — EA Life</title>
+<meta name="description" content="Визуальные шпаргалки и пошаговые инструкции в картинках.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Шпаргалки — EA Life">
+<meta property="og:description" content="Визуальные шпаргалки и пошаговые инструкции.">
+<meta property="og:image" content="banner.jpg">
+<meta property="og:url" content="guides.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234a90e2'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='white' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-head { padding: 40px 0 20px; }
+.page-head h1 { font-size: 2.6rem; margin-bottom: 12px; }
+.page-head h1 em { font-style: italic; color: var(--accent); }
+.page-head p { font-size: 1.05rem; color: var(--muted); max-width: 620px; }
+
+.filters { display: flex; gap: 8px; margin: 28px 0 32px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.filter {
+  padding: 10px 4px; margin-right: 16px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.92rem; font-weight: 500;
+  color: var(--muted); position: relative; transition: color 0.2s;
+}
+.filter:hover { color: var(--text); }
+.filter.active { color: var(--accent); font-weight: 600; }
+.filter.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--accent); }
+
+/* === КАРТОЧКА ШПАРГАЛКИ === */
+.guide-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 24px; padding: 24px; margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+}
+.guide-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.guide-title { font-size: 1.4rem; margin-bottom: 4px; color: var(--text); font-family: 'Playfair Display', serif; }
+.guide-tag {
+  display: inline-block; font-size: 0.75rem; padding: 3px 8px;
+  border-radius: 6px; background: var(--bg); color: var(--muted); font-weight: 500;
+}
+
+/* === КАРУСЕЛЬ === */
+.carousel-wrap {
+  position: relative; background: var(--bg);
+  border-radius: 16px; overflow: hidden; aspect-ratio: 4/3;
+}
+.carousel-track {
+  display: flex; height: 100%;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.carousel-slide {
+  min-width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.carousel-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.carousel-slide .img-fallback {
+  display: none; color: var(--muted); font-size: 0.9rem; text-align: center; padding: 20px;
+}
+.carousel-slide.no-img .img-fallback { display: block; }
+.carousel-slide.no-img img { display: none; }
+
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.9); border: 1px solid var(--line);
+  color: var(--text); font-size: 1.2rem; display: flex;
+  align-items: center; justify-content: center; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 10; transition: all 0.2s;
+}
+.carousel-btn:hover { background: var(--card); transform: translateY(-50%) scale(1.05); }
+.carousel-btn.prev { left: 16px; }
+.carousel-btn.next { right: 16px; }
+
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--line); cursor: pointer; transition: all 0.2s;
+}
+.dot.active { background: var(--accent); transform: scale(1.2); }
+
+@media (max-width: 600px) {
+  .carousel-wrap { aspect-ratio: 3/4; }
+  .page-head h1 { font-size: 2rem; }
+  .guide-title { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="brand">eka <span>_</span> life</div>
+  <div class="brand-sub">личный кладезь маркетолога</div>
+  <button class="search-btn" id="openSearch">🔍 Поиск <kbd>Ctrl K</kbd></button>
+  <button class="theme-toggle" id="themeToggle">🌙 Тёмная тема</button>
+  <nav id="mainNav"></nav>
+  <div class="socials" id="socialsNav"></div>
+</aside>
+
+<main>
+
+  <section class="page-head">
+    <h1>Шпаргалки</h1>
+    <p>Пошаговые инструкции в картинках. Для тех, кто лучше понимает глазами, чем читает текст.</p>
+  </section>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все</button>
+    <button class="filter" data-filter="career">🚗 Карьера</button>
+    <button class="filter" data-filter="life">🏙️ Лайфстайл</button>
+    <button class="filter" data-filter="hobby">🧩 Хоббис</button>
+    <button class="filter" data-filter="thoughts">💭 Закулисье</button>
+  </div>
+
+  <section class="guides-list">
+
+    <!-- ШПАРГАЛКА: ПУЭР -->
+    <div class="guide-card" data-topic="hobby">
+      <div class="guide-header">
+        <div>
+          <div class="guide-title">Как заваривать Шу пуэр</div>
+          <div class="guide-tag">🧩 Хоббис</div>
+        </div>
+      </div>
+      
+      <div class="carousel-wrap guide-carousel">
+        <div class="carousel-track">
+          <!-- Картинки для шпаргалки. Названия: img/guides/puer-1.jpg и т.д. -->
+          <div class="carousel-slide">
+            <img src="img/guides/puer-1.jpg" alt="Шаг 1" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 1</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/guides/puer-2.jpg" alt="Шаг 2" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 2</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/guides/puer-3.jpg" alt="Шаг 3" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 3</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/guides/puer-4.jpg" alt="Шаг 4" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 4</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/guides/puer-5.jpg" alt="Шаг 5" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 5</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/guides/puer-6.jpg" alt="Шаг 6" onerror="this.style.display='none'; this.parentNode.classList.add('no-img');">
+            <div class="img-fallback">📷 Шаг 6</div>
+          </div>
+        </div>
+
+        <button class="carousel-btn prev">←</button>
+        <button class="carousel-btn next">→</button>
+      </div>
+
+      <div class="carousel-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Пример пустой карточки для будущих шпаргалок (можно удалить или раскомментировать) -->
+    <!--
+    <div class="guide-card" data-topic="career">
+      <div class="guide-header">
+        <div>
+          <div class="guide-title">Название шпаргалки</div>
+          <div class="guide-tag">🚗 Карьера</div>
+        </div>
+      </div>
+      <div class="carousel-wrap guide-carousel">
+         ... слайды ...
+      </div>
+      <div class="carousel-dots"> ... точки ... </div>
+    </div>
+    -->
+
+  </section>
+
+  <footer>
+    <p>© 2026 Eka_Life</p>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="notes.html">База знаний</a>
+      <a href="links.html">Подборка</a>
+      <a href="about.html">Обо мне</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="tg-posts.js?v=2"></script>
+<script src="common.js"></script>
+<script>
+  // Логика фильтров
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.guide-card').forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.topic === f) ? 'block' : 'none';
+      });
+    });
+  });
+
+  // Универсальная логика для всех каруселей на странице
+  document.querySelectorAll('.guide-carousel').forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const btnPrev = carousel.querySelector('.prev');
+    const btnNext = carousel.querySelector('.next');
+    const dotsContainer = carousel.nextElementSibling; // Блок с точками идет сразу после карусели
+    const dots = dotsContainer.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    function update() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    }
+
+    function move(dir) {
+      currentIndex = (currentIndex + dir + slides.length) % slides.length;
+      update();
+    }
+
+    btnPrev.addEventListener('click', () => move(-1));
+    btnNext.addEventListener('click', () => move(1));
+    
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        update();
+      });
+    });
+
+    // Свайп
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) move(1);
+      if (endX - startX > 50) move(-1);
+    });
+  });
+</script>
+</body>
+</html>
